@@ -75,6 +75,11 @@ h1{animation:gl 6s infinite}@keyframes gl{0%,94%,100%{transform:none}95%{transfo
 @keyframes fl{50%{translate:0 -5px}}
 .m.sel{outline:2px solid var(--gl);outline-offset:-2px;box-shadow:0 0 14px var(--ac);border-radius:8px}
 .bd input[type=time]{background:var(--in)}
+#lg{position:fixed;inset:0;z-index:70;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:24px;text-align:center}
+#lg input,#lg select{max-width:320px}#lg button{padding:12px 26px;letter-spacing:2px;color:var(--gl);box-shadow:0 0 16px var(--ac)}
+body.rj .adm{display:none!important}
+select{background:var(--in);color:var(--tx);border:1px solid var(--ln);border-radius:9px;padding:9px}
+#ad h2{margin-top:14px}#ad .row{flex-wrap:wrap}
 </style></head><body>
 <div id="ov"><div class="orb"></div><h1>LOUIS // CORE<small>TON ASSISTANT. TON SYSTÈME. TON AVENIR.</small></h1><p class="q">Le Système est prêt, Leonard.</p><button id="go">S’ÉVEILLER</button></div>
 <div id="toast"></div><div id="hud"></div><div id="gp" style="display:none;position:fixed;right:10px;bottom:calc(74px + env(safe-area-inset-bottom,0px));width:128px;height:96px;z-index:55;border:1px solid var(--gl);border-radius:10px;overflow:hidden;box-shadow:0 0 14px var(--ac);background:#000"><div style="position:absolute;inset:0;transform:scaleX(-1)"><video id="vid" playsinline muted style="width:100%;height:100%;object-fit:cover"></video><canvas id="gc" style="position:absolute;inset:0;width:100%;height:100%"></canvas></div><div id="gh" style="position:absolute;left:4px;bottom:3px;font-size:11px;text-shadow:0 0 4px #000"></div></div><input type="file" id="pf" accept="image/*" capture="environment" hidden>
@@ -111,7 +116,7 @@ h1{animation:gl 6s infinite}@keyframes gl{0%,94%,100%{transform:none}95%{transfo
 <section class="s" id="s3">
  <div class="p"><h2>JOURNAL DE BORD</h2><textarea id="jt" rows="7" placeholder="Écris tes pensées, tes objectifs, tes idées. Louis les garde en mémoire."></textarea><button class="bt" id="js">Enregistrer (+20 XP / jour)</button></div>
  <div class="p"><h2>QUÊTE SPÉCIALE</h2><div id="qs"></div><button class="bt" id="qb">Accomplir la quête</button></div>
- <div class="p"><h2>RÉGLAGES IA</h2><select id="pv" style="width:100%;margin-bottom:6px;background:var(--in);color:var(--tx);border:1px solid var(--ln);border-radius:9px;padding:9px"><option value="gemini">IA : Gemini (proxy)</option><option value="deepseek">IA : DeepSeek</option></select><input id="px" placeholder="URL du proxy"><input id="ac" placeholder="Code d’accès" style="margin-top:6px"><input id="vp" placeholder="Phrase vocale secrète (optionnel)" style="margin-top:6px"><button class="bt" id="cf">Enregistrer les réglages</button>
+ <div class="p"><h2>RÉGLAGES IA</h2><select id="pv" class="adm" style="width:100%;margin-bottom:6px;background:var(--in);color:var(--tx);border:1px solid var(--ln);border-radius:9px;padding:9px"><option value="gemini">IA : Gemini (proxy)</option><option value="deepseek">IA : DeepSeek</option><option value="gemma">IA : Gemma local (APK)</option></select><input id="px" class="adm" placeholder="URL du proxy"><input id="ac" class="adm" placeholder="Code d’accès" style="margin-top:6px"><input id="vp" placeholder="Phrase vocale secrète (optionnel)" style="margin-top:6px"><button class="bt" id="cf">Enregistrer les réglages</button>
  <select id="vs" style="width:100%;margin-top:10px;background:var(--in);color:var(--tx);border:1px solid var(--ln);border-radius:9px;padding:9px"><option value="robot">🤖 Voix : Robot</option><option value="systeme">Voix : Système (grave)</option><option value="naturelle">Voix : Naturelle</option></select><select id="vn" style="width:100%;margin-top:6px;background:var(--in);color:var(--tx);border:1px solid var(--ln);border-radius:9px;padding:9px"></select><div class="row" style="margin-top:6px"><button class="bt" id="vt" style="margin:0">🔊 Tester la voix</button><label style="display:flex;gap:6px;align-items:center;white-space:nowrap"><input type="checkbox" id="sfc" style="width:auto">Sons</label></div>
  <select id="th" style="width:100%;margin-top:10px;background:var(--in);color:var(--tx);border:1px solid var(--ln);border-radius:9px;padding:9px"><option value="auto">🎨 Couleur : auto (selon ton rang)</option><option value="monarque">Monarque (bleu)</option><option value="ombre">Ombre (violet)</option><option value="sang">Sang (rouge)</option><option value="or">Or (rang S)</option><option value="emeraude">Émeraude</option><option value="glace">Glace (cyan)</option><option value="noir">⚫ Noir (monochrome)</option><option value="noirneon">⚫ Noir néon (bleu)</option><option value="cyber">Mix · Cyber (cyan + magenta)</option><option value="braise">Mix · Braise (rouge + or)</option><option value="aurore">Mix · Aurore (vert + violet)</option></select>
  <label style="display:flex;gap:8px;margin-top:10px;align-items:center"><input type="checkbox" id="pwc" style="width:auto">Preuve photo obligatoire pour valider une mission</label><label style="display:flex;gap:8px;margin-top:6px;align-items:center"><input type="checkbox" id="rmc" style="width:auto">Rappels proactifs de Louis</label><button class="bt" id="nt">🔔 Activer les notifications</button><div class="q" style="margin-top:6px" id="cs"></div></div>
@@ -126,7 +131,8 @@ h1{animation:gl 6s infinite}@keyframes gl{0%,94%,100%{transform:none}95%{transfo
  <div class="p"><h2>COURS · RÉCOMPENSE</h2><div class="q" id="ck" style="text-align:left;margin-bottom:6px"></div><div class="row"><input id="cs2" placeholder="Sujet du cours (ex : RECHERCHEX, past perfect…)"><button id="cb">Obtenir</button></div><div id="cr" style="margin-top:8px"></div></div>
  <div class="p"><h2>TITRES</h2><div id="ti"></div></div>
 </section>
-<nav><button class="a" data-t="0">🏠<br>Accueil</button><button data-t="1">🤖<br>Louis</button><button data-t="2">⚔️<br>Armée</button><button data-t="3">📓<br>Journal</button><button data-t="4">🏰<br>Donjon</button></nav>
+<section class="s" id="s5"><div class="p"><h2>ESPACE ADMIN</h2><div id="ad"></div></div></section>
+<nav><button class="a" data-t="0">🏠<br>Accueil</button><button data-t="1">🤖<br>Louis</button><button data-t="2">⚔️<br>Armée</button><button data-t="3">📓<br>Journal</button><button data-t="4">🏰<br>Donjon</button><button data-t="5" class="adm" id="nadm">🛡<br>Admin</button></nav>
 
 <script>
 const $=i=>document.getElementById(i),T=()=>new Date().toISOString().slice(0,10);
@@ -136,9 +142,9 @@ const AG={Louis:["Assistant général","Je suis Louis, ton assistant. "],Codex:[
 const DM=[["Étudier l’anglais (1h)","int",50],["Travailler sur LOUIS // CORE (1h)","pro",50],["Faire du sport (30 min)","san",30],["Lire un livre (30 min)","con",30],["Réviser Excel (1h)","int",50]];
 const PL=["Atteindre le niveau B2 en anglais","Maîtriser Excel (niveau avancé)","Améliorer mon projet LOUIS // CORE","Créer une source de revenus en ligne","Perdre du poids / être plus en forme","Développer mes compétences en IA","Construire ma liberté financière"];
 const QS=["Deviens la meilleure version de toi-même : 3 jours d’affilée, toutes les missions faites.","Écris 50 lignes de code sans te distraire.","Apprends 20 mots d’anglais et utilise-les dans 5 phrases.","1 heure sans téléphone : concentration totale."];
-const D={xp:420,lv:3,at:{dis:15,int:18,pro:12,com:10,san:14,con:11},sk:[2,2,1,1,1,1],pl:[1,1,1,1,0,0,0],day:T(),ms:[],ext:[],bonus:false,jr:{},jd:"",chat:[],ag:"Louis",qd:0,px:"https://lisa-proxy-2728.leonardouamouno3.workers.dev",ac:"",hist:[],g:100,fp:0,st:0,ti:[],dn:0,sh:0,au:{},tm:{},fr:{},pz:{},ig:{},hs:{},gs:false,cr:[],tk:0,fa:0,sx:[0,0,0,0,0,0],sq:"",pw:true,rm:true,q:[],rp:[],nt:[],sp:[{n:"1h de jeu vidéo",c:50},{n:"Un bon repas",c:100},{n:"Soirée film",c:80}]};
-let S=D;try{S=Object.assign({},D,JSON.parse(localStorage.getItem("louis")||"{}"))}catch(e){}
-const sv=()=>{try{localStorage.setItem("louis",JSON.stringify(S))}catch(e){}};
+const D={xp:420,lv:3,at:{dis:15,int:18,pro:12,com:10,san:14,con:11},sk:[2,2,1,1,1,1],pl:[1,1,1,1,0,0,0],day:T(),ms:[],ext:[],bonus:false,jr:{},jd:"",chat:[],ag:"Louis",qd:0,px:"https://lisa-proxy-2728.leonardouamouno3.workers.dev",ac:"",hist:[],g:100,fp:0,st:0,ti:[],dn:0,sh:0,au:{},gf:true,tm:{},fr:{},pz:{},ig:{},hs:{},gs:false,cr:[],tk:0,fa:0,sx:[0,0,0,0,0,0],sq:"",pw:true,rm:true,q:[],rp:[],nt:[],sp:[{n:"1h de jeu vidéo",c:50},{n:"Un bon repas",c:100},{n:"Soirée film",c:80}]};
+const KEY=localStorage.getItem("louis_cur")||"louis";let S=D;try{S=Object.assign({},D,JSON.parse(localStorage.getItem(KEY)||"{}"))}catch(e){}
+const sv=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
 const need=l=>500*(l+1),rank=l=>l<5?"E":l<10?"D":l<20?"C":l<35?"B":l<50?"A":"S";
 function toast(t){const e=$("toast");e.textContent=t;e.className="v";setTimeout(()=>e.className="",2600)}
 function gain(n,a){S.xp+=n;if(a)S.at[a]++;while(S.xp>=need(S.lv)){S.xp-=need(S.lv);S.lv++;S.fp+=5;S.g+=100;if(rank(S.lv)!==rank(S.lv-1))S.tk++;toast("⚡ NIVEAU "+S.lv+" ! Rang "+rank(S.lv));fx("lv","LEVEL UP · "+S.lv);setTimeout(()=>sysw("[ NIVEAU SUPÉRIEUR ]","Niveau "+S.lv+"  |  Rang "+rank(S.lv)+"\n\n+5 points de statistique\n+100 Or"+(rank(S.lv)!==rank(S.lv-1)?"\n\n[ CHANGEMENT DE RANG ]\n+1 ticket de cours":""),"[ CONFIRMER ]"),1400);say("Niveau supérieur. Tu es maintenant niveau "+S.lv)}
@@ -207,15 +213,17 @@ async function ai(q){const sys="Tu es LOUIS, assistant IA façon Jarvis et Syst�
  const t=await call(sys,S.hist.map(h=>({role:h.role,text:h.parts[0].text})));
  S.hist.push({role:"model",parts:[{text:t}]});sv();return t}
 async function send(q){q=q.trim();if(!q)return;add(q,"u");S.au[S.ag]=(S.au[S.ag]||0)+1;sv();let r;
- if(S.px&&S.ac&&navigator.onLine&&!OFF.test(q)){stt("Analyse");const w=document.createElement("div");w.className="b l";w.textContent="…";$("log").appendChild(w);try{r=await ai(q);w.remove()}catch(e){w.remove();r=brain(q)+"\n(IA hors ligne : "+e.message+")"}}else r=brain(q);
- add(r,"l");say(r);if(S.px&&S.ac&&!OFF.test(q)&&Math.random()<.3)gain(5,"int")}
+ if(aiOK()&&!OFF.test(q)){stt("Analyse");const w=document.createElement("div");w.className="b l";w.textContent="…";$("log").appendChild(w);try{r=await ai(q);w.remove()}catch(e){w.remove();r=brain(q)+"\n(IA hors ligne : "+e.message+")"}}else r=brain(q);
+ add(r,"l");say(r);if(aiOK()&&!OFF.test(q)&&Math.random()<.3)gain(5,"int")}
 $("px").value=S.px;$("ac").value=S.ac;$("vp").value=S.vp||"";const cs=()=>$("cs").textContent=S.px&&S.ac?"IA en ligne activée ("+(S.pv==="deepseek"?"DeepSeek":"Gemini")+").":"Mode hors ligne : ajoute le code d’accès pour activer l’IA.";cs();
 $("cf").onclick=()=>{stSl();S.vp=$("vp").value.trim();UNL=!S.vp;sv();cs();toast("Réglages enregistrés")};
 $("snd").onclick=()=>{send($("in").value);$("in").value=""};$("in").onkeydown=e=>{if(e.key==="Enter")$("snd").click()};
-const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const NAT=!!(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform());
+class NSR{constructor(){this.lang="fr-FR"}start(){const P=window.Capacitor.Plugins.SpeechRecognition;P.requestPermissions().then(()=>P.start({language:this.lang,maxResults:1,partialResults:false,popup:false})).then(r=>{const m=r&&r.matches&&r.matches[0];if(m&&this.onresult)this.onresult({results:[[{transcript:m}]]});this.onend&&this.onend()}).catch(e=>{const d=/permission/i.test(e&&e.message||"");this.onerror&&this.onerror({error:d?"not-allowed":"x"});this.onend&&this.onend()})}stop(){try{window.Capacitor.Plugins.SpeechRecognition.stop()}catch(e){}}}
+const SR=NAT&&window.Capacitor.Plugins&&window.Capacitor.Plugins.SpeechRecognition?NSR:(window.SpeechRecognition||window.webkitSpeechRecognition);
 $("mic").onclick=()=>{if(!SR)return toast("Micro non supporté ici");const r=new SR;r.lang="fr-FR";r.onresult=e=>send(e.results[0][0].transcript);r.onerror=()=>toast("Micro indisponible");r.start()};
 setInterval(()=>$("clk").textContent=new Date().toLocaleString("fr-FR",{weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}),1000);
-$("go").onclick=()=>{try{au().resume()}catch(e){}boot(()=>{$("ov").remove();go2()})};function go2(){const h=new Date().getHours();const g=(h<18?"Bonjour":"Bonsoir")+" Leonard. Le Système est en ligne. "+S.ms.filter(m=>!m.d).length+" missions t’attendent.";add(g,"l");say(g);fx("quest","[ SYSTÈME ÉVEILLÉ ]");if(S.wk)wake(true);if(S.gs)gOn();if(S.qa!==T())setTimeout(boardLater,2200)};
+$("go").onclick=()=>{try{au().resume()}catch(e){}boot(()=>{$("ov").remove();go2()})};function go2(){const h=new Date().getHours();const g=(h<18?"Bonjour":"Bonsoir")+" Leonard. Le Système est en ligne. "+S.ms.filter(m=>!m.d).length+" missions t’attendent.";add(g,"l");say(g);fx("quest","[ SYSTÈME ÉVEILLÉ ]");if(S.wk)wake(true);if(S.gs)gOn();gload();if(S.qa!==T())setTimeout(boardLater,2200)};
 let W=null,WON=false,AWAKE=0,UNL=!S.vp,SP=0;
 function fx(k,t){snd(k==="lv"?"lv":k==="arise"?"arise":"quest");if(k==="arise")burst("arise");if(k==="lv"){burst("lv");const h=$("hud");h.classList.add("aw");setTimeout(()=>h.classList.remove("aw"),700)}const d=document.createElement("div");d.className="fx "+k;d.innerHTML="<div class='r'></div><div class='r r2'></div><b>"+t+"</b>";document.body.appendChild(d);if(k==="lv"){const e=document.querySelector(".s.a");e.classList.add("shk");setTimeout(()=>e.classList.remove("shk"),600)}setTimeout(()=>d.remove(),3400)}
 const WK=/\b(louis|luis|louie|louise|lewis)\b/i;
@@ -238,7 +246,7 @@ function wake(on){WON=on;S.wk=on;sv();$("wk").textContent=on?"👂 Veille : ON":
 $("wk").onclick=()=>wake(!WON);if(S.wk)$("wk").textContent="👂 Veille : (touche S’ÉVEILLER)";
 const TI=[["Le Plus Faible","Tu commences ici.",()=>1],["Chasseur Régulier","Atteindre le niveau 5",()=>S.lv>=5],["Sans relâche","Série de 3 jours",()=>S.st>=3],["Volonté de fer","Série de 7 jours",()=>S.st>=7],["Briseur de donjon","5 donjons terminés",()=>S.dn>=5],["Monarque des Ombres","20 ombres extraites",()=>S.sh>=20]];
 function chk(){TI.forEach(t=>{if(!S.ti.includes(t[0])&&t[2]()){S.ti.push(t[0]);sv();if(t[0]!=="Le Plus Faible")setTimeout(()=>{fx("quest","[ TITRE OBTENU ] "+t[0].toUpperCase());say("Titre obtenu : "+t[0])},800)}})}
-function draw2(){prg();$("hs").textContent="💰 "+S.g+" Or · 🔥 Série "+S.st+" j · 👥 "+S.sh+" ombres · "+S.ti[S.ti.length-1];
+function draw2(){prg();nsched();$("hs").textContent="💰 "+S.g+" Or · 🔥 Série "+S.st+" j · 👥 "+S.sh+" ombres · "+S.ti[S.ti.length-1];
  $("pts").textContent=S.fp>0?"Points libres : "+S.fp+" (touche + pour les répartir)":"Chaque niveau = 5 points libres + 100 Or.";
  $("sp").innerHTML=S.sp.map((x,i)=>`<div class="m"><div><span>${x.n}</span></div><button data-b="${i}" ${S.g<x.c?"disabled style='opacity:.4'":""}>💰 ${x.c}</button><button data-x="${i}" style="padding:4px 8px">✕</button></div>`).join("");
  $("ft").textContent=S.fa|0;$("fb").style.width=S.fa+"%";$("ck").textContent="Coût : "+CC+" Or par cours · Tickets : "+S.tk+" (1 par changement de rang)";
@@ -290,12 +298,12 @@ function loc(t){t=t.toLowerCase();return /anglais|english/.test(t)?LC.anglais:/e
 const gem=t=>call("",[{role:"user",text:t}]);
 $("cb").onclick=async()=>{const t=$("cs2").value.trim();if(!t)return toast("Choisis un sujet de cours");if(!S.tk&&S.g<CC)return toast("Il te faut "+CC+" Or ou un ticket");
  let x=null;toast("📚 Louis prépare ton cours…");
- if(S.px&&S.ac&&navigator.onLine){try{x=await gem("Tu es LOUIS, professeur du Système de Solo Leveling. Explique en français un cours clair sur : « "+t+" » pour Leonard (autodidacte motivé). Structure : **Objectif**, **Concepts clés** (3 à 5), **Exemple concret**, **Mini-exercice**, **Résumé**. Maximum 350 mots, sans introduction.")}catch(e){}}
+ if(aiOK()){try{x=await gem("Tu es LOUIS, professeur du Système de Solo Leveling. Explique en français un cours clair sur : « "+t+" » pour Leonard (autodidacte motivé). Structure : **Objectif**, **Concepts clés** (3 à 5), **Exemple concret**, **Mini-exercice**, **Résumé**. Maximum 350 mots, sans introduction.")}catch(e){}}
  if(!x)x=loc(t);if(!x)return sysw("[ COURS INDISPONIBLE ]","Hors ligne, je connais : anglais, Excel, JavaScript, IA, finance, discipline.\nChoisis l’un d’eux ou reconnecte-toi (aucun Or débité).","[ COMPRIS ]");
  if(S.tk>0)S.tk--;else S.g-=CC;S.cr.unshift({t,d:new Date().toLocaleDateString("fr-FR"),x});S.cr=S.cr.slice(0,15);sv();$("cs2").value="";draw();
  sysw("[ RÉCOMPENSE DÉBLOQUÉE ]","Cours : "+t+"\n\nTon cours est dans la Bibliothèque. Louis va te le lire.","[ OUVRIR ]",()=>{document.querySelector('nav button[data-t="4"]').click();$("cr").scrollIntoView({behavior:"smooth"})});say("Cours débloqué : "+t+". "+x.replace(/\*\*/g,"").slice(0,500))};
 $("cr").onclick=e=>{const b=e.target.closest("[data-r]");if(b)say(S.cr[b.dataset.r].x.replace(/\*\*/g,"").slice(0,900))};
-async function call(sys,turns){
+async function call(sys,turns){if(S.pv==="gemma"||(S.gf&&GEM&&!(S.px&&S.ac&&navigator.onLine)))return gcall(sys,turns);
  if(S.pv==="deepseek"){const d=S.px.includes("api.deepseek.com"),h={"Content-Type":"application/json"};if(d)h.Authorization="Bearer "+S.ac;else h["x-access-code"]=S.ac;
   const msgs=(sys?[{role:"system",content:sys}]:[]).concat(turns.map(t=>({role:t.role==="model"?"assistant":"user",content:t.text})));
   const r=await fetch(S.px,{method:"POST",headers:h,body:JSON.stringify({model:"deepseek-chat",messages:msgs,stream:false})});if(!r.ok)throw new Error(r.status);const j=await r.json(),x=j.choices&&j.choices[0]&&j.choices[0].message&&j.choices[0].message.content;if(!x)throw new Error("vide");return x}
@@ -303,7 +311,7 @@ async function call(sys,turns){
  if(!r.ok)throw new Error(r.status);const j=await r.json(),x=j.candidates?.[0]?.content?.parts?.map(p=>p.text).join("")||j.text||j.reply||j.response;if(!x)throw new Error("vide");return x}
 S.pv=S.pv||"gemini";S.sl=S.sl||{gemini:{px:S.px,ac:S.ac},deepseek:{px:"",ac:""}};
 function ld(){$("px").value=S.sl[S.pv].px;$("ac").value=S.sl[S.pv].ac;$("px").placeholder=S.pv==="deepseek"?"URL du Worker DeepSeek (ou https://api.deepseek.com/chat/completions)":"URL du proxy Gemini"}
-function stSl(){S.sl[S.pv]={px:$("px").value.trim(),ac:$("ac").value.trim()};S.px=S.sl[S.pv].px;S.ac=S.sl[S.pv].ac}
+function stSl(){setTimeout(syncAI,0);S.sl[S.pv]={px:$("px").value.trim(),ac:$("ac").value.trim()};S.px=S.sl[S.pv].px;S.ac=S.sl[S.pv].ac}
 S.px=S.sl[S.pv].px;S.ac=S.sl[S.pv].ac;$("pv").value=S.pv;ld();cs();
 $("pv").onchange=()=>{stSl();S.pv=$("pv").value;S.px=S.sl[S.pv].px;S.ac=S.sl[S.pv].ac;ld();sv();cs();toast("IA : "+(S.pv==="deepseek"?"DeepSeek":"Gemini"))};
 const TH={monarque:{h:215,h2:195,t:"sine",m:1},ombre:{h:268,h2:285,t:"triangle",m:.55,v:1.2},sang:{h:352,h2:20,t:"square",m:.8,v:.55},or:{h:42,h2:55,t:"triangle",m:1.2},emeraude:{h:150,h2:170,t:"sine",m:.9},glace:{h:187,h2:205,t:"sine",m:1.4},noir:{h:215,h2:215,g:1,bg:"#000",t:"square",m:1,v:.5},noirneon:{h:215,h2:195,bg:"#000",t:"sine",m:1},cyber:{h:190,h2:320,t:"square",m:1.1,v:.55},braise:{h:5,h2:42,t:"triangle",m:.85},aurore:{h:150,h2:275,t:"sine",m:1.05}},RH={E:215,D:187,C:150,B:268,A:352,S:42};
@@ -315,7 +323,7 @@ function tone(f,t0,d,ty,v,f2){if(S.sf===false)return;try{const a=au(),n=a.curren
 const SFX={sys:()=>{tone(1175,0,.5,"sine",.16);tone(1760,0,.5,"sine",.07);tone(1568,.14,.7,"sine",.14);tone(2349,.14,.7,"sine",.06)},open:()=>noise(.45,.35,300,4000),gate:()=>{noise(2,.5,80,900);tone(55,0,2.2,"sawtooth",.2,110);tone(110,.3,1.8,"sine",.1,220)},tick:()=>tone(1000,0,.06,"square",.07),go:()=>tone(220,0,.6,"sawtooth",.15,880),quest:()=>{tone(660,0,.15,"triangle",.14);tone(990,.1,.3,"triangle",.12)},lv:()=>{[523,659,784,1047].forEach((f,i)=>tone(f,i*.12,.5,"triangle",.16));tone(130,0,1.2,"sawtooth",.08)},arise:()=>{noise(1.8,.4,60,220);tone(60,0,1.6,"sawtooth",.2,30);tone(90,.2,1.2,"square",.06,40)},wake:()=>{tone(440,0,.1,"sine",.12);tone(880,.08,.2,"sine",.12)}};
 const snd=k=>{SFX[k]&&SFX[k]()};
 function boot(cb){$("go").style.display="none";const pre=document.createElement("pre");pre.style.cssText="text-align:left;color:var(--gl);font:12px/1.6 ui-monospace,monospace;min-height:160px;white-space:pre-wrap";$("ov").appendChild(pre);
- const L=["[SYSTÈME] Initialisation du noyau…","[SYSTÈME] Synchronisation avec le joueur : LEONARD","[SYSTÈME] Chargement de la Shadow Army… 4/4","[SYSTÈME] Missions du jour : "+S.ms.length+" · Fatigue "+(S.fa|0)+"%","[SYSTÈME] Connexion IA : "+(S.px&&S.ac?(S.pv==="deepseek"?"DeepSeek":"Gemini"):"mode hors ligne"),"> BIENVENUE, JOUEUR."];let i=0;
+ const L=["[SYSTÈME] Initialisation du noyau…","[SYSTÈME] Synchronisation avec le joueur : LEONARD","[SYSTÈME] Chargement de la Shadow Army… 4/4","[SYSTÈME] Missions du jour : "+S.ms.length+" · Fatigue "+(S.fa|0)+"%","[SYSTÈME] Connexion IA : "+(S.pv==="gemma"?(GEM?"Gemma local":"Gemma (non chargé)"):S.px&&S.ac?(S.pv==="deepseek"?"DeepSeek":"Gemini"):GEM?"Gemma (secours)":"mode hors ligne"),"> BIENVENUE, JOUEUR."];let i=0;
  const nx=()=>{if(i>=L.length)return setTimeout(cb,700);pre.textContent+=L[i++]+"\n";snd("wake");setTimeout(nx,430)};nx()}
 function vl(){if(!window.speechSynthesis)return;const v=speechSynthesis.getVoices().filter(x=>/^fr/i.test(x.lang));$("vn").innerHTML='<option value="">Voix : automatique</option>'+v.map(x=>`<option>${x.name}</option>`).join("");$("vn").value=S.vn||""}
 if(window.speechSynthesis){speechSynthesis.onvoiceschanged=vl;vl()}
@@ -352,7 +360,7 @@ function prg(){S.hs[T()]={d:S.ms.filter(m=>m.d).length,n:S.ms.length};const ks=O
  const tot=days.reduce((a,x)=>a+(x[1]?x[1].d:0),0),nn=days.reduce((a,x)=>a+(x[1]?x[1].n:0),0),t0=S.hs[T()];
  $("pg").innerHTML=`<div class="row" style="align-items:flex-end;height:74px;gap:6px">${days.map(([d,v])=>{const p=v&&v.n?v.d/v.n:0;return `<div style="flex:1;text-align:center"><div style="height:${Math.max(4,p*54)}px;background:linear-gradient(var(--gl),var(--ac));border-radius:4px;box-shadow:0 0 8px var(--ac)"></div><small class="q">${"DLMMJVS"[new Date(d+"T12:00").getDay()]}</small></div>`}).join("")}</div><div class="q" style="margin-top:6px;text-align:left">Aujourd’hui ${t0.n?Math.round(100*t0.d/t0.n):0} % · 7 jours ${nn?Math.round(100*tot/nn):0} % · Série ${S.st} j</div>`}
 function ntf(t){try{navigator.vibrate&&navigator.vibrate([200,100,200]);if(window.Notification&&Notification.permission==="granted"){if(navigator.serviceWorker&&navigator.serviceWorker.controller)navigator.serviceWorker.ready.then(r=>r.showNotification("LOUIS // CORE",{body:t,tag:"louis"}));else new Notification("LOUIS // CORE",{body:t})}}catch(e){}}
-async function sendProof(m,img,th){m.p=th;if(S.px&&S.ac&&navigator.onLine){try{const v=await verify(m.t,img);if(v.ok){ok(m);reply("Preuve validée. "+v.why)}else{m.p=null;sv();draw();fx("arise","[ PREUVE REFUSÉE ]");reply("Preuve refusée. "+v.why)}return}catch(x){}}
+async function sendProof(m,img,th){m.p=th;if(S.pv==="gemma"){ok(m);return toast("Preuve archivée (IA locale : pas de lecture d’image)")}if(S.px&&S.ac&&navigator.onLine){try{const v=await verify(m.t,img);if(v.ok){ok(m);reply("Preuve validée. "+v.why)}else{m.p=null;sv();draw();fx("arise","[ PREUVE REFUSÉE ]");reply("Preuve refusée. "+v.why)}return}catch(x){}}
  S.q.push({t:m.t,day:S.day,x:m.x,img});m.v=1;ok(m);toast("📴 Hors ligne : preuve en attente de vérification")}
 function validate(m,tap){if(!m||m.d)return;if(S.qa!==T())return board();if(!S.pw)return ok(m);const v=$("vid");
  if(CAM&&v.videoWidth){const c=document.createElement("canvas"),k=Math.min(1,640/v.videoWidth);c.width=v.videoWidth*k;c.height=v.videoHeight*k;c.getContext("2d").drawImage(v,0,0,c.width,c.height);const t=document.createElement("canvas");t.width=160;t.height=Math.round(160*c.height/c.width);t.getContext("2d").drawImage(c,0,0,t.width,t.height);toast("📸 Preuve capturée par la caméra");return sendProof(m,c.toDataURL("image/jpeg",.7),t.toDataURL("image/jpeg",.7))}
@@ -393,11 +401,11 @@ function gMotion(v){const x=MC.getContext("2d",{willReadFrequently:true});x.draw
 function gLoop(){if(!CAM)return;const v=$("vid");
  if(v.readyState>=2){const t=performance.now();if(t-GLR>66){GLR=t;try{if(GMODE==="ml"&&GM){const r=GM.detectForVideo(v,t),L=r.landmarks&&r.landmarks[0];gDraw(L);gFeed(L?gest(L):"")}else gMotion(v)}catch(e){}}}
  requestAnimationFrame(gLoop)}
-async function mkLm(V,F,d){return V.HandLandmarker.createFromOptions(F,{baseOptions:{modelAssetPath:"https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task",delegate:d},runningMode:"VIDEO",numHands:1})}
+async function mkLm(V,F,d,mdl){return V.HandLandmarker.createFromOptions(F,{baseOptions:{modelAssetPath:mdl,delegate:d},runningMode:"VIDEO",numHands:1})}
 async function gOn(){if(CAM||GBUSY)return;GBUSY=1;
  try{CAM=await navigator.mediaDevices.getUserMedia({video:{facingMode:"user",width:{ideal:640},height:{ideal:480}},audio:false})}catch(e){CAM=null;GBUSY=0;return toast(e&&e.name==="NotAllowedError"?"Caméra refusée : autorise-la (cadenas du navigateur › Autorisations)":"Caméra indisponible ("+(e&&e.name||"?")+")")}
  const v=$("vid");v.srcObject=CAM;try{await v.play()}catch(e){}$("gp").style.display="block";S.gs=true;sv();$("gb").textContent="🖐 Gestes : ON (touche pour couper)";try{WL=await navigator.wakeLock.request("screen")}catch(e){}
- if(!GMODE){toast("🖐 Chargement de la reconnaissance des mains…");try{const B="https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14",V=await import(B+"/vision_bundle.mjs"),F=await V.FilesetResolver.forVisionTasks(B+"/wasm");try{GM=await mkLm(V,F,"GPU")}catch(e){GM=await mkLm(V,F,"CPU")}GMODE="ml"}catch(e){GM=null;GMODE="motion"}}
+ if(!GMODE){toast("🖐 Chargement de la reconnaissance des mains…");try{GM=await loadMP();GMODE="ml"}catch(e){GM=null;GMODE="motion"}}
  $("gm").textContent=GMODE==="ml"?"Mode : reconnaissance des mains (MediaPipe)":"Mode balayages (hors ligne) : droite = valider, gauche = ignorer, haut/bas = suivant";toast(GMODE==="ml"?"✅ Mains reconnues":"Mode balayages actif");GBUSY=0;gLoop()}
 function gStop(){if(CAM){CAM.getTracks().forEach(t=>t.stop());CAM=null}try{WL&&WL.release()}catch(e){}WL=null;$("gp").style.display="none"}
 function gOff(){gStop();S.gs=false;sv();$("gb").textContent="🖐 Activer les gestes (caméra)"}
@@ -415,5 +423,67 @@ function board(){if($("qb2"))return;snd("open");snd("sys");say("quête quotidien
  d.querySelector("#ba").onclick=()=>{const v=d.querySelector("#bn").value.trim(),h=d.querySelector("#bh").value;if(!v)return;const p=ptime(v);addTask(p.t,h||p.h);d.querySelector("#bn").value="";d.querySelector("#bh").value="";rf()};
  d.querySelector("#bo").onclick=()=>{d.remove();if(!acc){S.qa=T();sv();draw();fx("quest","[ QUÊTE ACCEPTÉE ]");say("Quête acceptée. Bonne chance, Leonard.")}}}
 $("qbtn").onclick=board;
-newDay();draw();
+async function loadMP(){const tb=async(B,f,mdl)=>{const V=await import(B+f),F=await V.FilesetResolver.forVisionTasks(B+"/wasm");let m;try{m=await mkLm(V,F,"GPU",mdl)}catch(e){m=await mkLm(V,F,"CPU",mdl)}return m};
+ if(NAT){try{return await tb("./mp","/vision_bundle.js","./mp/hand_landmarker.task")}catch(e){}}
+ return tb("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14","/vision_bundle.mjs","https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task")}
+/* ===== Gemma local (APK) ===== */
+let GEM=false;const aiOK=()=>S.pv==="gemma"?GEM:((S.px&&S.ac&&navigator.onLine)||(S.gf&&GEM)),GP=()=>NAT&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Gemma;
+async function gload(){const G=GP();if(!G)return false;try{const r=await G.load();GEM=!!(r&&r.ok)}catch(e){GEM=false}return GEM}
+function gprompt(sys,turns){let p="";turns.slice(-6).forEach((t,i)=>{p+="<start_of_turn>"+(t.role==="model"?"model":"user")+"\n"+(i===0&&sys?sys.slice(0,700)+"\n\n":"")+t.text.slice(0,700)+"<end_of_turn>\n"});return p+"<start_of_turn>model\n"}
+async function gcall(sys,turns){const G=GP();if(!G||!GEM)throw new Error("Gemma non chargé");const r=await G.generate({prompt:gprompt(sys,turns)}),t=(r.text||"").trim();if(!t)throw new Error("vide");return t}
+/* ===== notifications natives programmées (APK) ===== */
+let NSG="";
+async function nsched(){if(!NAT)return;const LN=window.Capacitor.Plugins.LocalNotifications;if(!LN)return;const L=S.ms.filter(m=>m.h),sg=JSON.stringify(L.map(m=>[m.t,m.h]));if(sg===NSG)return;NSG=sg;
+ try{let pr=await LN.checkPermissions();if(pr.display!=="granted"){pr=await LN.requestPermissions();if(pr.display!=="granted")return}
+  const pd=await LN.getPending();if(pd.notifications.length)await LN.cancel({notifications:pd.notifications});
+  await LN.schedule({notifications:L.map((m,i)=>({id:2000+i,title:"LOUIS // CORE · "+m.h,body:m.t+" — +"+m.x+" XP",schedule:{on:{hour:+m.h.split(":")[0],minute:+m.h.split(":")[1]},allowWhileIdle:true}}))})}catch(e){NSG=""}}
+/* ===== authentification + espace admin ===== */
+const AK="louis_auth";let AU=null;try{AU=JSON.parse(localStorage.getItem(AK)||"null")}catch(e){}AU=AU||{users:[],log:[],cfg:{lock:5}};AU.cfg=AU.cfg||{lock:5};let ME=null,HT=0;
+const asv=()=>{try{localStorage.setItem(AK,JSON.stringify(AU))}catch(e){}},alog=m=>{AU.log.unshift(new Date().toLocaleString("fr-FR")+" · "+m);AU.log=AU.log.slice(0,40);asv()},rid=()=>Array.from(crypto.getRandomValues(new Uint8Array(8)),x=>x.toString(16).padStart(2,"0")).join("");
+function syncAI(){if(ME&&ME.role==="admin"){AU.ai={pv:S.pv,sl:S.sl,gf:S.gf};asv()}}
+async function hsh(p,salt){if(!(window.crypto&&crypto.subtle)){let h=5381;for(const c of salt+p)h=(h*33^c.charCodeAt(0))>>>0;return"w"+h}
+ const k=await crypto.subtle.importKey("raw",new TextEncoder().encode(p),"PBKDF2",false,["deriveBits"]),b=await crypto.subtle.deriveBits({name:"PBKDF2",salt:new TextEncoder().encode(salt),iterations:120000,hash:"SHA-256"},k,256);return Array.from(new Uint8Array(b),x=>x.toString(16).padStart(2,"0")).join("")}
+function enter(u){ME=u;AU.fails=0;AU.until=0;asv();try{sessionStorage.setItem("louis_ses",JSON.stringify({id:u.id,t:Date.now()}))}catch(e){}
+ const key=u.role==="admin"?"louis":"louis_"+u.id;if((localStorage.getItem("louis_cur")||"louis")!==key){localStorage.setItem("louis_cur",key);return location.reload()}
+ const d=$("lg");if(d)d.remove();document.body.classList.toggle("rj",u.role!=="admin");alog("Connexion : "+u.name);
+ if(u.role!=="admin"&&AU.ai){S.pv=AU.ai.pv;S.sl=AU.ai.sl;S.gf=AU.ai.gf;S.px=S.sl[S.pv].px;S.ac=S.sl[S.pv].ac;$("pv").value=S.pv;ld();cs()}draw()}
+function lg(){if($("lg"))return;const first=!AU.users.length,d=document.createElement("div");d.id="lg";
+ d.innerHTML=`<div class="orb"></div><h1>LOUIS // CORE<small>${first?"CRÉATION DU COMPTE ADMINISTRATEUR":"AUTHENTIFICATION"}</small></h1>`+(first?`<input id="ln" placeholder="Nom (ex : Leonard)"><input id="lp" type="password" placeholder="Mot de passe (6 caractères min.)"><input id="lq" type="password" placeholder="Confirmer le mot de passe">`:(AU.users.length>1?`<select id="lu">${AU.users.map(u=>`<option value="${u.id}">${esc(u.name)} · ${u.role}</option>`).join("")}</select>`:"")+`<input id="lp" type="password" placeholder="Mot de passe">`)+`<button id="lb">${first?"CRÉER LE COMPTE":"ACCÉDER"}</button><div class="q" id="le"></div>`;
+ document.body.appendChild(d);
+ $("lb").onclick=async()=>{const e=$("le"),p=$("lp").value;
+  if(first){const n=$("ln").value.trim();if(!n)return e.textContent="Nom requis";if(p.length<6)return e.textContent="Mot de passe trop court (6 min.)";if(p!==$("lq").value)return e.textContent="Les mots de passe diffèrent";
+   const salt=rid(),u={id:rid(),name:n,role:"admin",salt,hash:await hsh(p,salt)};AU.users.push(u);alog("Compte admin créé : "+n);asv();return enter(u)}
+  const u=AU.users.length>1?AU.users.find(x=>x.id===$("lu").value):AU.users[0];
+  if(AU.until&&Date.now()<AU.until)return e.textContent="Trop d’essais : attends "+Math.ceil((AU.until-Date.now())/1000)+" s";
+  if(await hsh(p,u.salt)===u.hash)return enter(u);
+  AU.fails=(AU.fails||0)+1;alog("Échec de connexion : "+u.name);if(AU.fails>=5){AU.until=Date.now()+60000*Math.min(AU.fails-4,30);e.textContent="Verrouillé temporairement"}else e.textContent="Mot de passe incorrect ("+AU.fails+"/5)";asv()}}
+function authBoot(){let ses=null;try{ses=JSON.parse(sessionStorage.getItem("louis_ses")||"null")}catch(e){}const u=ses&&AU.users.find(x=>x.id===ses.id);if(u&&Date.now()-ses.t<30*60000)enter(u);else lg()}
+document.addEventListener("visibilitychange",()=>{if(document.hidden)HT=Date.now();else if(ME&&AU.cfg.lock>0&&Date.now()-HT>AU.cfg.lock*60000){ME=null;try{sessionStorage.removeItem("louis_ses")}catch(e){}gStop();lg()}});
+async function perm(k){try{if(k==="pc"||k==="pm"){const m=await navigator.mediaDevices.getUserMedia(k==="pc"?{video:true}:{audio:true});m.getTracks().forEach(t=>t.stop());return"autorisé"}
+ const LN=NAT&&window.Capacitor.Plugins.LocalNotifications;if(LN){const r=await LN.requestPermissions();return r.display}return await Notification.requestPermission()}catch(e){return e.name||"refusé"}}
+function adm(){if(!ME||ME.role!=="admin")return;
+ $("ad").innerHTML=`<h2>COMPTES</h2>${AU.users.map(u=>`<div class="m"><div><span>${esc(u.name)}</span><small>${u.role}${u.id===ME.id?" · toi":""}</small></div>${u.id===ME.id?"":`<button data-act="rp" data-id="${u.id}">🔑</button><button data-act="du" data-id="${u.id}">✕</button>`}</div>`).join("")}
+ <div class="row" style="margin-top:6px"><input id="an" placeholder="Nom du joueur"><input id="ap2" type="password" placeholder="Mot de passe"><button data-act="au">+ Joueur</button></div>
+ <h2>MON MOT DE PASSE</h2><div class="row"><input id="op" type="password" placeholder="Actuel"><input id="np" type="password" placeholder="Nouveau"><button data-act="cp">OK</button></div>
+ <h2>IA LOCALE · GEMMA</h2><div class="q" style="text-align:left">${NAT?"Modèle : "+(GEM?"chargé ✅":"non chargé"):"Disponible uniquement dans l’APK."}</div>
+ <div class="row" style="margin-top:6px"><button data-act="gi">📥 Importer le modèle</button><button data-act="gl">⚡ Charger</button><button data-act="gt">🧪 Tester</button></div>
+ <label style="display:flex;gap:8px;margin-top:8px;align-items:center"><input type="checkbox" id="gf" style="width:auto" ${S.gf?"checked":""}>Gemma en secours hors ligne</label>
+ <h2>AUTORISATIONS</h2><div class="row"><button data-act="pc">📷 Caméra</button><button data-act="pm">🎤 Micro</button><button data-act="pn">🔔 Notifications</button></div><div class="q" id="pst" style="text-align:left;margin-top:6px"></div>
+ <h2>SÉCURITÉ</h2><select id="lk" style="width:100%">${[1,5,15,0].map(v=>`<option value="${v}" ${AU.cfg.lock===v?"selected":""}>${v?"Verrouiller après "+v+" min en arrière-plan":"Ne jamais verrouiller"}</option>`).join("")}</select>
+ <div class="q" style="text-align:left;max-height:130px;overflow:auto;margin-top:8px">${AU.log.map(esc).join("<br>")||"Journal vide"}</div><button data-act="cl" style="margin-top:6px">Effacer le journal</button>
+ <h2>DONNÉES</h2><button data-act="rs">♻️ Réinitialiser ma progression</button>`}
+$("nadm").addEventListener("click",adm);
+$("ad").onchange=e=>{if(e.target.id==="gf"){S.gf=e.target.checked;sv();syncAI()}if(e.target.id==="lk"){AU.cfg.lock=+e.target.value;asv()}};
+$("ad").onclick=async e=>{const b=e.target.closest("[data-act]");if(!b)return;const a=b.dataset.act,id=b.dataset.id;
+ if(a==="au"){const n=$("an").value.trim(),p=$("ap2").value;if(!n||p.length<6)return toast("Nom + mot de passe (6 min.)");const salt=rid(),u={id:rid(),name:n,role:"joueur",salt,hash:await hsh(p,salt)};AU.users.push(u);try{localStorage.setItem("louis_"+u.id,JSON.stringify({lv:1,xp:0,g:0,at:{dis:5,int:5,pro:5,com:5,san:5,con:5},sk:[0,0,0,0,0,0],ti:[]}))}catch(x){}alog("Joueur créé : "+n);asv();adm()}
+ else if(a==="du"){const u=AU.users.find(x=>x.id===id);if(u&&confirm("Supprimer "+u.name+" et ses données ?")){AU.users=AU.users.filter(x=>x.id!==id);try{localStorage.removeItem("louis_"+id)}catch(x){}alog("Compte supprimé : "+u.name);asv();adm()}}
+ else if(a==="rp"){const u=AU.users.find(x=>x.id===id),p=prompt("Nouveau mot de passe pour "+u.name+" (6 min.)");if(p&&p.length>=6){u.salt=rid();u.hash=await hsh(p,u.salt);alog("Mot de passe réinitialisé : "+u.name);asv();toast("Mot de passe modifié")}}
+ else if(a==="cp"){const o=$("op").value,n=$("np").value;if(n.length<6)return toast("Nouveau mot de passe trop court");if(await hsh(o,ME.salt)!==ME.hash)return toast("Mot de passe actuel incorrect");ME.salt=rid();ME.hash=await hsh(n,ME.salt);alog("Mot de passe modifié");asv();toast("Mot de passe modifié")}
+ else if(a==="gi"){const G=GP();if(!G)return toast("Disponible uniquement dans l’APK");toast("Choisis le fichier Gemma (.task) — copie en cours, patience…");G.importModel().then(()=>{toast("Modèle importé");gload().then(adm)}).catch(x=>toast(x.message||"Import annulé"))}
+ else if(a==="gl"){toast("Chargement de Gemma…");gload().then(o=>{toast(o?"Gemma prêt ✅":"Échec : importe d’abord le modèle");adm()})}
+ else if(a==="gt"){if(!GEM)return toast("Charge d’abord Gemma");toast("Gemma réfléchit…");try{const t=await gcall("",[{role:"user",text:"Présente-toi en une phrase."}]);sysw("[ TEST GEMMA ]",t,"[ OK ]")}catch(x){toast("Erreur : "+x.message)}}
+ else if(a==="pc"||a==="pm"||a==="pn"){$("pst").textContent=({pc:"Caméra",pm:"Micro",pn:"Notifications"})[a]+" : "+await perm(a)}
+ else if(a==="cl"){AU.log=[];asv();adm()}
+ else if(a==="rs"){const p=prompt("Mot de passe admin pour confirmer");if(p&&await hsh(p,ME.salt)===ME.hash){try{localStorage.removeItem(KEY)}catch(x){}alog("Progression réinitialisée");location.reload()}else toast("Annulé")}};
+newDay();draw();authBoot();
 </script></body></html>
