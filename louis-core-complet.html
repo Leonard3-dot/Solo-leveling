@@ -5,7 +5,7 @@
 <meta name="theme-color" content="#050b1f"><meta name="apple-mobile-web-app-capable" content="yes">
 <script>try{const m={name:"Louis // Core",short_name:"Louis",start_url:".",display:"standalone",background_color:"#050b1f",theme_color:"#050b1f",icons:[{src:"data:image/svg+xml,"+encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='#050b1f'/><circle cx='32' cy='32' r='16' fill='#3aa0ff'/></svg>"),sizes:"any",type:"image/svg+xml"}]};const l=document.createElement("link");l.rel="manifest";l.href=URL.createObjectURL(new Blob([JSON.stringify(m)],{type:"application/manifest+json"}));document.head.appendChild(l)}catch(e){}</script>
 <style>
-:root{--h:215;--in:hsl(calc(var(--h) + 9),78%,12%);--bg:hsl(calc(var(--h) + 11),72%,7%);--pn:hsl(calc(var(--h) + 11),73%,15%);--ln:hsl(calc(var(--h) + 9),76%,48%);--tx:hsl(calc(var(--h) + 3),100%,95%);--mu:hsl(calc(var(--h) + 7),41%,64%);--ac:hsl(calc(var(--h) + -6),100%,61%);--gl:hsl(calc(var(--h) + -15),100%,72%);--ok:#2ee59d;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--h:215;--h2:215;--in:hsl(calc(var(--h) + 9),78%,12%);--bg:hsl(calc(var(--h) + 11),72%,7%);--pn:hsl(calc(var(--h) + 11),73%,15%);--ln:hsl(calc(var(--h) + 9),76%,48%);--tx:hsl(calc(var(--h) + 3),100%,95%);--mu:hsl(calc(var(--h) + 7),41%,64%);--ac:hsl(calc(var(--h) + -6),100%,61%);--gl:hsl(calc(var(--h2) + -15),100%,72%);--ok:#2ee59d;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:hsl(calc(var(--h) + 11),72%,7%)}}
 *{box-sizing:border-box;margin:0}html,body{background:var(--bg);color:var(--tx);font:15px system-ui,-apple-system,Segoe UI,sans-serif}
 body{padding:12px 12px 84px;max-width:640px;margin:auto;background:radial-gradient(circle at 50% -10%,hsl(calc(var(--h) + 7),77%,27%) 0,var(--bg) 60%) fixed}
@@ -71,9 +71,13 @@ h1{animation:gl 6s infinite}@keyframes gl{0%,94%,100%{transform:none}95%{transfo
 @keyframes spin{to{transform:rotate(360deg)}}@keyframes gin{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:none}}
 .bd{width:100%;border-collapse:collapse;font-size:13px}.bd th{color:var(--gl);font-size:10px;letter-spacing:2px;text-align:left;padding:4px}.bd td{padding:8px 4px;border-top:1px solid var(--ln)}.bd td:first-child{color:var(--mu);width:20px}
 .sw input{margin:0}
+.holo{background:linear-gradient(hsla(calc(var(--h) + 0),90%,18%,.8),hsla(calc(var(--h) + 0),95%,7%,.92)),repeating-linear-gradient(0deg,hsla(calc(var(--h2) + 0),100%,70%,.08) 0 2px,#0000 2px 5px);backdrop-filter:blur(6px);border-color:var(--gl);animation:sw .6s both,fk 4s infinite .8s,fl 3.2s ease-in-out infinite .8s}
+@keyframes fl{50%{translate:0 -5px}}
+.m.sel{outline:2px solid var(--gl);outline-offset:-2px;box-shadow:0 0 14px var(--ac);border-radius:8px}
+.bd input[type=time]{background:var(--in)}
 </style></head><body>
 <div id="ov"><div class="orb"></div><h1>LOUIS // CORE<small>TON ASSISTANT. TON SYSTÈME. TON AVENIR.</small></h1><p class="q">Le Système est prêt, Leonard.</p><button id="go">S’ÉVEILLER</button></div>
-<div id="toast"></div><div id="hud"></div><input type="file" id="pf" accept="image/*" capture="environment" hidden>
+<div id="toast"></div><div id="hud"></div><div id="gp" style="display:none;position:fixed;right:10px;bottom:calc(74px + env(safe-area-inset-bottom,0px));width:128px;height:96px;z-index:55;border:1px solid var(--gl);border-radius:10px;overflow:hidden;box-shadow:0 0 14px var(--ac);background:#000"><div style="position:absolute;inset:0;transform:scaleX(-1)"><video id="vid" playsinline muted style="width:100%;height:100%;object-fit:cover"></video><canvas id="gc" style="position:absolute;inset:0;width:100%;height:100%"></canvas></div><div id="gh" style="position:absolute;left:4px;bottom:3px;font-size:11px;text-shadow:0 0 4px #000"></div></div><input type="file" id="pf" accept="image/*" capture="environment" hidden>
 
 <div class="top"><h1>LOUIS // CORE<small>TON ASSISTANT. TON SYSTÈME. TON AVENIR.</small></h1><div class="on">● SYSTEM ONLINE<br><span id="clk"></span></div></div>
 
@@ -84,8 +88,10 @@ h1{animation:gl 6s infinite}@keyframes gl{0%,94%,100%{transform:none}95%{transfo
   <div class="q" style="text-align:left;margin-top:6px">NOM : LEONARD · CLASSE : SHADOW DEVELOPER · IA / PROGRAMMATION</div><div class="q" style="text-align:left;color:var(--gl)" id="hs"></div></div>
  <div class="p"><h2>ATTRIBUTS</h2><div id="at"></div><div class="q" id="pts"></div></div>
  <div class="p"><div class="top"><h2>MISSIONS DU JOUR</h2><span class="xp" id="mc"></span></div><button class="bt" id="qbtn" style="margin:0 0 6px">📜 Ouvrir le tableau de quête</button><div id="ml"></div>
-  <div class="row" style="margin-top:8px"><input id="nm" placeholder="Nouvelle mission (+30 XP)…"><button id="am">+</button></div>
+  <div class="row" style="margin-top:8px"><input id="nm" placeholder="Nouvelle mission (ex : Lire à 18h30)…"><button id="am">+</button></div>
   <div class="q" style="margin-top:8px">Valide chaque mission avec une photo preuve (réglable). Toutes les missions accomplies = bonus +100 XP. Une journée ratée coûte −50 XP.</div></div>
+ <div class="p"><h2>SUIVI DE PROGRESSION</h2><div id="pg"></div></div>
+ <div class="p"><h2>COMMANDE PAR GESTES</h2><div class="q" style="text-align:left;line-height:1.7">☝️ mission suivante (ou +10 min dans une alerte)<br>👍 valider · ✋ ignorer · ✌️ tableau de quête<br>Maintiens le signe ~1 s devant la caméra. Valider par geste envoie l’image de la caméra comme preuve : montre ta preuve à l’écran.</div><button class="bt" id="gb">🖐 Activer les gestes (caméra)</button><div class="q" id="gm" style="margin-top:6px"></div></div>
  <div class="p"><h2>PLAN D’ACTION</h2><div class="pl" id="pl"></div></div>
  <div class="q">« Tu es plus fort que tu ne le penses, Leonard. Continue. »</div>
 </section>
@@ -107,7 +113,7 @@ h1{animation:gl 6s infinite}@keyframes gl{0%,94%,100%{transform:none}95%{transfo
  <div class="p"><h2>QUÊTE SPÉCIALE</h2><div id="qs"></div><button class="bt" id="qb">Accomplir la quête</button></div>
  <div class="p"><h2>RÉGLAGES IA</h2><select id="pv" style="width:100%;margin-bottom:6px;background:var(--in);color:var(--tx);border:1px solid var(--ln);border-radius:9px;padding:9px"><option value="gemini">IA : Gemini (proxy)</option><option value="deepseek">IA : DeepSeek</option></select><input id="px" placeholder="URL du proxy"><input id="ac" placeholder="Code d’accès" style="margin-top:6px"><input id="vp" placeholder="Phrase vocale secrète (optionnel)" style="margin-top:6px"><button class="bt" id="cf">Enregistrer les réglages</button>
  <select id="vs" style="width:100%;margin-top:10px;background:var(--in);color:var(--tx);border:1px solid var(--ln);border-radius:9px;padding:9px"><option value="robot">🤖 Voix : Robot</option><option value="systeme">Voix : Système (grave)</option><option value="naturelle">Voix : Naturelle</option></select><select id="vn" style="width:100%;margin-top:6px;background:var(--in);color:var(--tx);border:1px solid var(--ln);border-radius:9px;padding:9px"></select><div class="row" style="margin-top:6px"><button class="bt" id="vt" style="margin:0">🔊 Tester la voix</button><label style="display:flex;gap:6px;align-items:center;white-space:nowrap"><input type="checkbox" id="sfc" style="width:auto">Sons</label></div>
- <select id="th" style="width:100%;margin-top:10px;background:var(--in);color:var(--tx);border:1px solid var(--ln);border-radius:9px;padding:9px"><option value="auto">🎨 Couleur : auto (selon ton rang)</option><option value="monarque">Monarque (bleu)</option><option value="ombre">Ombre (violet)</option><option value="sang">Sang (rouge)</option><option value="or">Or (rang S)</option><option value="emeraude">Émeraude</option><option value="glace">Glace (cyan)</option></select>
+ <select id="th" style="width:100%;margin-top:10px;background:var(--in);color:var(--tx);border:1px solid var(--ln);border-radius:9px;padding:9px"><option value="auto">🎨 Couleur : auto (selon ton rang)</option><option value="monarque">Monarque (bleu)</option><option value="ombre">Ombre (violet)</option><option value="sang">Sang (rouge)</option><option value="or">Or (rang S)</option><option value="emeraude">Émeraude</option><option value="glace">Glace (cyan)</option><option value="noir">⚫ Noir (monochrome)</option><option value="noirneon">⚫ Noir néon (bleu)</option><option value="cyber">Mix · Cyber (cyan + magenta)</option><option value="braise">Mix · Braise (rouge + or)</option><option value="aurore">Mix · Aurore (vert + violet)</option></select>
  <label style="display:flex;gap:8px;margin-top:10px;align-items:center"><input type="checkbox" id="pwc" style="width:auto">Preuve photo obligatoire pour valider une mission</label><label style="display:flex;gap:8px;margin-top:6px;align-items:center"><input type="checkbox" id="rmc" style="width:auto">Rappels proactifs de Louis</label><button class="bt" id="nt">🔔 Activer les notifications</button><div class="q" style="margin-top:6px" id="cs"></div></div>
  <div class="p"><h2>SAUVEGARDE</h2><div class="row"><button class="bt" id="ex">Exporter</button><button class="bt" id="im">Importer</button></div><textarea id="io" rows="3" placeholder="Zone d’export / import (JSON)"></textarea></div>
 </section>
@@ -130,7 +136,7 @@ const AG={Louis:["Assistant général","Je suis Louis, ton assistant. "],Codex:[
 const DM=[["Étudier l’anglais (1h)","int",50],["Travailler sur LOUIS // CORE (1h)","pro",50],["Faire du sport (30 min)","san",30],["Lire un livre (30 min)","con",30],["Réviser Excel (1h)","int",50]];
 const PL=["Atteindre le niveau B2 en anglais","Maîtriser Excel (niveau avancé)","Améliorer mon projet LOUIS // CORE","Créer une source de revenus en ligne","Perdre du poids / être plus en forme","Développer mes compétences en IA","Construire ma liberté financière"];
 const QS=["Deviens la meilleure version de toi-même : 3 jours d’affilée, toutes les missions faites.","Écris 50 lignes de code sans te distraire.","Apprends 20 mots d’anglais et utilise-les dans 5 phrases.","1 heure sans téléphone : concentration totale."];
-const D={xp:420,lv:3,at:{dis:15,int:18,pro:12,com:10,san:14,con:11},sk:[2,2,1,1,1,1],pl:[1,1,1,1,0,0,0],day:T(),ms:[],ext:[],bonus:false,jr:{},jd:"",chat:[],ag:"Louis",qd:0,px:"https://lisa-proxy-2728.leonardouamouno3.workers.dev",ac:"",hist:[],g:100,fp:0,st:0,ti:[],dn:0,sh:0,au:{},cr:[],tk:0,fa:0,sx:[0,0,0,0,0,0],sq:"",pw:true,rm:true,q:[],rp:[],nt:[],sp:[{n:"1h de jeu vidéo",c:50},{n:"Un bon repas",c:100},{n:"Soirée film",c:80}]};
+const D={xp:420,lv:3,at:{dis:15,int:18,pro:12,com:10,san:14,con:11},sk:[2,2,1,1,1,1],pl:[1,1,1,1,0,0,0],day:T(),ms:[],ext:[],bonus:false,jr:{},jd:"",chat:[],ag:"Louis",qd:0,px:"https://lisa-proxy-2728.leonardouamouno3.workers.dev",ac:"",hist:[],g:100,fp:0,st:0,ti:[],dn:0,sh:0,au:{},tm:{},fr:{},pz:{},ig:{},hs:{},gs:false,cr:[],tk:0,fa:0,sx:[0,0,0,0,0,0],sq:"",pw:true,rm:true,q:[],rp:[],nt:[],sp:[{n:"1h de jeu vidéo",c:50},{n:"Un bon repas",c:100},{n:"Soirée film",c:80}]};
 let S=D;try{S=Object.assign({},D,JSON.parse(localStorage.getItem("louis")||"{}"))}catch(e){}
 const sv=()=>{try{localStorage.setItem("louis",JSON.stringify(S))}catch(e){}};
 const need=l=>500*(l+1),rank=l=>l<5?"E":l<10?"D":l<20?"C":l<35?"B":l<50?"A":"S";
@@ -139,18 +145,18 @@ function gain(n,a){S.xp+=n;if(a)S.at[a]++;while(S.xp>=need(S.lv)){S.xp-=need(S.l
  while(S.xp<0&&S.lv>1){S.lv--;S.xp+=need(S.lv)}if(S.xp<0)S.xp=0;sv();draw()}
 function newDay(){if(S.day===T())return;const all=S.ms.length&&S.ms.every(m=>m.d);if(all)S.st++;else if(S.ms.length)S.st=0;if(S.ms.length&&!all){S.xp=Math.max(0,S.xp-50);setTimeout(()=>sysw("[ ZONE DE PÉNALITÉ ]","Tu n’as pas accompli ta quête quotidienne.\n\nPénalité : −50 XP.\nRelève-toi, Leonard : aujourd’hui est un nouveau jour.","[ COMPRIS ]"),1800)}
  S.day=T();S.ms=[];S.bonus=false;S.jd="";S.fa=0;sv()}
-function mk(){if(!S.ms.length)S.ms=DM.map(m=>({t:m[0],a:m[1],x:m[2],d:0})).concat(S.ext.map(t=>({t,a:"dis",x:30,d:0})))}
+function mk(){if(!S.ms.length)S.ms=DM.map((m,i)=>({t:m[0],a:m[1],x:m[2],d:0,h:S.tm[m[0]]||DT[i]})).concat(S.ext.map(t=>({t,a:"dis",x:30,d:0,h:S.tm[t]||""})))}
 function draw(){theme();mk();chk();draw2();$("lv").textContent=S.lv;$("rk").textContent=rank(S.lv);$("xt").textContent=S.xp+" / "+need(S.lv);$("xb").style.width=100*S.xp/need(S.lv)+"%";
  $("pw").textContent=Object.values(S.at).reduce((a,b)=>a+b,0)*10+S.lv*25;
  $("at").innerHTML=AT.map(([n,k])=>`<div class="at"><span>${n.toUpperCase()}</span><div class="bar"><i style="width:${Math.min(100,S.at[k]*3)}%"></i></div><b>${S.at[k]}${S.fp>0?` <button data-a="${k}" style="padding:0 7px">+</button>`:""}</b></div>`).join("");
  const d=S.ms.filter(m=>m.d).length;$("mc").textContent="⟳ "+d+"/"+S.ms.length+(S.qa===T()?"":" 🔒");
- $("ml").innerHTML=S.ms.map((m,i)=>`<div class="m ${m.d?"d":""}"><button class="ck" data-m="${i}">${m.d?"✓":""}</button><div><span>${m.t}</span>${m.p?`<small>📸 preuve ${m.v?"⏳ en attente":"✓"}</small>`:""}</div>${m.p?`<img src="${m.p}" style="width:30px;height:30px;border-radius:6px;object-fit:cover">`:""}<span class="xp">+${m.x} XP</span></div>`).join("");
+ $("ml").innerHTML=S.ms.map((m,i)=>`<div class="m ${m.d?"d":""} ${SEL===i?"sel":""}"><button class="ck" data-m="${i}">${m.d?"✓":""}</button><div><span>${m.t}</span>${m.h?`<small>⏰ ${m.h}</small>`:""}${m.p?`<small>📸 preuve ${m.v?"⏳ en attente":"✓"}</small>`:""}</div>${m.p?`<img src="${m.p}" style="width:30px;height:30px;border-radius:6px;object-fit:cover">`:""}<span class="xp">+${m.x} XP</span></div>`).join("");
  $("pl").innerHTML=PL.map((p,i)=>`<label><input type="checkbox" data-p="${i}" ${S.pl[i]?"checked":""}>${p}</label>`).join("");
  $("sk").innerHTML=SK.map((k,i)=>`<div class="at" style="grid-template-columns:110px 1fr 40px"><span>${k.toUpperCase()}</span><div class="bar"><i style="width:${S.sk[i]*10}%"></i></div><b>Nv.${S.sk[i]}</b></div>`).join("");
  $("ag").innerHTML=Object.keys(AG).map(k=>`<button data-g="${k}" class="${S.ag===k?"a":""}"><b>${k.toUpperCase()}</b><small>${AG[k][0]}</small><br><small>● Nv.${1+((S.au[k]||0)/5|0)} · ${S.au[k]||0} ordres</small></button>`).join("");
  $("agn").textContent=S.ag;$("qs").textContent=QS[S.qd%QS.length];$("jt").value=S.jd}
 $("ml").onclick=e=>{const b=e.target.closest("[data-m]");if(!b)return;const m=S.ms[b.dataset.m];if(m.d)return;if(S.qa!==T())return board();if(S.pw){PI=+b.dataset.m;return $("pf").click()}ok(m)};
-$("am").onclick=()=>{const t=$("nm").value.trim();if(!t)return;S.ext.push(t);S.ms.push({t,a:"dis",x:30,d:0});$("nm").value="";S.bonus=false;sv();draw()};
+$("am").onclick=()=>{const v=$("nm").value.trim();if(!v)return;const p=ptime(v);addTask(p.t,p.h);$("nm").value=""};
 $("pl").onchange=e=>{S.pl[e.target.dataset.p]=e.target.checked?1:0;sv()};
 $("ag").onclick=e=>{const b=e.target.closest("[data-g]");if(b){S.ag=b.dataset.g;sv();draw();fx("arise","ARISE · "+S.ag.toUpperCase())}};
 $("js").onclick=()=>{S.jd=$("jt").value;S.jr[T()]=S.jd;sv();if(!S.jx||S.jx!==T()){S.jx=T();gain(20,"int");toast("Journal enregistré +20 XP")}else toast("Journal enregistré")};
@@ -167,7 +173,13 @@ function say(t){if(!$("vo").checked||!window.speechSynthesis)return;try{speechSy
  parts.forEach((x,i)=>{const u=new SpeechSynthesisUtterance(x);u.lang="fr-FR";if(v)u.voice=v;u.pitch=Math.max(0,st.p+(Math.random()-.5)*st.j);u.rate=st.r;if(i===0)u.onstart=()=>{SP=1;stt("Réponse");$("orb").classList.add("sp")};if(i===parts.length-1)u.onend=u.onerror=()=>{SP=0;setTimeout(()=>SP=0,400);stt(WON?"Écoute":"En veille");$("orb").classList.remove("sp")};speechSynthesis.speak(u)})}catch(e){}}
 /* Cerveau hors ligne */
 function brain(q){const l=q.toLowerCase(),n=S.ms.filter(m=>m.d).length,pre=AG[S.ag][1];let r;
- if(m=l.match(/(?:rappelle.?moi|minuteur|timer|chrono)\D{0,25}?(\d+)\s*(secondes?|sec|minutes?|min|heures?|h)\b/)){const u=m[2][0],ms=u==="s"?m[1]*1000:u==="h"?m[1]*3600000:m[1]*60000,w=(q.match(/(?:^|\s)(?:de|pour|d[’'])\s*(.+)$/i)||[0,"ton minuteur est terminé"])[1];S.rp=S.rp||[];S.rp.push({at:Date.now()+ms,t:w});sv();r="C’est noté. Je te préviens dans "+m[1]+" "+m[2]+" : "+w+"."}
+ if(AP&&/^(valide|valider|fait|ok|oui)\s*$/.test(l)){apAct("v");r="Mission validée."}
+ else if(AP&&/^(ignore|ignorer|non)\s*$/.test(l)){apAct("i");r="Rappel ignoré."}
+ else if(AP&&/^(reporte|reporter|report|plus tard)/.test(l)){apAct("p");r="Rappel dans 10 minutes."}
+ else if(/geste|caméra|camera/.test(l)){const on=!!CAM;if(on)gOff();else gOn();r=on?"Gestes désactivés.":"Activation des gestes…"}
+ else if(/progression|bilan|avancement/.test(l))r=progTxt()
+ else if(/tableau|quête du jour|quete du jour/.test(l)){board();r="Voici le tableau de quête."}
+ else if(m=l.match(/(?:rappelle.?moi|minuteur|timer|chrono)\D{0,25}?(\d+)\s*(secondes?|sec|minutes?|min|heures?|h)\b/)){const u=m[2][0],ms=u==="s"?m[1]*1000:u==="h"?m[1]*3600000:m[1]*60000,w=(q.match(/(?:^|\s)(?:de|pour|d[’'])\s*(.+)$/i)||[0,"ton minuteur est terminé"])[1];S.rp=S.rp||[];S.rp.push({at:Date.now()+ms,t:w});sv();r="C’est noté. Je te préviens dans "+m[1]+" "+m[2]+" : "+w+"."}
  else if(m=l.match(/^(?:calcule|calcul|combien fait)\s+(.+)/)){const e=m[1].replace(/,/g,".").replace(/[x×]/g,"*").replace(/÷/g,"/");if(/^[\d+\-*\/().\s%]+$/.test(e)){try{r="= "+Function('"use strict";return ('+e+')')()}catch(x){r="Calcul invalide."}}else r="Je calcule avec + - * / et des parenthèses."}
  else if(m=q.match(/^note[rz]?\s*:?\s+(.+)/i)){S.nt=S.nt||[];S.nt.push(m[1]);sv();r="Note enregistrée ("+S.nt.length+")."}
  else if(/mes notes|lis.*notes/.test(l))r=(S.nt||[]).length?S.nt.map((x,i)=>(i+1)+". "+x).join("\n"):"Aucune note pour l’instant."
@@ -179,7 +191,7 @@ function brain(q){const l=q.toLowerCase(),n=S.ms.filter(m=>m.d).length,pre=AG[S.
  else if(/prochaine/.test(l)){const m=S.ms.find(x=>!x.d);r=m?`Prochaine mission : ${m.t} (+${m.x} XP). Lance-toi maintenant.`:"Toutes les missions sont faites. Bonus récupéré, repose-toi."}
  else if(/mission/.test(l))r=`Missions ${n}/${S.ms.length} :\n`+S.ms.map((m,i)=>`${i+1}. ${m.d?"✅":"⬜"} ${m.t}`).join("\n");
  else if(m=l.match(/(?:fait|valide|termin\w*)\s+(\d+)/)){const x=S.ms[m[1]-1];if(x&&!x.d){x.d=1;gain(x.x,x.a);r=`Mission validée : ${x.t}. +${x.x} XP.`}else r="Mission introuvable ou déjà faite."}
- else if(m=q.match(/^(?:ajoute|ajouter)\s+(.+)/i)){S.ext.push(m[1]);S.ms.push({t:m[1],a:"dis",x:30,d:0});sv();draw();r="Mission ajoutée : "+m[1]+" (+30 XP)."}
+ else if(m=q.match(/^(?:ajoute|ajouter|programme|planifie)\s+(.+)/i)){const p=ptime(m[1]);addTask(p.t,p.h);r="Mission "+(p.h?"programmée à "+p.h:"ajoutée")+" : "+p.t+" (+30 XP)."}
  else if(m=q.match(/^journal\s+(.+)/i)){S.jd=(S.jd+"\n"+m[1]).trim();S.jr[T()]=S.jd;sv();draw();r="Noté dans ton journal."}
  else if(/plan/.test(l))r="Plan d’action :\n"+PL.map((p,i)=>(S.pl[i]?"✅ ":"⬜ ")+p).join("\n");
  else if(/heure|date/.test(l))r="Il est "+new Date().toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"})+", "+new Date().toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"})+".";
@@ -189,7 +201,7 @@ function brain(q){const l=q.toLowerCase(),n=S.ms.filter(m=>m.d).length,pre=AG[S.
  else r="Je n’ai pas encore cette compétence hors ligne. Tape « aide » pour voir mes commandes. (Ajoute ton code d’accès dans Journal › Réglages IA pour activer l’IA.)";
  return pre+r}
 function add(t,c){const d=document.createElement("div");d.className="b "+c;d.textContent=t;$("log").appendChild(d);$("log").scrollTop=1e9}
-const OFF=/^(aide|help|statut|missions?|prochaine|fait\s|valide|ajoute|journal\s|plan|heure|stats|rappelle|minuteur|timer|chrono|calcule|calcul|combien fait|note|mes notes|agenda|planning|preuve)/i;
+const OFF=/^(aide|help|statut|missions?|prochaine|fait\s|valide|ajoute|journal\s|plan|heure|stats|rappelle|minuteur|timer|chrono|calcule|calcul|combien fait|note|mes notes|agenda|planning|preuve|valide|valider|ignore|ignorer|reporte|report|tableau|geste|gestes|caméra|camera|progression|bilan|programme|planifie)/i;
 async function ai(q){const sys="Tu es LOUIS, assistant IA façon Jarvis et Système de Solo Leveling, pour Leonard (niveau "+S.lv+", rang "+rank(S.lv)+", "+S.xp+" XP, classe Shadow Developer). Rôle actif : "+S.ag+" ("+AG[S.ag][0]+"). Réponds en français, de façon concise, motivante et concrète. Missions du jour : "+S.ms.map(m=>m.t+(m.d?" (faite)":"")).join("; ")+".";
  S.hist.push({role:"user",parts:[{text:q}]});S.hist=S.hist.slice(-12);
  const t=await call(sys,S.hist.map(h=>({role:h.role,text:h.parts[0].text})));
@@ -203,7 +215,7 @@ $("snd").onclick=()=>{send($("in").value);$("in").value=""};$("in").onkeydown=e=
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 $("mic").onclick=()=>{if(!SR)return toast("Micro non supporté ici");const r=new SR;r.lang="fr-FR";r.onresult=e=>send(e.results[0][0].transcript);r.onerror=()=>toast("Micro indisponible");r.start()};
 setInterval(()=>$("clk").textContent=new Date().toLocaleString("fr-FR",{weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}),1000);
-$("go").onclick=()=>{try{au().resume()}catch(e){}boot(()=>{$("ov").remove();go2()})};function go2(){const h=new Date().getHours();const g=(h<18?"Bonjour":"Bonsoir")+" Leonard. Le Système est en ligne. "+S.ms.filter(m=>!m.d).length+" missions t’attendent.";add(g,"l");say(g);fx("quest","[ SYSTÈME ÉVEILLÉ ]");if(S.wk)wake(true);if(S.qa!==T())setTimeout(boardLater,2200)};
+$("go").onclick=()=>{try{au().resume()}catch(e){}boot(()=>{$("ov").remove();go2()})};function go2(){const h=new Date().getHours();const g=(h<18?"Bonjour":"Bonsoir")+" Leonard. Le Système est en ligne. "+S.ms.filter(m=>!m.d).length+" missions t’attendent.";add(g,"l");say(g);fx("quest","[ SYSTÈME ÉVEILLÉ ]");if(S.wk)wake(true);if(S.gs)gOn();if(S.qa!==T())setTimeout(boardLater,2200)};
 let W=null,WON=false,AWAKE=0,UNL=!S.vp,SP=0;
 function fx(k,t){snd(k==="lv"?"lv":k==="arise"?"arise":"quest");if(k==="arise")burst("arise");if(k==="lv"){burst("lv");const h=$("hud");h.classList.add("aw");setTimeout(()=>h.classList.remove("aw"),700)}const d=document.createElement("div");d.className="fx "+k;d.innerHTML="<div class='r'></div><div class='r r2'></div><b>"+t+"</b>";document.body.appendChild(d);if(k==="lv"){const e=document.querySelector(".s.a");e.classList.add("shk");setTimeout(()=>e.classList.remove("shk"),600)}setTimeout(()=>d.remove(),3400)}
 const WK=/\b(louis|luis|louie|louise|lewis)\b/i;
@@ -212,6 +224,7 @@ function awake(){stt("Écoute");snd("wake");const h=$("hud");h.classList.add("aw
 function cmd(q){if(/tais.?toi|silence/i.test(q)){try{speechSynthesis.cancel()}catch(e){}return}document.querySelector('nav button[data-t="1"]').click();send(q)}
 function hear(t){const l=t.toLowerCase(),m=l.match(WK);
  if(!UNL){if(S.vp&&l.includes(S.vp.toLowerCase())){UNL=true;fx("quest","[ IDENTITÉ CONFIRMÉE ]");reply("Identité confirmée. Bienvenue, Leonard.")}else if(m)reply("Phrase d’activation requise.");return}
+ if(AP&&!m&&UNL&&l.split(/\s+/).length<=4){if(/valid|fait|termin|oui|ok/.test(l))return apAct("v");if(/ignor|non/.test(l))return apAct("i");if(/report|plus tard/.test(l))return apAct("p")}
  if(m){const rest=t.slice(m.index+m[0].length).replace(/^[\s,.:!?-]+/,"");awake();if(rest.length>1)cmd(rest);else{AWAKE=Date.now();reply("Oui, Leonard ?")}}
  else if(Date.now()-AWAKE<8000){AWAKE=0;cmd(t)}}
 function wake(on){WON=on;S.wk=on;sv();$("wk").textContent=on?"👂 Veille : ON":"👂 Veille : OFF";$("wk").classList.toggle("a",on);
@@ -225,7 +238,7 @@ function wake(on){WON=on;S.wk=on;sv();$("wk").textContent=on?"👂 Veille : ON":
 $("wk").onclick=()=>wake(!WON);if(S.wk)$("wk").textContent="👂 Veille : (touche S’ÉVEILLER)";
 const TI=[["Le Plus Faible","Tu commences ici.",()=>1],["Chasseur Régulier","Atteindre le niveau 5",()=>S.lv>=5],["Sans relâche","Série de 3 jours",()=>S.st>=3],["Volonté de fer","Série de 7 jours",()=>S.st>=7],["Briseur de donjon","5 donjons terminés",()=>S.dn>=5],["Monarque des Ombres","20 ombres extraites",()=>S.sh>=20]];
 function chk(){TI.forEach(t=>{if(!S.ti.includes(t[0])&&t[2]()){S.ti.push(t[0]);sv();if(t[0]!=="Le Plus Faible")setTimeout(()=>{fx("quest","[ TITRE OBTENU ] "+t[0].toUpperCase());say("Titre obtenu : "+t[0])},800)}})}
-function draw2(){$("hs").textContent="💰 "+S.g+" Or · 🔥 Série "+S.st+" j · 👥 "+S.sh+" ombres · "+S.ti[S.ti.length-1];
+function draw2(){prg();$("hs").textContent="💰 "+S.g+" Or · 🔥 Série "+S.st+" j · 👥 "+S.sh+" ombres · "+S.ti[S.ti.length-1];
  $("pts").textContent=S.fp>0?"Points libres : "+S.fp+" (touche + pour les répartir)":"Chaque niveau = 5 points libres + 100 Or.";
  $("sp").innerHTML=S.sp.map((x,i)=>`<div class="m"><div><span>${x.n}</span></div><button data-b="${i}" ${S.g<x.c?"disabled style='opacity:.4'":""}>💰 ${x.c}</button><button data-x="${i}" style="padding:4px 8px">✕</button></div>`).join("");
  $("ft").textContent=S.fa|0;$("fb").style.width=S.fa+"%";$("ck").textContent="Coût : "+CC+" Or par cours · Tickets : "+S.tk+" (1 par changement de rang)";
@@ -245,10 +258,7 @@ let PI=-1;
 function ok(m){m.d=1;S.g+=m.x/5|0;S.fa=Math.min(100,S.fa+8);skl(m);fat();gain(m.x,m.a);if(S.ms.every(x=>x.d)&&!S.bonus){S.bonus=true;toast("🏆 Toutes les missions ! +100 XP");gain(100)}else{toast("+"+m.x+" XP");fx("quest","[ QUÊTE ACCOMPLIE ]")}}
 function shrink(f,mx,cb){const r=new FileReader;r.onload=()=>{const im=new Image;im.onload=()=>{const k=Math.min(1,mx/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*k;c.height=im.height*k;c.getContext("2d").drawImage(im,0,0,c.width,c.height);cb(c.toDataURL("image/jpeg",.7))};im.src=r.result};r.readAsDataURL(f)}
 async function verify(t,img){if(S.pv==="deepseek")return{ok:true,why:"Preuve archivée (DeepSeek ne lit pas les images)."};const r=await fetch(S.px,{method:"POST",headers:{"Content-Type":"application/json","x-access-code":S.ac},body:JSON.stringify({contents:[{role:"user",parts:[{text:"Tu es le Système de Solo Leveling, juge strict mais juste. Mission du joueur : « "+t+" ». Cette photo prouve-t-elle que la mission a été faite ? Réponds par OUI ou NON, puis une courte phrase en français."},{inline_data:{mime_type:"image/jpeg",data:img.split(",")[1]}}]}],code:S.ac})});if(!r.ok)throw 0;const j=await r.json();const x=j.candidates?.[0]?.content?.parts?.map(p=>p.text).join("")||j.text||j.reply||j.response||"";if(!x)throw 0;return{ok:/^\W*oui/i.test(x),why:x.replace(/^\W*(oui|non)\W*/i,"")}}
-$("pf").onchange=async e=>{const f=e.target.files[0];e.target.value="";if(!f||PI<0)return;const m=S.ms[PI];PI=-1;toast("📸 Analyse de la preuve…");
- const img=await new Promise(r=>shrink(f,640,r)),th=await new Promise(r=>shrink(f,160,r));m.p=th;
- if(S.px&&S.ac&&navigator.onLine){try{const v=await verify(m.t,img);if(v.ok){ok(m);reply("Preuve validée. "+v.why)}else{m.p=null;sv();draw();fx("arise","[ PREUVE REFUSÉE ]");reply("Preuve refusée. "+v.why)}return}catch(x){}}
- S.q.push({t:m.t,day:S.day,x:m.x,img});m.v=1;ok(m);toast("📴 Hors ligne : preuve en attente de vérification")};
+$("pf").onchange=async e=>{const f=e.target.files[0];e.target.value="";if(!f||PI<0)return;const m=S.ms[PI];PI=-1;toast("📸 Analyse de la preuve…");const img=await new Promise(r=>shrink(f,640,r)),th=await new Promise(r=>shrink(f,160,r));sendProof(m,img,th)};
 let FL=0;async function flush(){if(FL||!S.q.length||!S.px||!S.ac||!navigator.onLine)return;FL=1;try{while(S.q.length){const it=S.q[0],v=await verify(it.t,it.img);S.q.shift();const m=S.ms.find(z=>z.t===it.t&&S.day===it.day);if(m)m.v=0;
  if(v.ok)toast("✅ Preuve vérifiée : "+it.t);else{if(m){m.d=0;m.p=null}fx("arise","[ PREUVE REFUSÉE ]");reply("Preuve refusée pour « "+it.t+" ». "+v.why+" XP retirés.");gain(-it.x)}sv();draw()}}catch(x){}FL=0}
 addEventListener("online",flush);setInterval(flush,60000);setTimeout(flush,3000);
@@ -296,11 +306,12 @@ function ld(){$("px").value=S.sl[S.pv].px;$("ac").value=S.sl[S.pv].ac;$("px").pl
 function stSl(){S.sl[S.pv]={px:$("px").value.trim(),ac:$("ac").value.trim()};S.px=S.sl[S.pv].px;S.ac=S.sl[S.pv].ac}
 S.px=S.sl[S.pv].px;S.ac=S.sl[S.pv].ac;$("pv").value=S.pv;ld();cs();
 $("pv").onchange=()=>{stSl();S.pv=$("pv").value;S.px=S.sl[S.pv].px;S.ac=S.sl[S.pv].ac;ld();sv();cs();toast("IA : "+(S.pv==="deepseek"?"DeepSeek":"Gemini"))};
-const THM={monarque:215,ombre:268,sang:352,or:42,emeraude:150,glace:187},RH={E:215,D:187,C:150,B:268,A:352,S:42};
-function theme(){S.th=S.th||"auto";const h=S.th==="auto"?RH[rank(S.lv)]:THM[S.th];document.documentElement.style.setProperty("--h",h)}
+const TH={monarque:{h:215,h2:195,t:"sine",m:1},ombre:{h:268,h2:285,t:"triangle",m:.55,v:1.2},sang:{h:352,h2:20,t:"square",m:.8,v:.55},or:{h:42,h2:55,t:"triangle",m:1.2},emeraude:{h:150,h2:170,t:"sine",m:.9},glace:{h:187,h2:205,t:"sine",m:1.4},noir:{h:215,h2:215,g:1,bg:"#000",t:"square",m:1,v:.5},noirneon:{h:215,h2:195,bg:"#000",t:"sine",m:1},cyber:{h:190,h2:320,t:"square",m:1.1,v:.55},braise:{h:5,h2:42,t:"triangle",m:.85},aurore:{h:150,h2:275,t:"sine",m:1.05}},RH={E:215,D:187,C:150,B:268,A:352,S:42};
+function theme(){S.th=S.th||"auto";const q=S.th==="auto"?{h:RH[rank(S.lv)],h2:RH[rank(S.lv)]+20,t:"sine",m:1}:TH[S.th]||TH.monarque,r=document.documentElement;r.style.setProperty("--h",q.h);r.style.setProperty("--h2",q.h2);if(q.bg)r.style.setProperty("--bg",q.bg);else r.style.removeProperty("--bg");r.style.filter=q.g?"grayscale(1) contrast(1.15)":"";SM={t:q.t,m:q.m,v:q.v||1}}
 $("th").value=S.th||"auto";$("th").onchange=()=>{S.th=$("th").value;sv();theme();toast("🎨 Couleurs mises à jour")};
 let AC=null;const au=()=>AC||(AC=new(window.AudioContext||window.webkitAudioContext)());
-function tone(f,t0,d,ty,v,f2){if(S.sf===false)return;try{const a=au(),n=a.currentTime+t0,o=a.createOscillator(),g=a.createGain();o.type=ty||"sine";o.frequency.setValueAtTime(f,n);if(f2)o.frequency.exponentialRampToValueAtTime(f2,n+d);g.gain.setValueAtTime(0,n);g.gain.linearRampToValueAtTime(v||.15,n+.02);g.gain.exponentialRampToValueAtTime(.001,n+d);o.connect(g);g.connect(a.destination);o.start(n);o.stop(n+d+.05)}catch(e){}}
+let SM={t:null,m:1,v:1};
+function tone(f,t0,d,ty,v,f2){if(S.sf===false)return;try{const a=au(),n=a.currentTime+t0,o=a.createOscillator(),g=a.createGain();o.type=SM.t&&(!ty||ty==="sine"||ty==="triangle")?SM.t:(ty||"sine");o.frequency.setValueAtTime(f*SM.m,n);if(f2)o.frequency.exponentialRampToValueAtTime(f2*SM.m,n+d);g.gain.setValueAtTime(0,n);g.gain.linearRampToValueAtTime((v||.15)*SM.v,n+.02);g.gain.exponentialRampToValueAtTime(.001,n+d);o.connect(g);g.connect(a.destination);o.start(n);o.stop(n+d+.05)}catch(e){}}
 const SFX={sys:()=>{tone(1175,0,.5,"sine",.16);tone(1760,0,.5,"sine",.07);tone(1568,.14,.7,"sine",.14);tone(2349,.14,.7,"sine",.06)},open:()=>noise(.45,.35,300,4000),gate:()=>{noise(2,.5,80,900);tone(55,0,2.2,"sawtooth",.2,110);tone(110,.3,1.8,"sine",.1,220)},tick:()=>tone(1000,0,.06,"square",.07),go:()=>tone(220,0,.6,"sawtooth",.15,880),quest:()=>{tone(660,0,.15,"triangle",.14);tone(990,.1,.3,"triangle",.12)},lv:()=>{[523,659,784,1047].forEach((f,i)=>tone(f,i*.12,.5,"triangle",.16));tone(130,0,1.2,"sawtooth",.08)},arise:()=>{noise(1.8,.4,60,220);tone(60,0,1.6,"sawtooth",.2,30);tone(90,.2,1.2,"square",.06,40)},wake:()=>{tone(440,0,.1,"sine",.12);tone(880,.08,.2,"sine",.12)}};
 const snd=k=>{SFX[k]&&SFX[k]()};
 function boot(cb){$("go").style.display="none";const pre=document.createElement("pre");pre.style.cssText="text-align:left;color:var(--gl);font:12px/1.6 ui-monospace,monospace;min-height:160px;white-space:pre-wrap";$("ov").appendChild(pre);
@@ -331,12 +342,77 @@ function gate(m){const rk={15:"E",25:"D",45:"C",60:"B"}[m]||"E",g=document.creat
 function cd(cb){const d=document.createElement("div");d.className="fx quest";d.style.animation="none";d.innerHTML="<b style='font-size:90px'></b>";document.body.appendChild(d);const b=d.querySelector("b");let n=3;
  const t=()=>{if(n===0){b.textContent="GO";snd("go");setTimeout(()=>{d.remove();cb()},600);return}b.textContent=n;b.style.animation="none";void b.offsetWidth;b.style.animation="zi .6s both";snd("tick");n--;setTimeout(t,900)};t()}
 function boardLater(){if(document.querySelector(".sw"))return setTimeout(boardLater,1200);board()}
-function board(){if($("qb2"))return;const acc=S.qa===T();snd("open");snd("sys");say("quête quotidienne");try{navigator.vibrate&&navigator.vibrate([60,40,60])}catch(e){}
- const d=document.createElement("div");d.id="qb2";d.className="sw";
- const hd="<tr><th>#</th><th>OBJECTIF</th><th>RÉCOMPENSE</th><th></th></tr>",rows=()=>hd+S.ms.map((m,i)=>`<tr><td>${i+1}</td><td>${esc(m.t)}</td><td style="color:var(--gl);white-space:nowrap">+${m.x} XP</td><td>${m.d?"✅":S.qa===T()?"⬜":"🔒"}</td></tr>`).join("");
- d.innerHTML=`<i class="sc"></i><h3>[ QUÊTE QUOTIDIENNE ]</h3><div class="q" style="margin-bottom:8px">Préparation pour devenir plus fort</div><table class="bd">${rows()}</table><div class="row" style="margin-top:10px"><input id="bn" placeholder="Ajouter une tâche (+30 XP)…"><button id="ba">+</button></div><div class="q" style="margin-top:10px;color:#ff9a9a">AVERTISSEMENT : en cas d’échec, une pénalité sera appliquée (−50 XP).</div><div class="row" style="justify-content:center"><button id="bo" style="margin-top:12px;letter-spacing:2px;color:var(--gl)">${acc?"[ FERMER ]":"[ ACCEPTER ]"}</button></div>`;
- document.body.appendChild(d);
- d.querySelector("#ba").onclick=()=>{const t=d.querySelector("#bn").value.trim();if(!t)return;S.ext.push(t);S.ms.push({t,a:"dis",x:30,d:0});S.bonus=false;sv();draw();d.querySelector(".bd").innerHTML=rows();d.querySelector("#bn").value=""};
+const DT=["07:30","10:00","06:00","16:00","14:00"];
+let SEL=-1,AP=null,APT=0,CAM=null,GM=null,GMODE="",GBUSY=0,GLR=0,GH={g:"",n:0},GCD=0,WL=null,MP=null,MH=[];
+const GN={point:"☝️",thumb:"👍",palm:"✋",peace:"✌️"},tkey=m=>T()+"|"+m.t,tmin=h=>{const a=h.split(":");return +a[0]*60+ +a[1]};
+function ptime(s){const m=s.match(/\s*(?:à|a|@)?\s*(\d{1,2})\s*(?:h|:)\s*(\d{2})?\s*$/i);if(!m)return{t:s.trim(),h:""};const H=+m[1],M=m[2]?+m[2]:0;if(H>23||M>59)return{t:s.trim(),h:""};return{t:s.slice(0,m.index).trim()||s.trim(),h:String(H).padStart(2,"0")+":"+String(M).padStart(2,"0")}}
+function addTask(t,h){S.ext.push(t);if(h)S.tm[t]=h;S.ms.push({t,a:"dis",x:30,d:0,h:h||""});S.bonus=false;sv();draw()}
+function progTxt(){return "Aujourd’hui "+S.ms.filter(m=>m.d).length+" mission(s) sur "+S.ms.length+". Série de "+S.st+" jour(s). Niveau "+S.lv+", "+S.xp+" XP."}
+function prg(){S.hs[T()]={d:S.ms.filter(m=>m.d).length,n:S.ms.length};const ks=Object.keys(S.hs).sort();while(ks.length>30)delete S.hs[ks.shift()];const days=[];for(let i=6;i>=0;i--){const d=new Date(Date.now()-i*864e5).toISOString().slice(0,10);days.push([d,S.hs[d]])}
+ const tot=days.reduce((a,x)=>a+(x[1]?x[1].d:0),0),nn=days.reduce((a,x)=>a+(x[1]?x[1].n:0),0),t0=S.hs[T()];
+ $("pg").innerHTML=`<div class="row" style="align-items:flex-end;height:74px;gap:6px">${days.map(([d,v])=>{const p=v&&v.n?v.d/v.n:0;return `<div style="flex:1;text-align:center"><div style="height:${Math.max(4,p*54)}px;background:linear-gradient(var(--gl),var(--ac));border-radius:4px;box-shadow:0 0 8px var(--ac)"></div><small class="q">${"DLMMJVS"[new Date(d+"T12:00").getDay()]}</small></div>`}).join("")}</div><div class="q" style="margin-top:6px;text-align:left">Aujourd’hui ${t0.n?Math.round(100*t0.d/t0.n):0} % · 7 jours ${nn?Math.round(100*tot/nn):0} % · Série ${S.st} j</div>`}
+function ntf(t){try{navigator.vibrate&&navigator.vibrate([200,100,200]);if(window.Notification&&Notification.permission==="granted"){if(navigator.serviceWorker&&navigator.serviceWorker.controller)navigator.serviceWorker.ready.then(r=>r.showNotification("LOUIS // CORE",{body:t,tag:"louis"}));else new Notification("LOUIS // CORE",{body:t})}}catch(e){}}
+async function sendProof(m,img,th){m.p=th;if(S.px&&S.ac&&navigator.onLine){try{const v=await verify(m.t,img);if(v.ok){ok(m);reply("Preuve validée. "+v.why)}else{m.p=null;sv();draw();fx("arise","[ PREUVE REFUSÉE ]");reply("Preuve refusée. "+v.why)}return}catch(x){}}
+ S.q.push({t:m.t,day:S.day,x:m.x,img});m.v=1;ok(m);toast("📴 Hors ligne : preuve en attente de vérification")}
+function validate(m,tap){if(!m||m.d)return;if(S.qa!==T())return board();if(!S.pw)return ok(m);const v=$("vid");
+ if(CAM&&v.videoWidth){const c=document.createElement("canvas"),k=Math.min(1,640/v.videoWidth);c.width=v.videoWidth*k;c.height=v.videoHeight*k;c.getContext("2d").drawImage(v,0,0,c.width,c.height);const t=document.createElement("canvas");t.width=160;t.height=Math.round(160*c.height/c.width);t.getContext("2d").drawImage(c,0,0,t.width,t.height);toast("📸 Preuve capturée par la caméra");return sendProof(m,c.toDataURL("image/jpeg",.7),t.toDataURL("image/jpeg",.7))}
+ if(tap){PI=S.ms.indexOf(m);return $("pf").click()}toast("Active les gestes (caméra) ou touche la mission pour la photo")}
+function apAct(a){const m=AP;if(!m)return;clearTimeout(APT);const d=$("ap");if(d)d.remove();AP=null;
+ if(a==="v")validate(m,true);else if(a==="p"){S.pz[tkey(m)]=Date.now()+600000;sv();toast("⏰ Rappel dans 10 minutes");say("Rappel dans dix minutes")}else{S.ig[tkey(m)]=1;sv();toast("Rappel ignoré pour aujourd’hui");draw()}}
+function alertTask(m,again){if(AP)return;AP=m;snd("open");snd("sys");const msg=(again?"Rappel. ":"Mission programmée. ")+m.t;say(msg);ntf(msg);
+ const d=document.createElement("div");d.id="ap";d.className="sw holo";
+ d.innerHTML=`<i class="sc"></i><h3>[ MISSION PROGRAMMÉE ]</h3><div style="text-align:center"><div class="big" style="font-size:32px">${m.h}</div><div style="font-size:17px;margin:6px 0">${esc(m.t)}</div><div class="q">Récompense : +${m.x} XP</div></div><div class="row" style="justify-content:center;gap:6px;margin-top:12px;flex-wrap:wrap"><button data-a="v">👍 VALIDER</button><button data-a="p">☝️ +10 MIN</button><button data-a="i">✋ IGNORER</button></div><div class="q" style="margin-top:8px">Maintiens un geste ~1 s, ou dis « valide », « reporte », « ignore ».</div>`;
+ document.body.appendChild(d);d.onclick=e=>{const b=e.target.closest("[data-a]");if(b)apAct(b.dataset.a)};clearTimeout(APT);APT=setTimeout(()=>{if(AP===m)apAct("p")},120000)}
+function sched(){if($("ov")||AP||document.querySelector(".sw"))return;const n=new Date(),now=n.getHours()*60+n.getMinutes();
+ if(S._d!==T()){S._d=T();[S.fr,S.pz,S.ig].forEach(o=>{for(const k in o)if(!k.startsWith(T()))delete o[k]})}
+ if(S.qa!==T()){if(S.bw!==T()&&S.ms.some(m=>m.h&&!m.d&&now>=tmin(m.h))){S.bw=T();sv();board()}return}
+ for(const m of S.ms){if(m.d||!m.h)continue;const k=tkey(m);if(S.ig[k])continue;
+  if(S.pz[k]){if(Date.now()<S.pz[k])continue;delete S.pz[k];sv();return alertTask(m,1)}
+  if(!S.fr[k]&&now>=tmin(m.h)){S.fr[k]=1;sv();if(now-tmin(m.h)<=90)return alertTask(m)}}}
+setInterval(sched,15000);setTimeout(sched,4000);
+/* ===== gestes ===== */
+const gd=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+function gest(L){const e=(t,p)=>gd(L[t],L[0])>gd(L[p],L[0])*1.12,i=e(8,6),m=e(12,10),r=e(16,14),p=e(20,18),sz=gd(L[0],L[9]),th=gd(L[4],L[17])>gd(L[3],L[17])*1.05&&gd(L[4],L[5])>.45*sz;
+ if(i&&m&&r&&p)return"palm";if(i&&m&&!r&&!p)return"peace";if(i&&!m&&!r&&!p)return"point";if(th&&!i&&!m&&!r&&!p&&L[4].y<L[3].y&&L[3].y<L[2].y)return"thumb";return""}
+function gAct(g){snd("quest");try{navigator.vibrate&&navigator.vibrate(50)}catch(e){}
+ if(AP)return g==="thumb"?apAct("v"):g==="point"?apAct("p"):g==="palm"?apAct("i"):0;
+ const qb=$("qb2");if(qb){if(g==="thumb")qb.querySelector("#bo").click();return}
+ if(g==="peace")return board();
+ if(g==="point"){const n=S.ms.length;let k=SEL;for(let j=1;j<=n;j++){const i=(SEL+j+n)%n;if(!S.ms[i].d){k=i;break}}SEL=k;draw();const el=document.querySelector(".m.sel");if(el&&el.scrollIntoView)el.scrollIntoView({block:"center",behavior:"smooth"});if(k>=0)say("Mission "+(k+1))}
+ else if(g==="thumb"){if(SEL>=0&&S.ms[SEL]&&!S.ms[SEL].d)validate(S.ms[SEL]);else toast("Sélectionne d’abord une mission (☝️)")}
+ else if(g==="palm"){if(SEL>=0&&S.ms[SEL]){S.ig[tkey(S.ms[SEL])]=1;sv();toast("Mission ignorée (rappel)");SEL=-1;draw()}}}
+function gFeed(g){if(Date.now()<GCD)return;if(g&&g===GH.g)GH.n++;else GH={g,n:g?1:0};const need=10;$("gh").textContent=g?GN[g]+" "+"▓".repeat(Math.min(GH.n,need))+"░".repeat(Math.max(0,need-GH.n)):"";if(GH.n>=need){GH={g:"",n:0};GCD=Date.now()+1600;gAct(g)}}
+function gDraw(L){const c=$("gc"),x=c.getContext("2d");c.width=128;c.height=96;x.clearRect(0,0,128,96);if(L){x.fillStyle="#6fd0ff";L.forEach(p=>x.fillRect(p.x*128-1.5,p.y*96-1.5,3,3))}}
+const MC=document.createElement("canvas");MC.width=64;MC.height=48;
+function gMotion(v){const x=MC.getContext("2d",{willReadFrequently:true});x.drawImage(v,0,0,64,48);const d=x.getImageData(0,0,64,48).data;
+ if(MP){let sx=0,sy=0,c=0;for(let i=0;i<d.length;i+=4){if(Math.abs(d[i]-MP[i])+Math.abs(d[i+1]-MP[i+1])+Math.abs(d[i+2]-MP[i+2])>90){const p=i/4;sx+=p%64;sy+=(p/64)|0;c++}}
+  const t=Date.now();if(c>90)MH.push({x:sx/c,y:sy/c,t});MH=MH.filter(h=>t-h.t<500);
+  if(MH.length>4&&t>GCD){const a=MH[0],b=MH[MH.length-1],dx=b.x-a.x,dy=b.y-a.y;
+   if(Math.abs(dx)>22&&Math.abs(dx)>Math.abs(dy)*1.5){GCD=t+1600;MH=[];gAct(dx<0?"thumb":"palm")}else if(Math.abs(dy)>16&&Math.abs(dy)>Math.abs(dx)*1.5){GCD=t+1600;MH=[];gAct("point")}}}
+ MP=new Uint8ClampedArray(d)}
+function gLoop(){if(!CAM)return;const v=$("vid");
+ if(v.readyState>=2){const t=performance.now();if(t-GLR>66){GLR=t;try{if(GMODE==="ml"&&GM){const r=GM.detectForVideo(v,t),L=r.landmarks&&r.landmarks[0];gDraw(L);gFeed(L?gest(L):"")}else gMotion(v)}catch(e){}}}
+ requestAnimationFrame(gLoop)}
+async function mkLm(V,F,d){return V.HandLandmarker.createFromOptions(F,{baseOptions:{modelAssetPath:"https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task",delegate:d},runningMode:"VIDEO",numHands:1})}
+async function gOn(){if(CAM||GBUSY)return;GBUSY=1;
+ try{CAM=await navigator.mediaDevices.getUserMedia({video:{facingMode:"user",width:{ideal:640},height:{ideal:480}},audio:false})}catch(e){CAM=null;GBUSY=0;return toast(e&&e.name==="NotAllowedError"?"Caméra refusée : autorise-la (cadenas du navigateur › Autorisations)":"Caméra indisponible ("+(e&&e.name||"?")+")")}
+ const v=$("vid");v.srcObject=CAM;try{await v.play()}catch(e){}$("gp").style.display="block";S.gs=true;sv();$("gb").textContent="🖐 Gestes : ON (touche pour couper)";try{WL=await navigator.wakeLock.request("screen")}catch(e){}
+ if(!GMODE){toast("🖐 Chargement de la reconnaissance des mains…");try{const B="https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14",V=await import(B+"/vision_bundle.mjs"),F=await V.FilesetResolver.forVisionTasks(B+"/wasm");try{GM=await mkLm(V,F,"GPU")}catch(e){GM=await mkLm(V,F,"CPU")}GMODE="ml"}catch(e){GM=null;GMODE="motion"}}
+ $("gm").textContent=GMODE==="ml"?"Mode : reconnaissance des mains (MediaPipe)":"Mode balayages (hors ligne) : droite = valider, gauche = ignorer, haut/bas = suivant";toast(GMODE==="ml"?"✅ Mains reconnues":"Mode balayages actif");GBUSY=0;gLoop()}
+function gStop(){if(CAM){CAM.getTracks().forEach(t=>t.stop());CAM=null}try{WL&&WL.release()}catch(e){}WL=null;$("gp").style.display="none"}
+function gOff(){gStop();S.gs=false;sv();$("gb").textContent="🖐 Activer les gestes (caméra)"}
+$("gb").onclick=()=>CAM?gOff():gOn();
+document.addEventListener("visibilitychange",()=>{if(document.hidden)gStop();else if(S.gs&&!CAM)gOn()});
+/* ===== tableau de quête ===== */
+function board(){if($("qb2"))return;snd("open");snd("sys");say("quête quotidienne");try{navigator.vibrate&&navigator.vibrate([60,40,60])}catch(e){}
+ const d=document.createElement("div");d.id="qb2";d.className="sw holo";const acc=S.qa===T(),
+ st=m=>m.d?"✅":S.ig[tkey(m)]?"🚫":S.qa===T()?"⬜":"🔒",
+ rows=()=>"<tr><th>#</th><th>OBJECTIF</th><th>HEURE</th><th></th></tr>"+S.ms.map((m,i)=>`<tr><td>${i+1}</td><td>${esc(m.t)}<small class="q" style="display:block;text-align:left">+${m.x} XP</small></td><td><input type="time" data-i="${i}" value="${m.h||""}" style="width:98px;padding:4px"></td><td>${st(m)}${S.ext.includes(m.t)?` <button data-x="${i}" style="padding:2px 7px">✕</button>`:""}</td></tr>`).join("");
+ d.innerHTML=`<i class="sc"></i><h3>[ QUÊTE QUOTIDIENNE ]</h3><div class="q" style="margin-bottom:8px">Préparation pour devenir plus fort</div><table class="bd">${rows()}</table><div class="row" style="margin-top:10px"><input id="bn" placeholder="Nouvelle tâche…"><input id="bh" type="time" style="width:98px"><button id="ba">+</button></div><div class="q" style="margin-top:10px;color:#ff9a9a">AVERTISSEMENT : en cas d’échec, une pénalité sera appliquée (−50 XP).</div><div class="row" style="justify-content:center"><button id="bo" style="margin-top:12px;letter-spacing:2px;color:var(--gl)">${acc?"[ FERMER ]":"[ ACCEPTER ]"}</button></div>`;
+ document.body.appendChild(d);const tb=d.querySelector(".bd"),rf=()=>{tb.innerHTML=rows()};
+ tb.onchange=e=>{const i=e.target.dataset.i;if(i===undefined)return;const m=S.ms[i];m.h=e.target.value;S.tm[m.t]=m.h;sv();draw()};
+ tb.onclick=e=>{const x=e.target.closest("[data-x]");if(!x)return;const m=S.ms[x.dataset.x];S.ms.splice(x.dataset.x,1);S.ext=S.ext.filter(t=>t!==m.t);delete S.tm[m.t];sv();draw();rf()};
+ d.querySelector("#ba").onclick=()=>{const v=d.querySelector("#bn").value.trim(),h=d.querySelector("#bh").value;if(!v)return;const p=ptime(v);addTask(p.t,h||p.h);d.querySelector("#bn").value="";d.querySelector("#bh").value="";rf()};
  d.querySelector("#bo").onclick=()=>{d.remove();if(!acc){S.qa=T();sv();draw();fx("quest","[ QUÊTE ACCEPTÉE ]");say("Quête acceptée. Bonne chance, Leonard.")}}}
 $("qbtn").onclick=board;
 newDay();draw();
