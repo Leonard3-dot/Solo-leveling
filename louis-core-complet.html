@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LOUIS // CORE</title>
+<meta name="theme-color" content="#050b1f"><meta name="apple-mobile-web-app-capable" content="yes">
+<script>try{const m={name:"Louis // Core",short_name:"Louis",start_url:".",display:"standalone",background_color:"#050b1f",theme_color:"#050b1f",icons:[{src:"data:image/svg+xml,"+encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='#050b1f'/><circle cx='32' cy='32' r='16' fill='#3aa0ff'/></svg>"),sizes:"any",type:"image/svg+xml"}]};const l=document.createElement("link");l.rel="manifest";l.href=URL.createObjectURL(new Blob([JSON.stringify(m)],{type:"application/manifest+json"}));document.head.appendChild(l)}catch(e){}</script>
+<style>
+:root{--h:215;--in:hsl(calc(var(--h) + 9),78%,12%);--bg:hsl(calc(var(--h) + 11),72%,7%);--pn:hsl(calc(var(--h) + 11),73%,15%);--ln:hsl(calc(var(--h) + 9),76%,48%);--tx:hsl(calc(var(--h) + 3),100%,95%);--mu:hsl(calc(var(--h) + 7),41%,64%);--ac:hsl(calc(var(--h) + -6),100%,61%);--gl:hsl(calc(var(--h) + -15),100%,72%);--ok:#2ee59d;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:hsl(calc(var(--h) + 11),72%,7%)}}
+*{box-sizing:border-box;margin:0}html,body{background:var(--bg);color:var(--tx);font:15px system-ui,-apple-system,Segoe UI,sans-serif}
+body{padding:12px 12px 84px;max-width:640px;margin:auto;background:radial-gradient(circle at 50% -10%,hsl(calc(var(--h) + 7),77%,27%) 0,var(--bg) 60%) fixed}
+h1{font-size:22px;letter-spacing:3px;color:var(--gl);text-shadow:0 0 12px var(--ac)}h1 small{display:block;font-size:10px;letter-spacing:1px;color:var(--mu);text-shadow:none}
+h2{font-size:12px;letter-spacing:2px;color:var(--gl);margin-bottom:8px}
+.p{background:linear-gradient(160deg,hsla(calc(var(--h) + 10),76%,18%,0.80),hsl(calc(var(--h) + 8),74%,11%));border:1px solid var(--ln);border-radius:12px;padding:12px;margin:10px 0;box-shadow:0 0 14px hsla(calc(var(--h) + 9),76%,48%,0.33) inset}
+.top{display:flex;justify-content:space-between;align-items:center}.on{font-size:11px;color:var(--ok)}
+.bar{height:9px;border-radius:5px;background:hsl(calc(var(--h) + 7),68%,22%);overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--ac),var(--gl));box-shadow:0 0 8px var(--gl);transition:width .6s}
+.row{display:flex;gap:10px;align-items:center}.big{font-size:34px;font-weight:800;color:var(--gl)}
+.at{display:grid;grid-template-columns:110px 1fr 52px;gap:8px;align-items:center;margin:7px 0;font-size:11px;color:var(--mu)}.at b{color:var(--tx);text-align:right}
+.m{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid hsl(calc(var(--h) + 7),67%,26%)}.m:last-child{border:0}
+.ck{width:24px;height:24px;border-radius:50%;border:2px solid var(--ac);flex:none;background:0;color:#031;font-weight:800}.m.d .ck{background:var(--ok);border-color:var(--ok)}.m.d span{opacity:.5;text-decoration:line-through}
+.m div{flex:1}.m small{display:block;color:var(--mu);font-size:11px}.xp{color:var(--gl);font-size:12px}
+button,input,textarea{font:inherit;color:var(--tx);background:hsl(calc(var(--h) + 9),78%,21%);border:1px solid var(--ln);border-radius:9px;padding:9px}button{cursor:pointer}
+.bt{width:100%;margin-top:8px;color:var(--gl)}
+input,textarea{width:100%;background:hsl(calc(var(--h) + 9),78%,12%)}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-around;background:hsla(calc(var(--h) + 10),75%,9%,0.90);border-top:1px solid var(--ln);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));backdrop-filter:blur(8px);z-index:5}
+nav button{background:0;border:0;font-size:11px;color:var(--mu);padding:4px 8px}nav button.a{color:var(--gl);text-shadow:0 0 8px var(--ac)}
+.s{display:none}.s.a{display:block}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:8px}.ag button{text-align:left;padding:10px}.ag b{display:block;color:var(--gl)}.ag small{color:var(--mu)}.ag button.a{box-shadow:0 0 12px var(--ac);background:hsl(calc(var(--h) + 8),78%,34%)}
+#log{height:46vh;overflow:auto;display:flex;flex-direction:column;gap:8px}
+.b{max-width:86%;padding:9px 11px;border-radius:12px;font-size:14px;line-height:1.4;white-space:pre-wrap}.b.l{background:hsl(calc(var(--h) + 8),76%,25%);border:1px solid var(--ln)}.b.u{align-self:flex-end;background:hsl(calc(var(--h) + 4),81%,44%)}
+.orb{width:70px;height:70px;border-radius:50%;margin:4px auto;background:radial-gradient(circle,#fff 0,var(--gl) 20%,var(--ln) 60%,#0000 72%);animation:pu 2.4s infinite}.orb.sp{animation-duration:.5s}
+@keyframes pu{50%{transform:scale(1.14);filter:brightness(1.4)}}
+#ov{position:fixed;inset:0;z-index:20;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:24px}
+#ov button{padding:14px 28px;font-size:16px;letter-spacing:2px;color:var(--gl);box-shadow:0 0 18px var(--ac)}
+#toast{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));left:50%;transform:translate(-50%,-140%);transition:.4s;background:hsl(calc(var(--h) + 8),83%,26%);border:1px solid var(--gl);border-radius:10px;padding:10px 16px;z-index:30;box-shadow:0 0 20px var(--ac);text-align:center}#toast.v{transform:translate(-50%,0)}
+.q{font-style:italic;color:var(--mu);font-size:12px;text-align:center}
+.pl label{display:flex;gap:8px;padding:5px 0;align-items:center}.pl input{width:auto}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,#0000 0 3px,hsla(calc(var(--h) + -6),100%,61%,0.03) 3px 4px);z-index:40}
+h1{animation:gl 6s infinite}@keyframes gl{0%,94%,100%{transform:none}95%{transform:translateX(2px);text-shadow:-2px 0 #f0f,2px 0 #0ff}97%{transform:translateX(-2px)}}
+.p{animation:in .5s both}@keyframes in{from{opacity:0;transform:translateY(8px) scale(.98);filter:blur(3px)}}
+.bar{position:relative}.bar::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0000,#fff6,#0000);transform:translateX(-100%);animation:sh 2.6s infinite}@keyframes sh{to{transform:translateX(100%)}}
+#toast.v{animation:tg .5s}@keyframes tg{30%{filter:hue-rotate(60deg) brightness(1.6)}}
+#hud{position:fixed;inset:0;pointer-events:none;z-index:35;box-shadow:inset 0 0 0 hsl(calc(var(--h) + -6),100%,61%);transition:box-shadow .4s}#hud.on{box-shadow:inset 0 0 22px hsla(calc(var(--h) + -6),100%,61%,0.33)}#hud.aw{box-shadow:inset 0 0 90px hsla(calc(var(--h) + -15),100%,72%,0.80)}
+.fx{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;pointer-events:none;animation:fo 2.4s forwards;background:radial-gradient(circle,hsla(calc(var(--h) + 9),86%,27%,0.60),#0000 70%)}
+.fx b{font-size:28px;letter-spacing:6px;color:#fff;text-shadow:0 0 20px var(--gl),0 0 40px var(--ac);text-align:center;padding:0 16px;animation:zi .6s both}
+.fx .r{position:absolute;width:40px;height:40px;border:2px solid var(--gl);border-radius:50%;animation:rg 1.6s infinite}.fx .r2{animation-delay:.5s}
+.fx.arise{background:radial-gradient(circle,#4b0e9a99,#0000 70%)}.fx.arise .r{border-color:#a45cff}.fx.arise b{text-shadow:0 0 20px #a45cff,0 0 40px #7a1fff}
+.fx.quest b{font-size:17px}.fx.lv{animation-duration:3.2s}.fx.lv b{font-size:40px;color:#ffe9a0;text-shadow:0 0 24px #ffc83a,0 0 50px hsl(calc(var(--h) + -6),100%,61%)}
+@keyframes rg{to{width:90vmin;height:90vmin;opacity:0}}@keyframes zi{from{transform:scale(2.4);opacity:0;filter:blur(8px)}}@keyframes fo{0%,75%{opacity:1}to{opacity:0}}
+#wk.a{box-shadow:0 0 14px var(--ac);background:hsl(calc(var(--h) + 8),78%,34%)}
+.sw{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:min(88vw,380px);z-index:60;background:linear-gradient(hsla(calc(var(--h) + 11),86%,19%,0.95),hsla(calc(var(--h) + 12),84%,10%,0.95));border:1px solid var(--gl);box-shadow:0 0 30px var(--ac),0 0 60px hsla(calc(var(--h) + 9),76%,48%,0.33) inset;padding:16px;max-height:80vh;overflow:auto;animation:sw .6s both,fk 4s infinite .8s}
+.sw::before,.sw::after,#toast::before,#toast::after{content:"";position:absolute;width:14px;height:14px;border:2px solid #fff}
+.sw::before,#toast::before{top:-3px;left:-3px;border-right:0;border-bottom:0}.sw::after,#toast::after{bottom:-3px;right:-3px;border-left:0;border-top:0}
+.sw h3{text-align:center;letter-spacing:3px;font-size:14px;color:#fff;border:1px solid var(--gl);padding:5px;margin-bottom:12px;text-shadow:0 0 10px var(--gl);font-weight:600}
+.sw p{white-space:pre-wrap;line-height:1.5;font-size:14px;min-height:40px}.sw .row button{margin:14px 0 0}.sw button{display:block;letter-spacing:2px;color:var(--gl)}
+@keyframes sw{0%{opacity:0;transform:translate(-50%,-50%) scale(1,.02)}40%{opacity:1;transform:translate(-50%,-50%) scale(1,.02)}75%{transform:translate(-50%,-50%) scale(1,1.05)}100%{transform:translate(-50%,-50%)}}
+@keyframes fk{0%,95%,100%{filter:none}96%{filter:brightness(1.6)}97%{filter:brightness(.7)}98%{filter:brightness(1.3)}}
+#toast{border-radius:0}.fx.arise::before{content:"";position:absolute;left:0;right:0;bottom:0;height:60%;background:linear-gradient(to top,#7a1fffaa,#0000);animation:sm 2s ease-out both}
+@keyframes sm{from{transform:translateY(40%);opacity:0}50%{opacity:1}to{transform:translateY(-10%);opacity:0}}
+.shk{animation:shk .5s}@keyframes shk{20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
+.crs{white-space:pre-wrap;font-size:14px;line-height:1.55;padding:8px 2px}details{border-top:1px solid hsl(calc(var(--h) + 7),67%,26%);padding:6px 0}summary{cursor:pointer;color:var(--gl)}
+.sw{outline:1px solid hsla(calc(var(--h) + 5),80%,70%,.35);outline-offset:4px}
+.sw i.sc{position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,#0000,#fff,#0000);box-shadow:0 0 10px #fff;animation:sc 1.1s ease-out 1 forwards}@keyframes sc{to{top:100%;opacity:0}}
+.sw.red{border-color:#ff3b3b;outline-color:#ff3b3b66;box-shadow:0 0 30px #ff2a2a,0 0 60px #7a0000 inset;background:linear-gradient(#2a0508f2,#120204f2)}.sw.red h3{border-color:#ff3b3b;text-shadow:0 0 10px #f33}.sw.red .row button{border-color:#ff3b3b;color:#ff9a9a}
+#hud.rd{box-shadow:inset 0 0 90px #ff2a2aaa}
+.fx.arise b{font-size:36px;letter-spacing:10px;color:#efe0ff;animation:zi .6s both,ark 1.4s .6s infinite}@keyframes ark{50%{text-shadow:0 0 30px #b57bff,0 0 70px #7a1fff;filter:brightness(1.4)}}
+#gate{position:fixed;inset:0;z-index:44;pointer-events:none;display:flex;align-items:center;justify-content:center;animation:gin 1.6s both;background:radial-gradient(circle,#02081acc,#000d)}
+#gate .gp{position:absolute;width:min(78vw,340px);height:min(78vw,340px);border-radius:50%;background:conic-gradient(from 0deg,#0000,hsl(calc(var(--h) + 0),100%,60%),#0000 30%,hsl(calc(var(--h) + 45),100%,70%),#0000 65%,hsl(calc(var(--h) - 20),100%,55%),#0000);filter:blur(6px);animation:spin 2.2s linear infinite;-webkit-mask:radial-gradient(circle,#0000 38%,#000 40%,#000 62%,#0000 70%);mask:radial-gradient(circle,#0000 38%,#000 40%,#000 62%,#0000 70%)}
+#gate .g2{width:min(60vw,260px);height:min(60vw,260px);animation-duration:1.3s;animation-direction:reverse;opacity:.8}
+#gate .gc{position:absolute;width:min(34vw,150px);height:min(34vw,150px);border-radius:50%;background:radial-gradient(circle,#fff,hsl(calc(var(--h) + 5),100%,70%) 30%,#0000 70%);animation:pu 1.2s infinite;box-shadow:0 0 80px hsl(calc(var(--h) + 5),100%,60%)}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes gin{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:none}}
+.bd{width:100%;border-collapse:collapse;font-size:13px}.bd th{color:var(--gl);font-size:10px;letter-spacing:2px;text-align:left;padding:4px}.bd td{padding:8px 4px;border-top:1px solid var(--ln)}.bd td:first-child{color:var(--mu);width:20px}
+.sw input{margin:0}
+</style></head><body>
+<div id="ov"><div class="orb"></div><h1>LOUIS // CORE<small>TON ASSISTANT. TON SYSTÈME. TON AVENIR.</small></h1><p class="q">Le Système est prêt, Leonard.</p><button id="go">S’ÉVEILLER</button></div>
+<div id="toast"></div><div id="hud"></div><input type="file" id="pf" accept="image/*" capture="environment" hidden>
+
+<div class="top"><h1>LOUIS // CORE<small>TON ASSISTANT. TON SYSTÈME. TON AVENIR.</small></h1><div class="on">● SYSTEM ONLINE<br><span id="clk"></span></div></div>
+
+<section class="s a" id="s0">
+ <div class="p"><div class="row"><div><h2>PLAYER STATUS</h2>Niveau <b id="lv"></b> | RANG <b id="rk"></b></div><div style="margin-left:auto;text-align:right"><div class="big" id="pw"></div><small class="q">Puissance</small></div></div>
+  <div class="q" style="text-align:left;margin:8px 0 4px"><span id="xt"></span> XP</div><div class="bar"><i id="xb"></i></div>
+  <div class="q" style="text-align:left;margin-top:8px">FATIGUE <span id="ft"></span>%</div><div class="bar"><i id="fb" style="background:linear-gradient(90deg,#ffb23a,#ff4d6d)"></i></div>
+  <div class="q" style="text-align:left;margin-top:6px">NOM : LEONARD · CLASSE : SHADOW DEVELOPER · IA / PROGRAMMATION</div><div class="q" style="text-align:left;color:var(--gl)" id="hs"></div></div>
+ <div class="p"><h2>ATTRIBUTS</h2><div id="at"></div><div class="q" id="pts"></div></div>
+ <div class="p"><div class="top"><h2>MISSIONS DU JOUR</h2><span class="xp" id="mc"></span></div><button class="bt" id="qbtn" style="margin:0 0 6px">📜 Ouvrir le tableau de quête</button><div id="ml"></div>
+  <div class="row" style="margin-top:8px"><input id="nm" placeholder="Nouvelle mission (+30 XP)…"><button id="am">+</button></div>
+  <div class="q" style="margin-top:8px">Valide chaque mission avec une photo preuve (réglable). Toutes les missions accomplies = bonus +100 XP. Une journée ratée coûte −50 XP.</div></div>
+ <div class="p"><h2>PLAN D’ACTION</h2><div class="pl" id="pl"></div></div>
+ <div class="q">« Tu es plus fort que tu ne le penses, Leonard. Continue. »</div>
+</section>
+
+<section class="s" id="s1">
+ <div class="p"><div class="orb" id="orb"></div><div class="q" id="st">● En veille</div><div id="log"></div>
+  <div class="row" style="margin-top:8px"><button id="mic">🎤</button><input id="in" placeholder="Parle à LOUIS… (tape « aide »)"><button id="snd">➤</button></div>
+  <button class="bt" id="wk">👂 Veille : OFF</button>
+  <div class="q" style="margin-top:6px">Agent actif : <b id="agn">Louis</b> · 🔊 <label><input type="checkbox" id="vo" checked style="width:auto"> voix</label></div></div>
+</section>
+
+<section class="s" id="s2">
+ <div class="p"><h2>SHADOW ARMY · 4 AGENTS</h2><div class="ag" id="ag"></div><div class="q" style="margin-top:8px">Choisis un agent, puis parle-lui dans l’onglet Louis.</div></div>
+ <div class="p"><h2>COMPÉTENCES</h2><div id="sk"></div></div>
+</section>
+
+<section class="s" id="s3">
+ <div class="p"><h2>JOURNAL DE BORD</h2><textarea id="jt" rows="7" placeholder="Écris tes pensées, tes objectifs, tes idées. Louis les garde en mémoire."></textarea><button class="bt" id="js">Enregistrer (+20 XP / jour)</button></div>
+ <div class="p"><h2>QUÊTE SPÉCIALE</h2><div id="qs"></div><button class="bt" id="qb">Accomplir la quête</button></div>
+ <div class="p"><h2>RÉGLAGES IA</h2><select id="pv" style="width:100%;margin-bottom:6px;background:var(--in);color:var(--tx);border:1px solid var(--ln);border-radius:9px;padding:9px"><option value="gemini">IA : Gemini (proxy)</option><option value="deepseek">IA : DeepSeek</option></select><input id="px" placeholder="URL du proxy"><input id="ac" placeholder="Code d’accès" style="margin-top:6px"><input id="vp" placeholder="Phrase vocale secrète (optionnel)" style="margin-top:6px"><button class="bt" id="cf">Enregistrer les réglages</button>
+ <select id="vs" style="width:100%;margin-top:10px;background:var(--in);color:var(--tx);border:1px solid var(--ln);border-radius:9px;padding:9px"><option value="robot">🤖 Voix : Robot</option><option value="systeme">Voix : Système (grave)</option><option value="naturelle">Voix : Naturelle</option></select><select id="vn" style="width:100%;margin-top:6px;background:var(--in);color:var(--tx);border:1px solid var(--ln);border-radius:9px;padding:9px"></select><div class="row" style="margin-top:6px"><button class="bt" id="vt" style="margin:0">🔊 Tester la voix</button><label style="display:flex;gap:6px;align-items:center;white-space:nowrap"><input type="checkbox" id="sfc" style="width:auto">Sons</label></div>
+ <select id="th" style="width:100%;margin-top:10px;background:var(--in);color:var(--tx);border:1px solid var(--ln);border-radius:9px;padding:9px"><option value="auto">🎨 Couleur : auto (selon ton rang)</option><option value="monarque">Monarque (bleu)</option><option value="ombre">Ombre (violet)</option><option value="sang">Sang (rouge)</option><option value="or">Or (rang S)</option><option value="emeraude">Émeraude</option><option value="glace">Glace (cyan)</option></select>
+ <label style="display:flex;gap:8px;margin-top:10px;align-items:center"><input type="checkbox" id="pwc" style="width:auto">Preuve photo obligatoire pour valider une mission</label><label style="display:flex;gap:8px;margin-top:6px;align-items:center"><input type="checkbox" id="rmc" style="width:auto">Rappels proactifs de Louis</label><button class="bt" id="nt">🔔 Activer les notifications</button><div class="q" style="margin-top:6px" id="cs"></div></div>
+ <div class="p"><h2>SAUVEGARDE</h2><div class="row"><button class="bt" id="ex">Exporter</button><button class="bt" id="im">Importer</button></div><textarea id="io" rows="3" placeholder="Zone d’export / import (JSON)"></textarea></div>
+</section>
+
+<section class="s" id="s4">
+ <div class="p"><h2>DONJON · MODE FOCUS</h2><div class="row"><select id="dd" style="flex:1;background:var(--in);color:var(--tx);border:1px solid var(--ln);border-radius:9px;padding:9px"><option value="15">15 min · Rang E</option><option value="25" selected>25 min · Rang D</option><option value="45">45 min · Rang C</option><option value="60">60 min · Rang B</option></select><button id="ds" class="bt" style="margin:0;flex:1">Entrer dans le donjon</button></div>
+  <div class="big" id="dt" style="text-align:center;margin:8px 0">00:00</div><div class="bar"><i id="db" style="width:0"></i></div>
+  <div class="q" id="dm" style="margin-top:8px">Concentre-toi : XP + Or à la fin, 50 % de chance d’extraire une ombre. Quitter l’app plus de 20 s ou abandonner = échec (−20 XP).</div></div>
+ <div class="p"><h2>BOUTIQUE · RÉCOMPENSES</h2><div id="sp"></div><div class="row" style="margin-top:8px"><input id="sn" placeholder="Récompense"><input id="sc" type="number" placeholder="Or" style="width:76px"><button id="sa">+</button></div></div>
+ <div class="p"><h2>COURS · RÉCOMPENSE</h2><div class="q" id="ck" style="text-align:left;margin-bottom:6px"></div><div class="row"><input id="cs2" placeholder="Sujet du cours (ex : RECHERCHEX, past perfect…)"><button id="cb">Obtenir</button></div><div id="cr" style="margin-top:8px"></div></div>
+ <div class="p"><h2>TITRES</h2><div id="ti"></div></div>
+</section>
+<nav><button class="a" data-t="0">🏠<br>Accueil</button><button data-t="1">🤖<br>Louis</button><button data-t="2">⚔️<br>Armée</button><button data-t="3">📓<br>Journal</button><button data-t="4">🏰<br>Donjon</button></nav>
+
+<script>
+const $=i=>document.getElementById(i),T=()=>new Date().toISOString().slice(0,10);
+const AT=[["Discipline","dis"],["Intelligence","int"],["Programmation","pro"],["Communication","com"],["Santé & énergie","san"],["Confiance en soi","con"]];
+const SK=["Discipline","Anglais","Développement","Excel","Communication","Productivité"];
+const AG={Louis:["Assistant général","Je suis Louis, ton assistant. "],Codex:["Code & Dev","[CODEX] "],Research:["Recherche","[RESEARCH] "],Analyst:["Analyse","[ANALYST] "],Organizer:["Organisation","[ORGANIZER] "]};
+const DM=[["Étudier l’anglais (1h)","int",50],["Travailler sur LOUIS // CORE (1h)","pro",50],["Faire du sport (30 min)","san",30],["Lire un livre (30 min)","con",30],["Réviser Excel (1h)","int",50]];
+const PL=["Atteindre le niveau B2 en anglais","Maîtriser Excel (niveau avancé)","Améliorer mon projet LOUIS // CORE","Créer une source de revenus en ligne","Perdre du poids / être plus en forme","Développer mes compétences en IA","Construire ma liberté financière"];
+const QS=["Deviens la meilleure version de toi-même : 3 jours d’affilée, toutes les missions faites.","Écris 50 lignes de code sans te distraire.","Apprends 20 mots d’anglais et utilise-les dans 5 phrases.","1 heure sans téléphone : concentration totale."];
+const D={xp:420,lv:3,at:{dis:15,int:18,pro:12,com:10,san:14,con:11},sk:[2,2,1,1,1,1],pl:[1,1,1,1,0,0,0],day:T(),ms:[],ext:[],bonus:false,jr:{},jd:"",chat:[],ag:"Louis",qd:0,px:"https://lisa-proxy-2728.leonardouamouno3.workers.dev",ac:"",hist:[],g:100,fp:0,st:0,ti:[],dn:0,sh:0,au:{},cr:[],tk:0,fa:0,sx:[0,0,0,0,0,0],sq:"",pw:true,rm:true,q:[],rp:[],nt:[],sp:[{n:"1h de jeu vidéo",c:50},{n:"Un bon repas",c:100},{n:"Soirée film",c:80}]};
+let S=D;try{S=Object.assign({},D,JSON.parse(localStorage.getItem("louis")||"{}"))}catch(e){}
+const sv=()=>{try{localStorage.setItem("louis",JSON.stringify(S))}catch(e){}};
+const need=l=>500*(l+1),rank=l=>l<5?"E":l<10?"D":l<20?"C":l<35?"B":l<50?"A":"S";
+function toast(t){const e=$("toast");e.textContent=t;e.className="v";setTimeout(()=>e.className="",2600)}
+function gain(n,a){S.xp+=n;if(a)S.at[a]++;while(S.xp>=need(S.lv)){S.xp-=need(S.lv);S.lv++;S.fp+=5;S.g+=100;if(rank(S.lv)!==rank(S.lv-1))S.tk++;toast("⚡ NIVEAU "+S.lv+" ! Rang "+rank(S.lv));fx("lv","LEVEL UP · "+S.lv);setTimeout(()=>sysw("[ NIVEAU SUPÉRIEUR ]","Niveau "+S.lv+"  |  Rang "+rank(S.lv)+"\n\n+5 points de statistique\n+100 Or"+(rank(S.lv)!==rank(S.lv-1)?"\n\n[ CHANGEMENT DE RANG ]\n+1 ticket de cours":""),"[ CONFIRMER ]"),1400);say("Niveau supérieur. Tu es maintenant niveau "+S.lv)}
+ while(S.xp<0&&S.lv>1){S.lv--;S.xp+=need(S.lv)}if(S.xp<0)S.xp=0;sv();draw()}
+function newDay(){if(S.day===T())return;const all=S.ms.length&&S.ms.every(m=>m.d);if(all)S.st++;else if(S.ms.length)S.st=0;if(S.ms.length&&!all){S.xp=Math.max(0,S.xp-50);setTimeout(()=>sysw("[ ZONE DE PÉNALITÉ ]","Tu n’as pas accompli ta quête quotidienne.\n\nPénalité : −50 XP.\nRelève-toi, Leonard : aujourd’hui est un nouveau jour.","[ COMPRIS ]"),1800)}
+ S.day=T();S.ms=[];S.bonus=false;S.jd="";S.fa=0;sv()}
+function mk(){if(!S.ms.length)S.ms=DM.map(m=>({t:m[0],a:m[1],x:m[2],d:0})).concat(S.ext.map(t=>({t,a:"dis",x:30,d:0})))}
+function draw(){theme();mk();chk();draw2();$("lv").textContent=S.lv;$("rk").textContent=rank(S.lv);$("xt").textContent=S.xp+" / "+need(S.lv);$("xb").style.width=100*S.xp/need(S.lv)+"%";
+ $("pw").textContent=Object.values(S.at).reduce((a,b)=>a+b,0)*10+S.lv*25;
+ $("at").innerHTML=AT.map(([n,k])=>`<div class="at"><span>${n.toUpperCase()}</span><div class="bar"><i style="width:${Math.min(100,S.at[k]*3)}%"></i></div><b>${S.at[k]}${S.fp>0?` <button data-a="${k}" style="padding:0 7px">+</button>`:""}</b></div>`).join("");
+ const d=S.ms.filter(m=>m.d).length;$("mc").textContent="⟳ "+d+"/"+S.ms.length+(S.qa===T()?"":" 🔒");
+ $("ml").innerHTML=S.ms.map((m,i)=>`<div class="m ${m.d?"d":""}"><button class="ck" data-m="${i}">${m.d?"✓":""}</button><div><span>${m.t}</span>${m.p?`<small>📸 preuve ${m.v?"⏳ en attente":"✓"}</small>`:""}</div>${m.p?`<img src="${m.p}" style="width:30px;height:30px;border-radius:6px;object-fit:cover">`:""}<span class="xp">+${m.x} XP</span></div>`).join("");
+ $("pl").innerHTML=PL.map((p,i)=>`<label><input type="checkbox" data-p="${i}" ${S.pl[i]?"checked":""}>${p}</label>`).join("");
+ $("sk").innerHTML=SK.map((k,i)=>`<div class="at" style="grid-template-columns:110px 1fr 40px"><span>${k.toUpperCase()}</span><div class="bar"><i style="width:${S.sk[i]*10}%"></i></div><b>Nv.${S.sk[i]}</b></div>`).join("");
+ $("ag").innerHTML=Object.keys(AG).map(k=>`<button data-g="${k}" class="${S.ag===k?"a":""}"><b>${k.toUpperCase()}</b><small>${AG[k][0]}</small><br><small>● Nv.${1+((S.au[k]||0)/5|0)} · ${S.au[k]||0} ordres</small></button>`).join("");
+ $("agn").textContent=S.ag;$("qs").textContent=QS[S.qd%QS.length];$("jt").value=S.jd}
+$("ml").onclick=e=>{const b=e.target.closest("[data-m]");if(!b)return;const m=S.ms[b.dataset.m];if(m.d)return;if(S.qa!==T())return board();if(S.pw){PI=+b.dataset.m;return $("pf").click()}ok(m)};
+$("am").onclick=()=>{const t=$("nm").value.trim();if(!t)return;S.ext.push(t);S.ms.push({t,a:"dis",x:30,d:0});$("nm").value="";S.bonus=false;sv();draw()};
+$("pl").onchange=e=>{S.pl[e.target.dataset.p]=e.target.checked?1:0;sv()};
+$("ag").onclick=e=>{const b=e.target.closest("[data-g]");if(b){S.ag=b.dataset.g;sv();draw();fx("arise","ARISE · "+S.ag.toUpperCase())}};
+$("js").onclick=()=>{S.jd=$("jt").value;S.jr[T()]=S.jd;sv();if(!S.jx||S.jx!==T()){S.jx=T();gain(20,"int");toast("Journal enregistré +20 XP")}else toast("Journal enregistré")};
+$("qb").onclick=()=>{S.qd++;toast("🌟 Quête accomplie +150 XP");gain(150,"con")};
+$("ex").onclick=()=>$("io").value=JSON.stringify(S);
+$("im").onclick=()=>{try{S=Object.assign({},D,JSON.parse($("io").value));sv();draw();toast("Import réussi")}catch(e){toast("JSON invalide")}};
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll("nav button,.s").forEach(x=>x.classList.remove("a"));b.classList.add("a");$("s"+b.dataset.t).classList.add("a")});
+/* Voix */
+const VS={robot:{p:.25,r:.92,j:.12,ch:3},systeme:{p:.55,r:.98,j:.05,ch:99},naturelle:{p:1,r:1.02,j:0,ch:99}};
+function pick(){const v=speechSynthesis.getVoices().filter(x=>/^fr/i.test(x.lang));return v.find(x=>x.name===S.vn)||v.find(x=>/male|homme|thomas|paul|henri/i.test(x.name))||v[0]}
+function stt(t){const e=$("st");if(e)e.textContent="● "+t}
+function say(t){if(!$("vo").checked||!window.speechSynthesis)return;try{speechSynthesis.cancel();t=t.replace(/[*_#]/g,"").slice(0,700);const st=VS[S.vs||"robot"],w=t.split(/\s+/),parts=[];for(let i=0;i<w.length;i+=st.ch)parts.push(w.slice(i,i+st.ch).join(" "));
+ if((S.vs||"robot")!=="naturelle")tone(1250,0,.07,"square",.05);const v=pick();
+ parts.forEach((x,i)=>{const u=new SpeechSynthesisUtterance(x);u.lang="fr-FR";if(v)u.voice=v;u.pitch=Math.max(0,st.p+(Math.random()-.5)*st.j);u.rate=st.r;if(i===0)u.onstart=()=>{SP=1;stt("Réponse");$("orb").classList.add("sp")};if(i===parts.length-1)u.onend=u.onerror=()=>{SP=0;setTimeout(()=>SP=0,400);stt(WON?"Écoute":"En veille");$("orb").classList.remove("sp")};speechSynthesis.speak(u)})}catch(e){}}
+/* Cerveau hors ligne */
+function brain(q){const l=q.toLowerCase(),n=S.ms.filter(m=>m.d).length,pre=AG[S.ag][1];let r;
+ if(m=l.match(/(?:rappelle.?moi|minuteur|timer|chrono)\D{0,25}?(\d+)\s*(secondes?|sec|minutes?|min|heures?|h)\b/)){const u=m[2][0],ms=u==="s"?m[1]*1000:u==="h"?m[1]*3600000:m[1]*60000,w=(q.match(/(?:^|\s)(?:de|pour|d[’'])\s*(.+)$/i)||[0,"ton minuteur est terminé"])[1];S.rp=S.rp||[];S.rp.push({at:Date.now()+ms,t:w});sv();r="C’est noté. Je te préviens dans "+m[1]+" "+m[2]+" : "+w+"."}
+ else if(m=l.match(/^(?:calcule|calcul|combien fait)\s+(.+)/)){const e=m[1].replace(/,/g,".").replace(/[x×]/g,"*").replace(/÷/g,"/");if(/^[\d+\-*\/().\s%]+$/.test(e)){try{r="= "+Function('"use strict";return ('+e+')')()}catch(x){r="Calcul invalide."}}else r="Je calcule avec + - * / et des parenthèses."}
+ else if(m=q.match(/^note[rz]?\s*:?\s+(.+)/i)){S.nt=S.nt||[];S.nt.push(m[1]);sv();r="Note enregistrée ("+S.nt.length+")."}
+ else if(/mes notes|lis.*notes/.test(l))r=(S.nt||[]).length?S.nt.map((x,i)=>(i+1)+". "+x).join("\n"):"Aucune note pour l’instant."
+ else if(/agenda|planning|emploi du temps/.test(l))r="Planning type :\n06h Sport · 07h30 Anglais · 10h LOUIS // CORE · 14h Excel · 16h Lecture · 19h Formation · 21h Réflexion + journal."
+ else if(/cours|apprendre|expliqu/.test(l))r="Va dans Donjon › Cours · Récompense : choisis un sujet. Coût 150 Or, ou 1 ticket gagné à chaque changement de rang."
+ else if(/preuve|photo/.test(l))r="Touche le rond d’une mission : tu m’envoies une photo comme preuve. En ligne je la vérifie tout de suite ; hors ligne je valide provisoirement et je contrôle dès le retour du réseau."
+ else if(/aide|help|commande/.test(l))r="Commandes : statut · missions · prochaine mission · fait 1 · ajoute <mission> · journal <texte> · plan · agenda · conseil · motivation · heure · rappelle-moi dans 20 min de… · minuteur 10 minutes · calcule 12*5 · note <texte> · mes notes · preuve. Change d’agent dans l’onglet Armée.";
+ else if(/statut|niveau|xp|rang|stats/.test(l))r=`Niveau ${S.lv}, rang ${rank(S.lv)}. ${S.xp}/${need(S.lv)} XP. Il te manque ${need(S.lv)-S.xp} XP. Or : ${S.g}. Série : ${S.st} jour(s). Points libres : ${S.fp}. Attributs : `+AT.map(([a,k])=>a+" "+S.at[k]).join(", ")+".";
+ else if(/prochaine/.test(l)){const m=S.ms.find(x=>!x.d);r=m?`Prochaine mission : ${m.t} (+${m.x} XP). Lance-toi maintenant.`:"Toutes les missions sont faites. Bonus récupéré, repose-toi."}
+ else if(/mission/.test(l))r=`Missions ${n}/${S.ms.length} :\n`+S.ms.map((m,i)=>`${i+1}. ${m.d?"✅":"⬜"} ${m.t}`).join("\n");
+ else if(m=l.match(/(?:fait|valide|termin\w*)\s+(\d+)/)){const x=S.ms[m[1]-1];if(x&&!x.d){x.d=1;gain(x.x,x.a);r=`Mission validée : ${x.t}. +${x.x} XP.`}else r="Mission introuvable ou déjà faite."}
+ else if(m=q.match(/^(?:ajoute|ajouter)\s+(.+)/i)){S.ext.push(m[1]);S.ms.push({t:m[1],a:"dis",x:30,d:0});sv();draw();r="Mission ajoutée : "+m[1]+" (+30 XP)."}
+ else if(m=q.match(/^journal\s+(.+)/i)){S.jd=(S.jd+"\n"+m[1]).trim();S.jr[T()]=S.jd;sv();draw();r="Noté dans ton journal."}
+ else if(/plan/.test(l))r="Plan d’action :\n"+PL.map((p,i)=>(S.pl[i]?"✅ ":"⬜ ")+p).join("\n");
+ else if(/heure|date/.test(l))r="Il est "+new Date().toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"})+", "+new Date().toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"})+".";
+ else if(/motiv|fatigu|courage|marre/.test(l))r=["Un chasseur de rang E devient S en ne s’arrêtant jamais. Une mission, maintenant.","Ce n’est pas la vitesse qui compte, mais la constance.","Discipline aujourd’hui, liberté demain."][Math.random()*3|0];
+ else if(/conseil|quoi faire|priorit/.test(l)){const m=S.ms.find(x=>!x.d);r=S.ag==="Organizer"?"Règle des 3 : choisis 3 tâches, la plus dure en premier, 50 min de focus puis 10 min de pause."+(m?" Commence par : "+m.t+".":""):S.ag==="Codex"?"Code petit : une fonction, un test, un commit. Avance par incréments de 25 minutes.":S.ag==="Analyst"?`Tu as fait ${n}/${S.ms.length} missions. Ton attribut le plus faible est ${[...AT].sort((a,b)=>S.at[a[1]]-S.at[b[1]])[0][0]} : travaille-le en priorité.`:"Fais la mission la plus difficile en premier."+(m?" Ici : "+m.t+".":"")}
+ else if(/bonjour|salut|hello|coucou/.test(l))r="Bonjour Leonard. Le Système est en ligne. "+n+"/"+S.ms.length+" missions accomplies aujourd’hui.";
+ else r="Je n’ai pas encore cette compétence hors ligne. Tape « aide » pour voir mes commandes. (Ajoute ton code d’accès dans Journal › Réglages IA pour activer l’IA.)";
+ return pre+r}
+function add(t,c){const d=document.createElement("div");d.className="b "+c;d.textContent=t;$("log").appendChild(d);$("log").scrollTop=1e9}
+const OFF=/^(aide|help|statut|missions?|prochaine|fait\s|valide|ajoute|journal\s|plan|heure|stats|rappelle|minuteur|timer|chrono|calcule|calcul|combien fait|note|mes notes|agenda|planning|preuve)/i;
+async function ai(q){const sys="Tu es LOUIS, assistant IA façon Jarvis et Système de Solo Leveling, pour Leonard (niveau "+S.lv+", rang "+rank(S.lv)+", "+S.xp+" XP, classe Shadow Developer). Rôle actif : "+S.ag+" ("+AG[S.ag][0]+"). Réponds en français, de façon concise, motivante et concrète. Missions du jour : "+S.ms.map(m=>m.t+(m.d?" (faite)":"")).join("; ")+".";
+ S.hist.push({role:"user",parts:[{text:q}]});S.hist=S.hist.slice(-12);
+ const t=await call(sys,S.hist.map(h=>({role:h.role,text:h.parts[0].text})));
+ S.hist.push({role:"model",parts:[{text:t}]});sv();return t}
+async function send(q){q=q.trim();if(!q)return;add(q,"u");S.au[S.ag]=(S.au[S.ag]||0)+1;sv();let r;
+ if(S.px&&S.ac&&navigator.onLine&&!OFF.test(q)){stt("Analyse");const w=document.createElement("div");w.className="b l";w.textContent="…";$("log").appendChild(w);try{r=await ai(q);w.remove()}catch(e){w.remove();r=brain(q)+"\n(IA hors ligne : "+e.message+")"}}else r=brain(q);
+ add(r,"l");say(r);if(S.px&&S.ac&&!OFF.test(q)&&Math.random()<.3)gain(5,"int")}
+$("px").value=S.px;$("ac").value=S.ac;$("vp").value=S.vp||"";const cs=()=>$("cs").textContent=S.px&&S.ac?"IA en ligne activée ("+(S.pv==="deepseek"?"DeepSeek":"Gemini")+").":"Mode hors ligne : ajoute le code d’accès pour activer l’IA.";cs();
+$("cf").onclick=()=>{stSl();S.vp=$("vp").value.trim();UNL=!S.vp;sv();cs();toast("Réglages enregistrés")};
+$("snd").onclick=()=>{send($("in").value);$("in").value=""};$("in").onkeydown=e=>{if(e.key==="Enter")$("snd").click()};
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+$("mic").onclick=()=>{if(!SR)return toast("Micro non supporté ici");const r=new SR;r.lang="fr-FR";r.onresult=e=>send(e.results[0][0].transcript);r.onerror=()=>toast("Micro indisponible");r.start()};
+setInterval(()=>$("clk").textContent=new Date().toLocaleString("fr-FR",{weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}),1000);
+$("go").onclick=()=>{try{au().resume()}catch(e){}boot(()=>{$("ov").remove();go2()})};function go2(){const h=new Date().getHours();const g=(h<18?"Bonjour":"Bonsoir")+" Leonard. Le Système est en ligne. "+S.ms.filter(m=>!m.d).length+" missions t’attendent.";add(g,"l");say(g);fx("quest","[ SYSTÈME ÉVEILLÉ ]");if(S.wk)wake(true);if(S.qa!==T())setTimeout(boardLater,2200)};
+let W=null,WON=false,AWAKE=0,UNL=!S.vp,SP=0;
+function fx(k,t){snd(k==="lv"?"lv":k==="arise"?"arise":"quest");if(k==="arise")burst("arise");if(k==="lv"){burst("lv");const h=$("hud");h.classList.add("aw");setTimeout(()=>h.classList.remove("aw"),700)}const d=document.createElement("div");d.className="fx "+k;d.innerHTML="<div class='r'></div><div class='r r2'></div><b>"+t+"</b>";document.body.appendChild(d);if(k==="lv"){const e=document.querySelector(".s.a");e.classList.add("shk");setTimeout(()=>e.classList.remove("shk"),600)}setTimeout(()=>d.remove(),3400)}
+const WK=/\b(louis|luis|louie|louise|lewis)\b/i;
+function reply(t){add(t,"l");say(t)}
+function awake(){stt("Écoute");snd("wake");const h=$("hud");h.classList.add("aw");setTimeout(()=>h.classList.remove("aw"),1200);fx("quest","[ LOUIS À L’ÉCOUTE ]")}
+function cmd(q){if(/tais.?toi|silence/i.test(q)){try{speechSynthesis.cancel()}catch(e){}return}document.querySelector('nav button[data-t="1"]').click();send(q)}
+function hear(t){const l=t.toLowerCase(),m=l.match(WK);
+ if(!UNL){if(S.vp&&l.includes(S.vp.toLowerCase())){UNL=true;fx("quest","[ IDENTITÉ CONFIRMÉE ]");reply("Identité confirmée. Bienvenue, Leonard.")}else if(m)reply("Phrase d’activation requise.");return}
+ if(m){const rest=t.slice(m.index+m[0].length).replace(/^[\s,.:!?-]+/,"");awake();if(rest.length>1)cmd(rest);else{AWAKE=Date.now();reply("Oui, Leonard ?")}}
+ else if(Date.now()-AWAKE<8000){AWAKE=0;cmd(t)}}
+function wake(on){WON=on;S.wk=on;sv();$("wk").textContent=on?"👂 Veille : ON":"👂 Veille : OFF";$("wk").classList.toggle("a",on);
+ if(!on){try{W&&W.stop()}catch(e){}$("hud").classList.remove("on");return}
+ if(!SR){WON=false;S.wk=false;return toast("Reconnaissance vocale non supportée ici")}
+ W=new SR;W.lang="fr-FR";W.continuous=true;W.interimResults=false;
+ W.onresult=e=>{if(SP)return;hear(e.results[e.results.length-1][0].transcript.trim())};
+ W.onend=()=>{if(WON)setTimeout(()=>{try{W.start()}catch(e){}},300)};
+ W.onerror=e=>{if(e.error==="not-allowed"||e.error==="service-not-allowed"){wake(false);toast("Micro refusé")}};
+ try{W.start()}catch(e){}$("hud").classList.add("on");toast("👂 Dis « Louis » pour m’appeler")}
+$("wk").onclick=()=>wake(!WON);if(S.wk)$("wk").textContent="👂 Veille : (touche S’ÉVEILLER)";
+const TI=[["Le Plus Faible","Tu commences ici.",()=>1],["Chasseur Régulier","Atteindre le niveau 5",()=>S.lv>=5],["Sans relâche","Série de 3 jours",()=>S.st>=3],["Volonté de fer","Série de 7 jours",()=>S.st>=7],["Briseur de donjon","5 donjons terminés",()=>S.dn>=5],["Monarque des Ombres","20 ombres extraites",()=>S.sh>=20]];
+function chk(){TI.forEach(t=>{if(!S.ti.includes(t[0])&&t[2]()){S.ti.push(t[0]);sv();if(t[0]!=="Le Plus Faible")setTimeout(()=>{fx("quest","[ TITRE OBTENU ] "+t[0].toUpperCase());say("Titre obtenu : "+t[0])},800)}})}
+function draw2(){$("hs").textContent="💰 "+S.g+" Or · 🔥 Série "+S.st+" j · 👥 "+S.sh+" ombres · "+S.ti[S.ti.length-1];
+ $("pts").textContent=S.fp>0?"Points libres : "+S.fp+" (touche + pour les répartir)":"Chaque niveau = 5 points libres + 100 Or.";
+ $("sp").innerHTML=S.sp.map((x,i)=>`<div class="m"><div><span>${x.n}</span></div><button data-b="${i}" ${S.g<x.c?"disabled style='opacity:.4'":""}>💰 ${x.c}</button><button data-x="${i}" style="padding:4px 8px">✕</button></div>`).join("");
+ $("ft").textContent=S.fa|0;$("fb").style.width=S.fa+"%";$("ck").textContent="Coût : "+CC+" Or par cours · Tickets : "+S.tk+" (1 par changement de rang)";
+ const sg=S.cr.length+(S.cr[0]?S.cr[0].t:"");if(sg!==CRS){CRS=sg;$("cr").innerHTML=S.cr.map((c,i)=>`<details ${i?"":"open"}><summary>${esc(c.t)} · ${c.d}</summary><div class="crs">${esc(c.x).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>")}</div><button data-r="${i}">🔊 Écouter</button></details>`).join("")}
+ $("ti").innerHTML=TI.map(t=>{const o=S.ti.includes(t[0]);return `<div class="m" style="opacity:${o?1:.45}"><div><span>${t[0]}</span><small>${t[1]}</small></div><span class="xp">${o?"✓":"🔒"}</span></div>`}).join("")}
+$("at").onclick=e=>{const b=e.target.closest("[data-a]");if(b&&S.fp>0){S.fp--;S.at[b.dataset.a]++;sv();draw()}};
+$("sp").onclick=e=>{const b=e.target.closest("[data-b]"),x=e.target.closest("[data-x]");if(b){const it=S.sp[b.dataset.b];if(S.g>=it.c){S.g-=it.c;sv();draw();toast("🎁 Récompense débloquée : "+it.n);say("Récompense débloquée. Profite, Leonard.")}}else if(x){S.sp.splice(x.dataset.x,1);sv();draw()}};
+$("sa").onclick=()=>{const n=$("sn").value.trim(),c=+$("sc").value;if(!n||!(c>0))return toast("Nom et prix requis");S.sp.push({n,c});$("sn").value=$("sc").value="";sv();draw()};
+let DE=0,DI=null,HID=0;
+function dstop(){clearInterval(DI);DE=0;$("ds").textContent="Entrer dans le donjon"}
+function dfail(r){dstop();$("dm").textContent="Donjon échoué : "+r;fx("arise","[ DONJON ÉCHOUÉ ]");gain(-20)}
+$("ds").onclick=()=>{if(DE)return dfail("abandon");gate(+$("dd").value)};function dstart(m){const tot=m*60000;DE=Date.now()+tot;$("ds").textContent="Abandonner";fx("quest","[ DONJON OUVERT ]");say("Donjon ouvert. Concentre-toi.");
+ DI=setInterval(()=>{const left=DE-Date.now();if(left<=0){dstop();const xp=m*2;S.dn++;S.g+=m;S.fa=Math.min(100,S.fa+m/2);fat();let msg="Donjon terminé : +"+xp+" XP, +"+m+" Or";if(Math.random()<.5){S.sh++;msg+=" · Ombre extraite ("+S.sh+")";fx("arise","ARISE")}else fx("lv","DONJON TERMINÉ");$("dm").textContent=msg;say("Donjon terminé.");$("dt").textContent="00:00";$("db").style.width="100%";gain(xp,"dis");return}
+ const t=Math.ceil(left/1000);$("dt").textContent=String(t/60|0).padStart(2,"0")+":"+String(t%60).padStart(2,"0");$("db").style.width=100*(1-left/tot)+"%"},500)};
+document.addEventListener("visibilitychange",()=>{if(!DE)return;if(document.hidden)HID=Date.now();else if(Date.now()-HID>20000)dfail("tu as quitté trop longtemps")});
+let PI=-1;
+function ok(m){m.d=1;S.g+=m.x/5|0;S.fa=Math.min(100,S.fa+8);skl(m);fat();gain(m.x,m.a);if(S.ms.every(x=>x.d)&&!S.bonus){S.bonus=true;toast("🏆 Toutes les missions ! +100 XP");gain(100)}else{toast("+"+m.x+" XP");fx("quest","[ QUÊTE ACCOMPLIE ]")}}
+function shrink(f,mx,cb){const r=new FileReader;r.onload=()=>{const im=new Image;im.onload=()=>{const k=Math.min(1,mx/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*k;c.height=im.height*k;c.getContext("2d").drawImage(im,0,0,c.width,c.height);cb(c.toDataURL("image/jpeg",.7))};im.src=r.result};r.readAsDataURL(f)}
+async function verify(t,img){if(S.pv==="deepseek")return{ok:true,why:"Preuve archivée (DeepSeek ne lit pas les images)."};const r=await fetch(S.px,{method:"POST",headers:{"Content-Type":"application/json","x-access-code":S.ac},body:JSON.stringify({contents:[{role:"user",parts:[{text:"Tu es le Système de Solo Leveling, juge strict mais juste. Mission du joueur : « "+t+" ». Cette photo prouve-t-elle que la mission a été faite ? Réponds par OUI ou NON, puis une courte phrase en français."},{inline_data:{mime_type:"image/jpeg",data:img.split(",")[1]}}]}],code:S.ac})});if(!r.ok)throw 0;const j=await r.json();const x=j.candidates?.[0]?.content?.parts?.map(p=>p.text).join("")||j.text||j.reply||j.response||"";if(!x)throw 0;return{ok:/^\W*oui/i.test(x),why:x.replace(/^\W*(oui|non)\W*/i,"")}}
+$("pf").onchange=async e=>{const f=e.target.files[0];e.target.value="";if(!f||PI<0)return;const m=S.ms[PI];PI=-1;toast("📸 Analyse de la preuve…");
+ const img=await new Promise(r=>shrink(f,640,r)),th=await new Promise(r=>shrink(f,160,r));m.p=th;
+ if(S.px&&S.ac&&navigator.onLine){try{const v=await verify(m.t,img);if(v.ok){ok(m);reply("Preuve validée. "+v.why)}else{m.p=null;sv();draw();fx("arise","[ PREUVE REFUSÉE ]");reply("Preuve refusée. "+v.why)}return}catch(x){}}
+ S.q.push({t:m.t,day:S.day,x:m.x,img});m.v=1;ok(m);toast("📴 Hors ligne : preuve en attente de vérification")};
+let FL=0;async function flush(){if(FL||!S.q.length||!S.px||!S.ac||!navigator.onLine)return;FL=1;try{while(S.q.length){const it=S.q[0],v=await verify(it.t,it.img);S.q.shift();const m=S.ms.find(z=>z.t===it.t&&S.day===it.day);if(m)m.v=0;
+ if(v.ok)toast("✅ Preuve vérifiée : "+it.t);else{if(m){m.d=0;m.p=null}fx("arise","[ PREUVE REFUSÉE ]");reply("Preuve refusée pour « "+it.t+" ». "+v.why+" XP retirés.");gain(-it.x)}sv();draw()}}catch(x){}FL=0}
+addEventListener("online",flush);setInterval(flush,60000);setTimeout(flush,3000);
+const RM=[[8,0,"Quête quotidienne reçue. Tes missions t’attendent, Leonard."],[12,30,"Point de mi-journée."],[18,0,"La soirée approche."],[21,30,"Bilan du jour : écris dans ton journal."],[22,30,"Alerte : la journée se termine, évite la pénalité !"]];
+const pend=()=>S.ms.filter(m=>!m.d).length;
+function pro(t){toast("🔔 "+t);fx("quest","[ NOTIFICATION DU SYSTÈME ]");say(t);add(t,"l");try{navigator.vibrate&&navigator.vibrate([200,100,200]);if(window.Notification&&Notification.permission==="granted"){if(navigator.serviceWorker&&navigator.serviceWorker.controller)navigator.serviceWorker.ready.then(r=>r.showNotification("LOUIS // CORE",{body:t}));else new Notification("LOUIS // CORE",{body:t})}}catch(e){}}
+let LA=Date.now();["click","keydown","touchstart"].forEach(v=>addEventListener(v,()=>LA=Date.now(),{passive:true}));
+setInterval(()=>{const n=new Date(),p=pend();
+ if(S.rm){RM.forEach(r=>{const key=T()+"r"+r[0]+r[1];if(n.getHours()===r[0]&&n.getMinutes()===r[1]&&S.rk!==key){S.rk=key;sv();if(r[0]>=12&&r[0]<=18&&!p)return;let t=r[2];if(r[0]>=12&&r[0]<=18)t+=" Il reste "+p+" mission(s).";pro(t)}});
+  if(Date.now()-LA>90*60000&&n.getHours()>=8&&n.getHours()<22&&p){LA=Date.now();pro("Leonard, "+p+" mission(s) t’attendent. Un chasseur n’attend pas.")}}
+ const due=(S.rp||[]).filter(r=>r.at<=Date.now());if(due.length){S.rp=S.rp.filter(r=>r.at>Date.now());sv();due.forEach(r=>pro("Rappel : "+r.t))}},20000);
+$("pwc").checked=S.pw;$("pwc").onchange=()=>{S.pw=$("pwc").checked;sv()};$("rmc").checked=S.rm;$("rmc").onchange=()=>{S.rm=$("rmc").checked;sv()};
+$("nt").onclick=()=>{if(!window.Notification)return toast("Notifications non supportées");Notification.requestPermission().then(r=>toast(r==="granted"?"🔔 Notifications activées":"Notifications refusées"))};
+try{if("serviceWorker"in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
+let CRS="";const CC=150,esc=x=>x.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+function sysw(h,t,btn,cb,btn2,cb2){snd("sys");try{navigator.vibrate&&navigator.vibrate([60,40,60])}catch(e){}say(h.replace(/[\[\]]/g,"").toLowerCase());
+ const d=document.createElement("div");const red=/PÉNALITÉ|URGENCE|ÉCHOUÉ/.test(h);d.className="sw"+(red?" red":"");{const hd=$("hud");hd.classList.add(red?"rd":"aw");setTimeout(()=>hd.classList.remove("rd","aw"),red?1500:500)}snd("open");d.innerHTML="<i class='sc'></i><h3>"+h+"</h3><p></p><div class='row' style='justify-content:center;gap:10px'><button>"+(btn||"[ CONFIRMER ]")+"</button>"+(btn2?"<button>"+btn2+"</button>":"")+"</div>";document.body.appendChild(d);
+ const p=d.querySelector("p");let i=0;const full=()=>{clearInterval(iv);p.textContent=t},iv=setInterval(()=>{p.textContent=t.slice(0,++i);if(i>=t.length)clearInterval(iv)},t.length>300?8:20);p.onclick=full;
+ const bs=d.querySelectorAll("button");bs[0].onclick=()=>{clearInterval(iv);d.remove();cb&&cb()};if(bs[1])bs[1].onclick=()=>{clearInterval(iv);d.remove();cb2&&cb2()}}
+function skl(m){const t=m.t.toLowerCase(),i=/anglais/.test(t)?1:/excel/.test(t)?3:/louis|code|dév/.test(t)?2:/lire|livre/.test(t)?5:/journal|commun/.test(t)?4:0;S.sx[i]++;if(S.sx[i]>=5&&S.sk[i]<10){S.sx[i]=0;S.sk[i]++;setTimeout(()=>fx("quest","[ COMPÉTENCE NIV."+S.sk[i]+" ] "+SK[i].toUpperCase()),1200)}}
+function fat(){if(S.fa>=80&&S.fw!==T()){S.fw=T();setTimeout(()=>sysw("[ ALERTE ]","Fatigue élevée ("+(S.fa|0)+"%).\nLe Système recommande du repos avant de continuer."),2500)}}
+const LC={anglais:"**Objectif** : progresser vers le B2.\n**Concepts clés**\n1. Vocabulaire par blocs (make a decision, take a break), pas de mots isolés.\n2. Present perfect (have + participe) = lien avec le présent ; past simple = fait terminé.\n3. 20 min d’écoute + 10 min à parler à voix haute chaque jour.\n**Exercice** : écris 5 phrases sur ta journée avec le present perfect.\n**Résumé** : la régularité bat l’intensité.",
+excel:"**Objectif** : maîtriser Excel avancé.\n**Concepts clés**\n1. RECHERCHEX(valeur; colonne_cherchée; colonne_résultat) remplace RECHERCHEV.\n2. SOMME.SI.ENS / NB.SI.ENS : calculs avec critères.\n3. Tableau croisé dynamique : résume des milliers de lignes en quelques clics.\n4. Tableaux structurés (Ctrl+T) : formules lisibles et extensibles.\n**Exercice** : crée un TCD de tes dépenses par mois.\n**Résumé** : structure tes données en tableau, le reste suit.",
+javascript:"**Objectif** : les bases solides de JavaScript.\n**Concepts clés**\n1. const (fixe) et let (modifiable).\n2. Fonctions fléchées : const f = (a,b) => a+b.\n3. Tableaux : map transforme, filter trie, reduce agrège.\n4. async/await pour attendre une réponse (fetch).\n**Exercice** : [1,2,3,4].filter(n=>n%2).map(n=>n*10).\n**Résumé** : petites fonctions, tests fréquents.",
+ia:"**Objectif** : comprendre et bien utiliser l’IA.\n**Concepts clés**\n1. Un modèle prédit la suite du texte à partir du contexte.\n2. Bon prompt = rôle + contexte + tâche + format attendu.\n3. Vérifie toujours les faits importants.\n4. Un assistant = prompt système + historique + outils.\n**Exercice** : réécris un prompt flou avec ces 4 éléments.\n**Résumé** : précision en entrée, qualité en sortie.",
+finance:"**Objectif** : poser les bases de la liberté financière (information générale, pas un conseil financier).\n**Concepts clés**\n1. Règle 50/30/20 : besoins, envies, épargne.\n2. Fonds d’urgence : 3 à 6 mois de dépenses.\n3. Intérêts composés : le temps compte plus que le montant.\n4. Évite les dettes coûteuses, diversifie.\n**Exercice** : liste tes dépenses du mois et classe-les.\n**Résumé** : épargne d’abord, dépense ensuite.",
+discipline:"**Objectif** : devenir constant.\n**Concepts clés**\n1. Règle des 2 minutes : commence petit pour vaincre la résistance.\n2. Un déclencheur fixe (heure + lieu) vaut mieux que la motivation.\n3. Ne manque jamais deux jours d’affilée.\n4. Coche chaque victoire.\n**Exercice** : fais une mission de 2 minutes maintenant.\n**Résumé** : la constance bat l’intensité."};
+function loc(t){t=t.toLowerCase();return /anglais|english/.test(t)?LC.anglais:/excel|tableur|recherche/.test(t)?LC.excel:/javascript|\bjs\b|code|programm|dév/.test(t)?LC.javascript:/\bia\b|intelligence art|prompt/.test(t)?LC.ia:/financ|argent|budget|invest/.test(t)?LC.finance:/disciplin|motiv|habitude/.test(t)?LC.discipline:null}
+const gem=t=>call("",[{role:"user",text:t}]);
+$("cb").onclick=async()=>{const t=$("cs2").value.trim();if(!t)return toast("Choisis un sujet de cours");if(!S.tk&&S.g<CC)return toast("Il te faut "+CC+" Or ou un ticket");
+ let x=null;toast("📚 Louis prépare ton cours…");
+ if(S.px&&S.ac&&navigator.onLine){try{x=await gem("Tu es LOUIS, professeur du Système de Solo Leveling. Explique en français un cours clair sur : « "+t+" » pour Leonard (autodidacte motivé). Structure : **Objectif**, **Concepts clés** (3 à 5), **Exemple concret**, **Mini-exercice**, **Résumé**. Maximum 350 mots, sans introduction.")}catch(e){}}
+ if(!x)x=loc(t);if(!x)return sysw("[ COURS INDISPONIBLE ]","Hors ligne, je connais : anglais, Excel, JavaScript, IA, finance, discipline.\nChoisis l’un d’eux ou reconnecte-toi (aucun Or débité).","[ COMPRIS ]");
+ if(S.tk>0)S.tk--;else S.g-=CC;S.cr.unshift({t,d:new Date().toLocaleDateString("fr-FR"),x});S.cr=S.cr.slice(0,15);sv();$("cs2").value="";draw();
+ sysw("[ RÉCOMPENSE DÉBLOQUÉE ]","Cours : "+t+"\n\nTon cours est dans la Bibliothèque. Louis va te le lire.","[ OUVRIR ]",()=>{document.querySelector('nav button[data-t="4"]').click();$("cr").scrollIntoView({behavior:"smooth"})});say("Cours débloqué : "+t+". "+x.replace(/\*\*/g,"").slice(0,500))};
+$("cr").onclick=e=>{const b=e.target.closest("[data-r]");if(b)say(S.cr[b.dataset.r].x.replace(/\*\*/g,"").slice(0,900))};
+async function call(sys,turns){
+ if(S.pv==="deepseek"){const d=S.px.includes("api.deepseek.com"),h={"Content-Type":"application/json"};if(d)h.Authorization="Bearer "+S.ac;else h["x-access-code"]=S.ac;
+  const msgs=(sys?[{role:"system",content:sys}]:[]).concat(turns.map(t=>({role:t.role==="model"?"assistant":"user",content:t.text})));
+  const r=await fetch(S.px,{method:"POST",headers:h,body:JSON.stringify({model:"deepseek-chat",messages:msgs,stream:false})});if(!r.ok)throw new Error(r.status);const j=await r.json(),x=j.choices&&j.choices[0]&&j.choices[0].message&&j.choices[0].message.content;if(!x)throw new Error("vide");return x}
+ const r=await fetch(S.px,{method:"POST",headers:{"Content-Type":"application/json","x-access-code":S.ac},body:JSON.stringify({systemInstruction:sys?{parts:[{text:sys}]}:undefined,contents:turns.map(t=>({role:t.role,parts:[{text:t.text}]})),code:S.ac,prompt:turns[turns.length-1].text})});
+ if(!r.ok)throw new Error(r.status);const j=await r.json(),x=j.candidates?.[0]?.content?.parts?.map(p=>p.text).join("")||j.text||j.reply||j.response;if(!x)throw new Error("vide");return x}
+S.pv=S.pv||"gemini";S.sl=S.sl||{gemini:{px:S.px,ac:S.ac},deepseek:{px:"",ac:""}};
+function ld(){$("px").value=S.sl[S.pv].px;$("ac").value=S.sl[S.pv].ac;$("px").placeholder=S.pv==="deepseek"?"URL du Worker DeepSeek (ou https://api.deepseek.com/chat/completions)":"URL du proxy Gemini"}
+function stSl(){S.sl[S.pv]={px:$("px").value.trim(),ac:$("ac").value.trim()};S.px=S.sl[S.pv].px;S.ac=S.sl[S.pv].ac}
+S.px=S.sl[S.pv].px;S.ac=S.sl[S.pv].ac;$("pv").value=S.pv;ld();cs();
+$("pv").onchange=()=>{stSl();S.pv=$("pv").value;S.px=S.sl[S.pv].px;S.ac=S.sl[S.pv].ac;ld();sv();cs();toast("IA : "+(S.pv==="deepseek"?"DeepSeek":"Gemini"))};
+const THM={monarque:215,ombre:268,sang:352,or:42,emeraude:150,glace:187},RH={E:215,D:187,C:150,B:268,A:352,S:42};
+function theme(){S.th=S.th||"auto";const h=S.th==="auto"?RH[rank(S.lv)]:THM[S.th];document.documentElement.style.setProperty("--h",h)}
+$("th").value=S.th||"auto";$("th").onchange=()=>{S.th=$("th").value;sv();theme();toast("🎨 Couleurs mises à jour")};
+let AC=null;const au=()=>AC||(AC=new(window.AudioContext||window.webkitAudioContext)());
+function tone(f,t0,d,ty,v,f2){if(S.sf===false)return;try{const a=au(),n=a.currentTime+t0,o=a.createOscillator(),g=a.createGain();o.type=ty||"sine";o.frequency.setValueAtTime(f,n);if(f2)o.frequency.exponentialRampToValueAtTime(f2,n+d);g.gain.setValueAtTime(0,n);g.gain.linearRampToValueAtTime(v||.15,n+.02);g.gain.exponentialRampToValueAtTime(.001,n+d);o.connect(g);g.connect(a.destination);o.start(n);o.stop(n+d+.05)}catch(e){}}
+const SFX={sys:()=>{tone(1175,0,.5,"sine",.16);tone(1760,0,.5,"sine",.07);tone(1568,.14,.7,"sine",.14);tone(2349,.14,.7,"sine",.06)},open:()=>noise(.45,.35,300,4000),gate:()=>{noise(2,.5,80,900);tone(55,0,2.2,"sawtooth",.2,110);tone(110,.3,1.8,"sine",.1,220)},tick:()=>tone(1000,0,.06,"square",.07),go:()=>tone(220,0,.6,"sawtooth",.15,880),quest:()=>{tone(660,0,.15,"triangle",.14);tone(990,.1,.3,"triangle",.12)},lv:()=>{[523,659,784,1047].forEach((f,i)=>tone(f,i*.12,.5,"triangle",.16));tone(130,0,1.2,"sawtooth",.08)},arise:()=>{noise(1.8,.4,60,220);tone(60,0,1.6,"sawtooth",.2,30);tone(90,.2,1.2,"square",.06,40)},wake:()=>{tone(440,0,.1,"sine",.12);tone(880,.08,.2,"sine",.12)}};
+const snd=k=>{SFX[k]&&SFX[k]()};
+function boot(cb){$("go").style.display="none";const pre=document.createElement("pre");pre.style.cssText="text-align:left;color:var(--gl);font:12px/1.6 ui-monospace,monospace;min-height:160px;white-space:pre-wrap";$("ov").appendChild(pre);
+ const L=["[SYSTÈME] Initialisation du noyau…","[SYSTÈME] Synchronisation avec le joueur : LEONARD","[SYSTÈME] Chargement de la Shadow Army… 4/4","[SYSTÈME] Missions du jour : "+S.ms.length+" · Fatigue "+(S.fa|0)+"%","[SYSTÈME] Connexion IA : "+(S.px&&S.ac?(S.pv==="deepseek"?"DeepSeek":"Gemini"):"mode hors ligne"),"> BIENVENUE, JOUEUR."];let i=0;
+ const nx=()=>{if(i>=L.length)return setTimeout(cb,700);pre.textContent+=L[i++]+"\n";snd("wake");setTimeout(nx,430)};nx()}
+function vl(){if(!window.speechSynthesis)return;const v=speechSynthesis.getVoices().filter(x=>/^fr/i.test(x.lang));$("vn").innerHTML='<option value="">Voix : automatique</option>'+v.map(x=>`<option>${x.name}</option>`).join("");$("vn").value=S.vn||""}
+if(window.speechSynthesis){speechSynthesis.onvoiceschanged=vl;vl()}
+$("vs").value=S.vs||"robot";$("vs").onchange=()=>{S.vs=$("vs").value;sv();say("Voix "+$("vs").selectedOptions[0].text.replace(/.*: /,"")+" activée.")};
+$("vn").onchange=()=>{S.vn=$("vn").value;sv();say("Voix sélectionnée.")};
+$("vt").onclick=()=>say("Système en ligne. Bonjour Leonard. Je suis Louis, ton assistant.");
+$("sfc").checked=S.sf!==false;$("sfc").onchange=()=>{S.sf=$("sfc").checked;sv();snd("sys")};
+const EQ=["Fais 10 pompes maintenant","Marche 5 minutes ou fais 20 squats","Bois un grand verre d’eau et range ton bureau","Écris 3 objectifs pour demain","Respire profondément pendant 2 minutes"];
+function eqCheck(){if($("ov")||document.querySelector(".sw"))return;const h=new Date().getHours();if(!S.eq||S.eq.day!==T())S.eq={day:T(),h:9+Math.floor(Math.random()*11),done:0};
+ if(!S.eq.done&&h>=S.eq.h&&h<22){S.eq.done=1;sv();const q=EQ[Math.random()*EQ.length|0];fx("arise","[ ALERTE ]");setTimeout(()=>sysw("[ QUÊTE D’URGENCE ]","Une quête d’urgence est apparue.\n\n"+q+"\n\nRécompense : +60 XP\nÉchec ou refus : −30 XP","[ ACCEPTER ]",()=>{S.ms.push({t:"⚠️ "+q,a:"dis",x:60,d:0,u:1});S.bonus=false;sv();draw()},"[ REFUSER ]",()=>{gain(-30);toast("Quête refusée : −30 XP")}),1500)}}
+setInterval(eqCheck,30000);setTimeout(eqCheck,10000);
+function noise(d,v,f0,f1){if(S.sf===false)return;try{const a=au(),n=a.currentTime,b=a.createBuffer(1,a.sampleRate*d,a.sampleRate),c=b.getChannelData(0);for(let i=0;i<c.length;i++)c[i]=Math.random()*2-1;const o=a.createBufferSource(),f=a.createBiquadFilter(),g=a.createGain();o.buffer=b;f.type="bandpass";f.frequency.setValueAtTime(f0,n);f.frequency.exponentialRampToValueAtTime(f1,n+d);g.gain.setValueAtTime(v,n);g.gain.exponentialRampToValueAtTime(.001,n+d);o.connect(f);f.connect(g);g.connect(a.destination);o.start(n)}catch(e){}}
+const PC=document.createElement("canvas");PC.style.cssText="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:48";document.body.appendChild(PC);const pcx=PC.getContext("2d");let PA=[],PR=0;
+function prz(){PC.width=innerWidth;PC.height=innerHeight}prz();addEventListener("resize",prz);
+function burst(k){const W=PC.width,H=PC.height,n=k==="arise"?150:100;for(let i=0;i<n;i++){
+ if(k==="arise")PA.push({x:Math.random()*W,y:H+20,vx:(Math.random()-.5)*.8,vy:-1.5-Math.random()*3,r:12+Math.random()*30,l:1,d:.006+Math.random()*.008,c:"164,92,255",sm:1});
+ else PA.push({x:W/2,y:k==="lv"?H*.55:H/2,vx:(Math.random()-.5)*10,vy:(Math.random()-.85)*10,r:1+Math.random()*3,l:1,d:.01+Math.random()*.015,c:k==="lv"?"255,225,140":"111,208,255",g:.07})}
+ if(!PR){PR=1;requestAnimationFrame(plp)}}
+function plp(){pcx.globalCompositeOperation="source-over";pcx.clearRect(0,0,PC.width,PC.height);pcx.globalCompositeOperation="lighter";PA=PA.filter(p=>p.l>0);
+ PA.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.g)p.vy+=p.g;p.l-=p.d;const r=p.r*(p.sm?1+(1-p.l)*1.5:1),a=Math.max(0,p.l)*(p.sm?.4:1),g=pcx.createRadialGradient(p.x,p.y,0,p.x,p.y,r);g.addColorStop(0,`rgba(${p.c},${a})`);g.addColorStop(1,`rgba(${p.c},0)`);pcx.fillStyle=g;pcx.beginPath();pcx.arc(p.x,p.y,r,0,7);pcx.fill()});
+ if(PA.length)requestAnimationFrame(plp);else{PR=0;pcx.clearRect(0,0,PC.width,PC.height)}}
+function gate(m){const rk={15:"E",25:"D",45:"C",60:"B"}[m]||"E",g=document.createElement("div");g.id="gate";g.innerHTML="<div class='gp'></div><div class='gp g2'></div><div class='gc'></div>";document.body.appendChild(g);snd("gate");burst("gate");try{navigator.vibrate&&navigator.vibrate([200,80,200,80,400])}catch(e){}
+ setTimeout(()=>sysw("[ ALERTE ]","Une porte est apparue.\n\nDonjon de rang "+rk+"\nDurée : "+m+" min\nRécompense : +"+m*2+" XP, +"+m+" Or\n\nVoulez-vous entrer ?","[ OUI ]",()=>{g.remove();cd(()=>dstart(m))},"[ NON ]",()=>g.remove()),1600)}
+function cd(cb){const d=document.createElement("div");d.className="fx quest";d.style.animation="none";d.innerHTML="<b style='font-size:90px'></b>";document.body.appendChild(d);const b=d.querySelector("b");let n=3;
+ const t=()=>{if(n===0){b.textContent="GO";snd("go");setTimeout(()=>{d.remove();cb()},600);return}b.textContent=n;b.style.animation="none";void b.offsetWidth;b.style.animation="zi .6s both";snd("tick");n--;setTimeout(t,900)};t()}
+function boardLater(){if(document.querySelector(".sw"))return setTimeout(boardLater,1200);board()}
+function board(){if($("qb2"))return;const acc=S.qa===T();snd("open");snd("sys");say("quête quotidienne");try{navigator.vibrate&&navigator.vibrate([60,40,60])}catch(e){}
+ const d=document.createElement("div");d.id="qb2";d.className="sw";
+ const hd="<tr><th>#</th><th>OBJECTIF</th><th>RÉCOMPENSE</th><th></th></tr>",rows=()=>hd+S.ms.map((m,i)=>`<tr><td>${i+1}</td><td>${esc(m.t)}</td><td style="color:var(--gl);white-space:nowrap">+${m.x} XP</td><td>${m.d?"✅":S.qa===T()?"⬜":"🔒"}</td></tr>`).join("");
+ d.innerHTML=`<i class="sc"></i><h3>[ QUÊTE QUOTIDIENNE ]</h3><div class="q" style="margin-bottom:8px">Préparation pour devenir plus fort</div><table class="bd">${rows()}</table><div class="row" style="margin-top:10px"><input id="bn" placeholder="Ajouter une tâche (+30 XP)…"><button id="ba">+</button></div><div class="q" style="margin-top:10px;color:#ff9a9a">AVERTISSEMENT : en cas d’échec, une pénalité sera appliquée (−50 XP).</div><div class="row" style="justify-content:center"><button id="bo" style="margin-top:12px;letter-spacing:2px;color:var(--gl)">${acc?"[ FERMER ]":"[ ACCEPTER ]"}</button></div>`;
+ document.body.appendChild(d);
+ d.querySelector("#ba").onclick=()=>{const t=d.querySelector("#bn").value.trim();if(!t)return;S.ext.push(t);S.ms.push({t,a:"dis",x:30,d:0});S.bonus=false;sv();draw();d.querySelector(".bd").innerHTML=rows();d.querySelector("#bn").value=""};
+ d.querySelector("#bo").onclick=()=>{d.remove();if(!acc){S.qa=T();sv();draw();fx("quest","[ QUÊTE ACCEPTÉE ]");say("Quête acceptée. Bonne chance, Leonard.")}}}
+$("qbtn").onclick=board;
+newDay();draw();
+</script></body></html>
