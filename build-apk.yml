@@ -1,0 +1,186 @@
+name: Construire Louis Core (APK)
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "louis-core-complet.html"
+      - "index.html"
+      - ".github/workflows/build-apk.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Projet Capacitor + application web
+        run: |
+          set -e
+          mkdir -p app && cd app
+          cat > package.json <<'EOF'
+          {"name":"louis-core","version":"1.0.0","private":true,"dependencies":{"@capacitor/core":"^6.2.0","@capacitor/cli":"^6.2.0","@capacitor/android":"^6.2.0","@capacitor/local-notifications":"^6.1.0","@capacitor-community/speech-recognition":"^6.0.1","@mediapipe/tasks-vision":"0.10.14"}}
+          EOF
+          cat > capacitor.config.json <<'EOF'
+          {"appId":"com.leonard.louiscore","appName":"Louis Core","webDir":"www","server":{"androidScheme":"https"}}
+          EOF
+          npm install --no-audit --no-fund
+          mkdir -p www/mp
+          SRC=../index.html; [ -f "$SRC" ] || SRC=../louis-core-complet.html
+          cp "$SRC" www/index.html
+          [ -f ../sw.js ] && cp ../sw.js www/sw.js || true
+          cp node_modules/@mediapipe/tasks-vision/vision_bundle.mjs www/mp/vision_bundle.js
+          cp -r node_modules/@mediapipe/tasks-vision/wasm www/mp/wasm
+          curl -fL -o www/mp/hand_landmarker.task https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task || echo "modele mains non telecharge (mode CDN)"
+          npx cap add android
+          npx cap sync android
+
+      - name: Plugin Gemma + autorisations Android
+        run: |
+          set -e
+          cd app
+          PK=android/app/src/main/java/com/leonard/louiscore
+          cat > $PK/MainActivity.java <<'EOF'
+          package com.leonard.louiscore;
+          import android.os.Bundle;
+          import com.getcapacitor.BridgeActivity;
+          public class MainActivity extends BridgeActivity {
+            @Override public void onCreate(Bundle savedInstanceState) {
+              registerPlugin(GemmaPlugin.class);
+              super.onCreate(savedInstanceState);
+            }
+          }
+          EOF
+          cat > $PK/GemmaPlugin.java <<'EOF'
+          package com.leonard.louiscore;
+          import android.app.Activity;
+          import android.content.Intent;
+          import android.net.Uri;
+          import androidx.activity.result.ActivityResult;
+          import com.getcapacitor.JSObject;
+          import com.getcapacitor.Plugin;
+          import com.getcapacitor.PluginCall;
+          import com.getcapacitor.PluginMethod;
+          import com.getcapacitor.annotation.ActivityCallback;
+          import com.getcapacitor.annotation.CapacitorPlugin;
+          import com.google.mediapipe.tasks.genai.llminference.LlmInference;
+          import java.io.File;
+          import java.io.FileOutputStream;
+          import java.io.InputStream;
+          import java.io.OutputStream;
+          import java.util.concurrent.ExecutorService;
+          import java.util.concurrent.Executors;
+
+          @CapacitorPlugin(name = "Gemma")
+          public class GemmaPlugin extends Plugin {
+            private LlmInference llm;
+            private final ExecutorService ex = Executors.newSingleThreadExecutor();
+            private File modelFile() { return new File(getContext().getFilesDir(), "gemma.task"); }
+
+            @PluginMethod
+            public void importModel(PluginCall call) {
+              Intent i = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+              i.addCategory(Intent.CATEGORY_OPENABLE);
+              i.setType("*/*");
+              startActivityForResult(call, i, "importResult");
+            }
+
+            @ActivityCallback
+            private void importResult(PluginCall call, ActivityResult result) {
+              if (call == null) return;
+              if (result.getResultCode() != Activity.RESULT_OK || result.getData() == null || result.getData().getData() == null) {
+                call.reject("Import annule");
+                return;
+              }
+              final Uri uri = result.getData().getData();
+              ex.execute(() -> {
+                try (InputStream in = getContext().getContentResolver().openInputStream(uri);
+                     OutputStream out = new FileOutputStream(modelFile())) {
+                  byte[] b = new byte[1 << 20];
+                  int n;
+                  long total = 0;
+                  while ((n = in.read(b)) > 0) { out.write(b, 0, n); total += n; }
+                  llm = null;
+                  JSObject o = new JSObject();
+                  o.put("ok", true);
+                  o.put("size", total);
+                  call.resolve(o);
+                } catch (Exception e) {
+                  call.reject("Copie echouee : " + e.getMessage());
+                }
+              });
+            }
+
+            @PluginMethod
+            public void load(PluginCall call) {
+              ex.execute(() -> {
+                try {
+                  if (llm == null) {
+                    File f = modelFile();
+                    if (!f.exists()) { call.reject("Modele absent : importe-le dans Admin"); return; }
+                    LlmInference.LlmInferenceOptions o = LlmInference.LlmInferenceOptions.builder()
+                      .setModelPath(f.getAbsolutePath())
+                      .setMaxTokens(768)
+                      .build();
+                    llm = LlmInference.createFromOptions(getContext(), o);
+                  }
+                  JSObject r = new JSObject();
+                  r.put("ok", true);
+                  call.resolve(r);
+                } catch (Exception e) {
+                  call.reject("Chargement echoue : " + e.getMessage());
+                }
+              });
+            }
+
+            @PluginMethod
+            public void generate(PluginCall call) {
+              final String p = call.getString("prompt");
+              ex.execute(() -> {
+                try {
+                  if (llm == null) { call.reject("Modele non charge"); return; }
+                  String t = llm.generateResponse(p);
+                  JSObject r = new JSObject();
+                  r.put("text", t);
+                  call.resolve(r);
+                } catch (Exception e) {
+                  call.reject("Generation echouee : " + e.getMessage());
+                }
+              });
+            }
+          }
+          EOF
+          python3 - <<'EOF'
+          p='android/app/src/main/AndroidManifest.xml'
+          s=open(p).read()
+          perms=''.join('<uses-permission android:name="android.permission.%s"/>'%x for x in ["CAMERA","RECORD_AUDIO","MODIFY_AUDIO_SETTINGS","POST_NOTIFICATIONS","VIBRATE","WAKE_LOCK","RECEIVE_BOOT_COMPLETED"])
+          q='<queries><intent><action android:name="android.speech.RecognitionService"/></intent></queries>'
+          s=s.replace('<application',perms+q+'<application android:largeHeap="true"',1)
+          s=s.replace('</application>','<uses-native-library android:name="libOpenCL.so" android:required="false"/></application>')
+          open(p,'w').write(s)
+          EOF
+          sed -i 's/minSdkVersion = .*/minSdkVersion = 24/' android/variables.gradle
+          cat >> android/app/build.gradle <<'EOF'
+          dependencies { implementation 'com.google.mediapipe:tasks-genai:0.10.24' }
+          android { packaging { jniLibs { pickFirsts.add('**/libc++_shared.so') } } }
+          EOF
+
+      - name: Compiler l'APK
+        run: |
+          cd app/android
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Louis-Core-APK
+          path: app/android/app/build/outputs/apk/debug/app-debug.apk
