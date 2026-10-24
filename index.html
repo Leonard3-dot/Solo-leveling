@@ -1307,4 +1307,74 @@ const _go=gOn;gOn=async function(){await _go();if(CAM&&GMODE!=="ml")$("gm").text
 {const q=$("gb").parentElement.querySelector(".q");if(q)q.innerHTML="☝️ Index pointé : curseur discret · maintiens-le 1 s sur un bouton pour valider<br>🤏 Pincement bref : clic précis · pincer + glisser : saisir la page (avec inertie) ou lancer une carte de mission<br>✌️ Deux doigts : défilement proportionnel à la hauteur de la main (monte = remonte la page), puis glissement doux<br>🖐 Paume balayée à gauche / droite : section suivante / précédente<br>Maintenus : 👍 1 s valider · ✊ 1,2 s accueil · ✋ 1,2 s fermer / ignorer · 🤟 1,2 s tableau de quête · 🤙 1,2 s parler à Louis · 🤘 1,5 s veille / réveil<br>La caméra n’est jamais affichée."}
 })();
 </script>
+<style id="rolecss">
+body.rj #s5,body.rj #nadm{display:none!important}
+#lg select{width:100%}
+</style>
+<script>
+/* ===== Rôles : sélection du nom, Admin réservé, routage sécurisé, personnalisation par joueur ===== */
+(()=>{
+const TN=["accueil","louis","armee","journal","donjon","admin","parametres"],
+ slug=s=>String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"joueur",
+ isP=()=>!!(ME&&ME.role!=="admin"),
+ mine=()=>"#/"+slug(ME.name)+"/";
+/* 1. Écran de connexion : le joueur CHOISIT son nom (aucune création de compte visible) */
+const _lg=lg;let SETUP=false;
+function waitUI(){const d=document.createElement("div");d.id="lg";
+ d.innerHTML='<div class="orb"></div><h1>LOUIS // CORE<small>CONNEXION</small></h1><div class="q" id="le">Chargement de la liste des joueurs…</div><button id="lr">↻ Réessayer</button>';
+ document.body.appendChild(d);let lp;const h=d.querySelector("h1");
+ h.onpointerdown=()=>{lp=setTimeout(()=>{SETUP=true;d.remove();lg()},3000)};h.onpointerup=h.onpointerleave=()=>clearTimeout(lp);
+ const go=async()=>{$("le").textContent="Chargement de la liste des joueurs…";await pullUsers();if(AU.users.length){d.remove();lg()}else $("le").textContent="Aucun joueur trouvé. Vérifie ta connexion ou demande à l’administrateur."};
+ $("lr").onclick=go;setTimeout(go,50)}
+lg=function(){if($("lg"))return;if(!AU.users.length&&!SETUP)return waitUI();_lg();
+ const inp=$("lu");if(!inp)return;const sel=document.createElement("select");sel.id="lu";
+ const ns=[...new Set(AU.users.map(u=>u.name))].sort((a,b)=>a.localeCompare(b,"fr"));
+ sel.innerHTML='<option value="">Choisis ton nom…</option>'+ns.map(n=>`<option>${esc(n)}</option>`).join("");inp.replaceWith(sel);
+ const ob=$("lb").onclick;$("lb").onclick=()=>{if(!$("lu").value){$("le").textContent="Choisis ton nom dans la liste.";return}ob()};
+ const pw=$("lp");if(pw)pw.onkeydown=e=>{if(e.key==="Enter")$("lb").click()}};
+window.pullUsers=async function(){if(!S.px||ME)return;
+ try{const l=await(await fetch(S.px+"/auth/users",{signal:AbortSignal.timeout(5000)})).json();if(!Array.isArray(l))return;let ch=0;
+  l.forEach(x=>{const u=AU.users.find(y=>y.id===x.id||(y.role!=="admin"&&y.name===x.name));
+   if(!u){AU.users.push({id:x.id,name:x.name,role:"joueur",salt:x.salt,hash:"",srv:1,exp:x.exp||0});ch=1}
+   else if(u.role!=="admin"){u.id=x.id||u.id;u.srv=1;u.name=x.name;if(x.salt)u.salt=x.salt;u.exp=x.exp||0}});
+  AU.users=AU.users.filter(u=>u.role==="admin"||!u.srv||l.some(x=>x.id===u.id||x.name===u.name));asv();
+  const d=$("lg");if(d&&ch&&d.querySelector("#lu")){d.remove();lg()}}catch(e){}};
+const _fu=fu;window.fu=fu=async function(n){n=(n||"").trim();const u=AU.users.find(x=>x.name.toLowerCase()===n.toLowerCase());
+ if(u&&u.srv&&!u.salt){try{const j=await(await fetch(S.px+"/auth/salt",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:n}),signal:AbortSignal.timeout(5000)})).json();if(j.salt){u.salt=j.salt;asv()}}catch(e){}}
+ return _fu(n)};
+/* 2. Personnalisation : jamais les objectifs de Leonard pour un joueur */
+const GEN=[["Priorité n°1 de la journée","dis",40,""],["Bouger 20 minutes","san",30,""],["Apprendre quelque chose de nouveau (20 min)","int",30,""],["Écrire 3 lignes dans mon journal","com",20,""]];
+function neutral(){if(!isP()||S.dm||S.myk)return;
+ DM.splice(0,DM.length,...GEN);DT.splice(0,DT.length,...GEN.map(()=>""));
+ SK.splice(0,SK.length,"Discipline","Concentration","Organisation","Communication","Santé & énergie","Productivité");
+ GO.splice(0,GO.length,[1,"Concentration"],[2,"Organisation"],[3,"Productivité"]);
+ PL.splice(0,PL.length,"Définir mon objectif principal","Choisir mes tâches quotidiennes","Tenir 3 jours d’affilée","Faire le point chaque semaine");
+ QS.splice(0,QS.length,"Deviens la meilleure version de toi-même : 3 jours d’affilée, toutes les missions faites.","1 heure sans téléphone : concentration totale.","Écris tes 3 objectifs de la semaine.");
+ const d=$("dsb");if(d)d.innerHTML='<option value="1">Concentration</option><option value="2">Organisation</option><option value="3">Productivité</option><option value="0">📚 Autre</option>';
+ if(!S.ms.some(m=>m.d))S.ms=[];draw()}
+const _brain=brain;brain=function(q){if(isP()&&/agenda|planning|emploi du temps/i.test(q)){const l=S.ms.filter(m=>m.h).sort((a,b)=>a.h<b.h?-1:1).map(m=>m.h+" · "+m.t);return AG[S.ag][1]+(l.length?"Planning de tes missions :\n"+l.join("\n"):"Aucune de tes missions n’a d’heure. Ajoute-en dans le tableau de quête.")}return _brain(q)};
+const up=n=>{if(n.nodeType===3){if(n.nodeValue.includes("LEONARD"))n.nodeValue=n.nodeValue.replace(/LEONARD/g,UN().toUpperCase())}else if(n.nodeType===1&&!/^(SCRIPT|STYLE|TEXTAREA|INPUT)$/.test(n.tagName))n.childNodes.forEach(up)};
+new MutationObserver(ms=>{if(!isP())return;ms.forEach(m=>{if(m.type==="characterData")up(m.target);m.addedNodes.forEach(up)})}).observe(document.body,{childList:true,subtree:true,characterData:true});
+function ident(){const o=$("ovn");if(o&&ME)o.textContent="Bienvenue "+UN()+", le système est prêt !";
+ if(isP()){up(document.body);const q=[...document.querySelectorAll("#s0 .q")].find(e=>/^NOM\s*:/.test(e.textContent));if(q)q.textContent="NOM : "+ME.name.toUpperCase()+" · CLASSE : CHASSEUR"}}
+/* 3. Routage sécurisé : Admin impossible par URL pour un joueur */
+function route(){if(!ME)return;const h=location.hash||"",m=h.match(/^#\/([^\/]*)\/?([^\/?]*)/);
+ if(isP()){const bad=/admin/i.test(h+location.search)||/[?&]tab=5\b/.test(location.search)||(m&&m[1]&&m[1]!==slug(ME.name))||(m&&m[2]&&m[2]==="admin");
+  if(bad||(m&&!TN.includes(m[2]||"accueil"))){try{history.replaceState(null,"",location.pathname+mine()+"accueil")}catch(e){}const b=document.querySelector('nav [data-t="0"]');if(b)b.click();if(bad)toast("Accès réservé à l’administrateur");return}}
+ if(m&&m[2]){const t=TN.indexOf(m[2]);if(t>=0&&!(t===5&&isP())){const b=document.querySelector('nav [data-t="'+t+'"]');if(b&&!b.classList.contains("a"))b.click()}}}
+addEventListener("hashchange",route);
+document.addEventListener("click",e=>{const b=e.target.closest("nav button[data-t]");if(!b||!ME)return;const t=+b.dataset.t;
+ if(t===5&&isP()){e.preventDefault();e.stopImmediatePropagation();return route()}
+ try{history.replaceState(null,"",location.pathname+"#/"+slug(ME.name)+"/"+TN[t])}catch(x){}},true);
+/* 4. Boutons Retour / Quitter */
+function logout(){try{sessionStorage.removeItem("louis_ses")}catch(e){}try{gStop()}catch(e){}ME=null;try{history.replaceState(null,"",location.pathname)}catch(e){}lg()}
+function btns(){const add=(host,id)=>{if(!host||$(id))return;const d=document.createElement("div");d.className="p";d.id=id;d.innerHTML='<h2>SESSION</h2><div class="row"><button class="bt" data-bk="1" style="margin:0">← Retour à l’accueil</button><button class="bt" data-lo="1" style="margin:0">⏻ Quitter</button></div>';host.appendChild(d);
+  d.onclick=e=>{if(e.target.closest("[data-bk]")){const b=document.querySelector('nav [data-t="0"]');b&&b.click()}else if(e.target.closest("[data-lo]")){if(confirm("Te déconnecter ?"))logout()}}};
+ add(isP()?$("s6"):$("s3"),"sesp")}
+const _e=enter;enter=function(u){_e(u);setTimeout(()=>{neutral();ident();btns();route()},600)};
+if(ME){setTimeout(()=>{neutral();ident();btns();route()},200)}
+window.pullUsers();
+if(!ME&&$("lg")){$("lg").remove();lg()}
+})();
+</script>
 </body></html>
