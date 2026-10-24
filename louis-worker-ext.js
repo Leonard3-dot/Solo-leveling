@@ -39,7 +39,7 @@ export async function requireAuth(request, env) {
 export async function handleLouis(request, env) {
   const url = new URL(request.url);
   const p = url.pathname;
-  if (!["/suggest", "/suggestions", "/access", "/auth/salt", "/auth/login", "/auth/sync", "/auth/passwd"].includes(p)) return null; // route inconnue : ton code actuel prend le relais
+  if (!["/suggest", "/suggestions", "/access", "/auth/salt", "/auth/login", "/auth/sync", "/auth/passwd", "/auth/users"].includes(p)) return null; // route inconnue : ton code actuel prend le relais
   if (request.method === "OPTIONS") return new Response(null, { headers: CORS });
 
   // 1) Un joueur envoie une suggestion
@@ -78,6 +78,12 @@ export async function handleLouis(request, env) {
     const uid = nm ? await env.LOUIS_KV.get("un:" + nm) : null;
     const u = uid ? await env.LOUIS_KV.get("us:" + uid, "json") : null;
     return J({ salt: u ? u.salt : await sign("salt:" + nm, env.SESSION_SECRET, true) });
+  }
+  // Liste des joueurs (nom + sel + échéance, jamais le hash) pour l'écran « Choisis ton nom »
+  if (p === "/auth/users" && request.method === "GET") {
+    const l = await env.LOUIS_KV.list({ prefix: "us:", limit: 100 });
+    const v = await Promise.all(l.keys.map((k) => env.LOUIS_KV.get(k.name, "json")));
+    return J(v.filter(Boolean).map((u) => ({ id: u.id, name: u.name, salt: u.salt, exp: u.exp || 0 })));
   }
   // Le joueur change lui-même son mot de passe (ancien hash exigé)
   if (p === "/auth/passwd" && request.method === "POST") {
