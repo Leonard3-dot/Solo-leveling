@@ -142,9 +142,10 @@ nav button{display:flex;flex-direction:column;align-items:center;gap:3px;font-we
 input[type=checkbox]{-webkit-appearance:none;appearance:none;width:51px!important;height:31px;padding:0;border:0;border-radius:16px;background:hsla(0,0%,100%,.16);position:relative;flex:none;transition:background .3s var(--ios)}
 input[type=checkbox]::after{content:"";position:absolute;top:2px;left:2px;width:27px;height:27px;border-radius:50%;background:#fff;box-shadow:0 2px 5px #0006;transition:transform .35s var(--spr)}
 input[type=checkbox]:checked{background:var(--ok)}input[type=checkbox]:checked::after{transform:translateX(20px)}
+#nset{display:none}body.rj #nset{display:flex}.ob details{padding:12px 14px}.ob summary{cursor:pointer;font-weight:600;color:var(--gl)}
 @media(prefers-reduced-motion:reduce){*,::after{animation-duration:.01s!important;transition-duration:.01s!important}}
 </style></head><body>
-<div id="ov"><div class="orb"></div><h1>LOUIS // CORE<small>TON ASSISTANT. TON SYSTÈME. TON AVENIR.</small></h1><p class="q">Le Système est prêt, Leonard.</p><button id="go">S’ÉVEILLER</button></div>
+<div id="ov"><div class="orb"></div><h1>LOUIS // CORE<small>TON ASSISTANT. TON SYSTÈME. TON AVENIR.</small></h1><p class="q" id="ovn">Bienvenue, le système est prêt !</p><button id="go">S’ÉVEILLER</button></div>
 <div id="toast"></div><div id="hud"></div><div id="gp" style="display:none;position:fixed;right:10px;bottom:calc(74px + env(safe-area-inset-bottom,0px));width:128px;height:96px;z-index:55;border:1px solid var(--gl);border-radius:10px;overflow:hidden;box-shadow:0 0 14px var(--ac);background:#000"><div style="position:absolute;inset:0;transform:scaleX(-1)"><video id="vid" playsinline muted style="width:100%;height:100%;object-fit:cover"></video><canvas id="gc" style="position:absolute;inset:0;width:100%;height:100%"></canvas></div><div id="gh" style="position:absolute;left:4px;bottom:3px;font-size:11px;text-shadow:0 0 4px #000"></div></div><input type="file" id="pf" accept="image/*" capture="environment" hidden>
 
 <div class="top"><h1>LOUIS // CORE<small>TON ASSISTANT. TON SYSTÈME. TON AVENIR.</small></h1><div class="on">● SYSTEM ONLINE<br><span id="clk"></span></div></div>
@@ -194,8 +195,9 @@ input[type=checkbox]:checked{background:var(--ok)}input[type=checkbox]:checked::
  <div class="p"><h2>COURS · RÉCOMPENSE</h2><div class="q" id="ck" style="text-align:left;margin-bottom:6px"></div><div class="row"><input id="cs2" placeholder="Sujet du cours (ex : RECHERCHEX, past perfect…)"><button id="cb">Obtenir</button></div><div id="cr" style="margin-top:8px"></div></div>
  <div class="p"><h2>TITRES</h2><div id="ti"></div></div>
 </section>
+<section class="s" id="s6"></section>
 <section class="s" id="s5"><div class="p"><h2>ESPACE ADMIN</h2><div id="ad"></div></div></section>
-<nav><button class="a" data-t="0">🏠<br>Accueil</button><button data-t="1">🤖<br>Louis</button><button data-t="2">⚔️<br>Armée</button><button data-t="3">📓<br>Journal</button><button data-t="4">🏰<br>Donjon</button><button data-t="5" class="adm" id="nadm">🛡<br>Admin</button></nav>
+<nav><button class="a" data-t="0">🏠<br>Accueil</button><button data-t="1">🤖<br>Louis</button><button data-t="2">⚔️<br>Armée</button><button data-t="3">📓<br>Journal</button><button data-t="4">🏰<br>Donjon</button><button data-t="5" class="adm" id="nadm">🛡<br>Admin</button><button data-t="6" id="nset">⚙️<br>Paramètres</button></nav>
 
 <script>
 const $=i=>document.getElementById(i),T=()=>new Date().toISOString().slice(0,10);
@@ -274,7 +276,7 @@ function brain(q){const l=q.toLowerCase(),n=S.ms.filter(m=>m.d).length,pre=AG[S.
  return pre+r}
 function add(t,c){const d=document.createElement("div");d.className="b "+c;$("log").appendChild(d);if(c==="l"&&t.length<700){let i=0;const iv=setInterval(()=>{i+=2;d.textContent=t.slice(0,i);$("log").scrollTop=1e9;if(i>=t.length)clearInterval(iv)},14)}else d.textContent=t;$("log").scrollTop=1e9}
 const OFF=/^(aide|help|statut|missions?|prochaine|fait\s|valide|ajoute|journal\s|plan|heure|stats|rappelle|minuteur|timer|chrono|calcule|calcul|combien fait|note|mes notes|agenda|planning|preuve|valide|valider|ignore|ignorer|reporte|report|tableau|geste|gestes|caméra|camera|progression|bilan|programme|planifie)/i;
-async function ai(q){const sys="Tu es LOUIS, assistant IA façon Jarvis et Système de Solo Leveling, pour Leonard (appelle-le « Monsieur Leonard » ; ses objectifs : Excel avancé, anglais niveau C1, data science ; niveau "+S.lv+", rang "+rank(S.lv)+", "+S.xp+" XP, classe Shadow Developer). Rôle actif : "+S.ag+" ("+AG[S.ag][0]+"). Réponds en français, de façon concise, motivante et concrète. Missions du jour : "+S.ms.map(m=>m.t+(m.d?" (faite)":"")).join("; ")+".";
+async function ai(q){const sys="Tu es LOUIS, assistant IA façon Jarvis et Système de Solo Leveling, pour "+UN()+" (appelle-le « "+UT()+" » ; ses objectifs : "+UG()+" ; niveau "+S.lv+", rang "+rank(S.lv)+", "+S.xp+" XP, classe Shadow Developer). Rôle actif : "+S.ag+" ("+AG[S.ag][0]+"). Réponds en français, de façon concise, motivante et concrète. Missions du jour : "+S.ms.map(m=>m.t+(m.d?" (faite)":"")).join("; ")+".";
  S.hist.push({role:"user",parts:[{text:q}]});S.hist=S.hist.slice(-12);
  const t=await call(sys,S.hist.map(h=>({role:h.role,text:h.parts[0].text})));
  S.hist.push({role:"model",parts:[{text:t}]});sv();return t}
@@ -289,7 +291,7 @@ class NSR{constructor(){this.lang="fr-FR"}start(){const P=window.Capacitor.Plugi
 const SR=NAT&&window.Capacitor.Plugins&&window.Capacitor.Plugins.SpeechRecognition?NSR:(window.SpeechRecognition||window.webkitSpeechRecognition);
 $("mic").onclick=()=>{if(!SR)return toast("Micro non supporté ici");const r=new SR;r.lang="fr-FR";r.onresult=e=>send(e.results[0][0].transcript);r.onerror=()=>toast("Micro indisponible");r.start()};
 setInterval(()=>$("clk").textContent=new Date().toLocaleString("fr-FR",{weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}),1000);
-$("go").onclick=()=>{try{au().resume()}catch(e){}boot(()=>{$("ov").remove();go2()})};function go2(){const h=new Date().getHours();const g=(h<18?"Bonjour":"Bonsoir")+" Monsieur Leonard. Le Système est en ligne. "+S.ms.filter(m=>!m.d).length+" missions t’attendent.";add(g.replace("Monsieur Leonard","Monsieur"),"l");say(g);fx("quest","[ SYSTÈME ÉVEILLÉ ]");if(S.wk)wake(true);if(S.gs)gOn();gload();if(S.qa!==T())setTimeout(boardLater,2200);if(S.dp)setTimeout(dexit,3500)};
+$("go").onclick=()=>{try{au().resume()}catch(e){}boot(()=>{$("ov").remove();go2()})};function go2(){const h=new Date().getHours();const g="Bienvenue "+UT()+", le système est prêt ! "+S.ms.filter(m=>!m.d).length+" missions t’attendent.";add(g,"l");say(g);fx("quest","[ SYSTÈME ÉVEILLÉ ]");if(S.wk)wake(true);if(S.gs)gOn();gload();if(S.qa!==T())setTimeout(boardLater,2200);if(S.dp)setTimeout(dexit,3500)};
 let W=null,WON=false,AWAKE=0,UNL=!S.vp,SP=0;
 function fx(k,t,s){if(!s)snd(k==="lv"?"lv":k==="arise"?"arise":"quest");if(k==="arise")burst("arise");if(k==="lv"){burst("lv");const h=$("hud");h.classList.add("aw");setTimeout(()=>h.classList.remove("aw"),700)}const d=document.createElement("div");d.className="fx "+k;d.innerHTML="<div class='r'></div><div class='r r2'></div><b>"+t+"</b>";document.body.appendChild(d);if(k==="lv"){const e=document.querySelector(".s.a");e.classList.add("shk");setTimeout(()=>e.classList.remove("shk"),600)}setTimeout(()=>d.remove(),3400)}
 const WK=/\b(louis|luis|louie|louise|lewis)\b/i;
@@ -365,7 +367,7 @@ function loc(t){t=t.toLowerCase();return /data|pandas|python|statist|donn[ée]es
 const gem=t=>call("",[{role:"user",text:t}]);
 $("cb").onclick=async()=>{const t=$("cs2").value.trim();if(!t)return toast("Choisis un sujet de cours");if(!S.tk&&S.g<CC)return toast("Il te faut "+CC+" Or ou un ticket");
  let x=null;toast("📚 Louis prépare ton cours…");
- if(aiOK()){try{x=await gem("Tu es LOUIS, professeur du Système de Solo Leveling. Explique en français un cours clair sur : « "+t+" » pour Leonard (autodidacte motivé). Structure : **Objectif**, **Concepts clés** (3 à 5), **Exemple concret**, **Mini-exercice**, **Résumé**. Maximum 350 mots, sans introduction.")}catch(e){}}
+ if(aiOK()){try{x=await gem("Tu es LOUIS, professeur du Système de Solo Leveling. Explique en français un cours clair sur : « "+t+" » pour "+UN()+" (autodidacte motivé). Structure : **Objectif**, **Concepts clés** (3 à 5), **Exemple concret**, **Mini-exercice**, **Résumé**. Maximum 350 mots, sans introduction.")}catch(e){}}
  if(!x)x=loc(t);if(!x)return sysw("[ COURS INDISPONIBLE ]","Hors ligne, je connais : anglais, Excel, JavaScript, IA, finance, discipline.\nChoisis l’un d’eux ou reconnecte-toi (aucun Or débité).","[ COMPRIS ]");
  if(S.tk>0)S.tk--;else S.g-=CC;S.cr.unshift({t,d:new Date().toLocaleDateString("fr-FR"),x});S.cr=S.cr.slice(0,15);sv();$("cs2").value="";draw();
  sysw("[ RÉCOMPENSE DÉBLOQUÉE ]","Cours : "+t+"\n\nTon cours est dans la Bibliothèque. Louis va te le lire.","[ OUVRIR ]",()=>{document.querySelector('nav button[data-t="4"]').click();$("cr").scrollIntoView({behavior:"smooth"})});say("Cours débloqué : "+t+". "+x.replace(/\*\*/g,"").slice(0,500))};
@@ -522,12 +524,12 @@ function enter(u){ME=u;AU.fails=0;AU.until=0;asv();try{sessionStorage.setItem("l
  const d=$("lg");if(d)d.remove();document.body.classList.toggle("rj",u.role!=="admin");alog("Connexion : "+u.name);
  if(u.role!=="admin"&&AU.ai){S.pv=AU.ai.pv;S.sl=AU.ai.sl;S.gf=AU.ai.gf;S.px=S.sl[S.pv].px;S.ac=S.sl[S.pv].ac;$("pv").value=S.pv;ld();cs()}draw()}
 function lg(){if($("lg"))return;const first=!AU.users.length,d=document.createElement("div");d.id="lg";
- d.innerHTML=`<div class="orb"></div><h1>LOUIS // CORE<small>${first?"CRÉATION DU COMPTE ADMINISTRATEUR":"AUTHENTIFICATION"}</small></h1>`+(first?`<input id="ln" placeholder="Nom (ex : Leonard)"><input id="lp" type="password" placeholder="Mot de passe (6 caractères min.)"><input id="lq" type="password" placeholder="Confirmer le mot de passe">`:(AU.users.length>1?`<select id="lu">${AU.users.map(u=>`<option value="${u.id}">${esc(u.name)} · ${u.role}</option>`).join("")}</select>`:"")+`<input id="lp" type="password" placeholder="Mot de passe">`)+`<button id="lb">${first?"CRÉER LE COMPTE":"ACCÉDER"}</button><div class="q" id="le"></div>`;
+ d.innerHTML=`<div class="orb"></div><h1>LOUIS // CORE<small>${first?"CRÉATION DU COMPTE ADMINISTRATEUR":"AUTHENTIFICATION"}</small></h1>`+(first?`<input id="ln" placeholder="Nom (ex : Leonard)"><input id="lp" type="password" placeholder="Mot de passe (6 caractères min.)"><input id="lq" type="password" placeholder="Confirmer le mot de passe">`:`<input id="lu" placeholder="Nom d’utilisateur" autocomplete="username" autocapitalize="none" spellcheck="false">`+`<input id="lp" type="password" placeholder="Mot de passe">`)+`<button id="lb">${first?"CRÉER LE COMPTE":"ACCÉDER"}</button><div class="q" id="le"></div>`;
  document.body.appendChild(d);
  $("lb").onclick=async()=>{const e=$("le"),p=$("lp").value;
   if(first){const n=$("ln").value.trim();if(!n)return e.textContent="Nom requis";if(p.length<6)return e.textContent="Mot de passe trop court (6 min.)";if(p!==$("lq").value)return e.textContent="Les mots de passe diffèrent";
    const salt=rid(),u={id:rid(),name:n,role:"admin",salt,hash:await hsh(p,salt)};AU.users.push(u);alog("Compte admin créé : "+n);asv();return enter(u)}
-  const u=AU.users.length>1?AU.users.find(x=>x.id===$("lu").value):AU.users[0];
+  const u=await fu($("lu")?$("lu").value:"");
   if(AU.until&&Date.now()<AU.until)return e.textContent="Trop d’essais : attends "+Math.ceil((AU.until-Date.now())/1000)+" s";
   if(await vfy(u,p))return enter(u);
   AU.fails=(AU.fails||0)+1;alog("Échec de connexion : "+u.name);if(AU.fails>=5){AU.until=Date.now()+60000*Math.min(AU.fails-4,30);e.textContent="Verrouillé temporairement"}else e.textContent="Mot de passe incorrect ("+AU.fails+"/5)";asv()}}
@@ -551,7 +553,7 @@ $("ad").onchange=e=>{if(e.target.id==="gf"){S.gf=e.target.checked;sv();syncAI()}
 $("ad").onclick=async e=>{const b=e.target.closest("[data-act]");if(!b)return;const a=b.dataset.act,id=b.dataset.id;
  if(a==="au"){const n=$("an").value.trim(),p=$("ap2").value;if(!n||p.length<6)return toast("Nom + mot de passe (6 min.)");const salt=rid(),u={id:rid(),name:n,role:"joueur",salt,hash:await hsh(p,salt)};AU.users.push(u);try{localStorage.setItem("louis_"+u.id,JSON.stringify({lv:1,xp:0,g:0,at:{dis:5,int:5,pro:5,com:5,san:5,con:5},sk:[0,0,0,0,0,0],ti:[]}))}catch(x){}alog("Joueur créé : "+n);asv();adm()}
  else if(a==="du"){const u=AU.users.find(x=>x.id===id);if(u&&confirm("Supprimer "+u.name+" et ses données ?")){(AU.del=AU.del||[]).push(id);AU.users=AU.users.filter(x=>x.id!==id);try{localStorage.removeItem("louis_"+id)}catch(x){}alog("Compte supprimé : "+u.name);asv();adm()}}
- else if(a==="rp"){const u=AU.users.find(x=>x.id===id),p=prompt("Nouveau mot de passe pour "+u.name+" (6 min.)");if(p&&p.length>=6){u.salt=rid();u.hash=await hsh(p,u.salt);alog("Mot de passe réinitialisé : "+u.name);asv();if(window.autoPush)autoPush();toast("Mot de passe modifié")}}
+ else if(a==="rp"){const u=AU.users.find(x=>x.id===id),p=prompt("Nouveau mot de passe pour "+u.name+" (6 min.)");if(p&&p.length>=6){u.salt=rid();u.hash=await hsh(p,u.salt);u.pwt=Date.now();alog("Mot de passe réinitialisé : "+u.name);asv();if(window.autoPush)autoPush();toast("Mot de passe modifié")}}
  else if(a==="cp"){const o=$("op").value,n=$("np").value;if(n.length<6)return toast("Nouveau mot de passe trop court");if(await hsh(o,ME.salt)!==ME.hash)return toast("Mot de passe actuel incorrect");ME.salt=rid();ME.hash=await hsh(n,ME.salt);alog("Mot de passe modifié");asv();toast("Mot de passe modifié")}
  else if(a==="gi"){const G=GP();if(!G)return toast("Disponible uniquement dans l’APK");toast("Choisis le fichier Gemma (.task) — copie en cours, patience…");G.importModel().then(()=>{toast("Modèle importé");gload().then(adm)}).catch(x=>toast(x.message||"Import annulé"))}
  else if(a==="gl"){toast("Chargement de Gemma…");gload().then(o=>{toast(o?"Gemma prêt ✅":"Échec : importe d’abord le modèle");adm()})}
@@ -690,9 +692,9 @@ window.onboard=()=>{if(!ME||$("ob"))return;const d=document.createElement("div")
   else if(k.n==="go"){S.dm=P.map(p=>[p.t,p.a,p.x,p.h||""]);S.tm=S.tm||{};P.forEach(p=>{if(p.h)S.tm[p.t]=p.h});S.ext=[];S.ms=[];S.ob=Date.now();applyDM();sv();d.remove();draw();snd("lv");burst(innerWidth/2,innerHeight/2);toast("⚡ Ton système est prêt")}};
  R()};
 /* Accès temporaires */
-const DUR=[[0,"∞ Illimité"],[36e5,"1 heure"],[864e5,"24 heures"],[6048e5,"7 jours"],[2592e6,"30 jours"]];let WARN=0;
+const DUR=[[0,"∞ Illimité"],[12e4,"2 min (test)"],[36e5,"1 heure"],[864e5,"24 heures"],[6048e5,"7 jours"],[2592e6,"30 jours"]];let WARN=0;
 const _enter=enter;enter=function(u){if(u.role!=="admin"&&u.exp&&Date.now()>=u.exp){try{sessionStorage.removeItem("louis_ses")}catch(x){}if(!$("lg"))lg();const e=$("le");if(e)e.textContent="Accès expiré le "+new Date(u.exp).toLocaleString("fr-FR")+". Demande une prolongation à l’administrateur.";alog("Accès expiré refusé : "+u.name);return}
- _enter(u);setTimeout(()=>{badge();if(ME&&ME.role!=="admin"&&!S.ob)onboard()},300)};
+ _enter(u);setTimeout(()=>{badge();mkSet();fixAll();if(ME&&ME.role!=="admin"&&!S.ob)onboard()},300)};
 function badge(){let b=$("ab");if(!ME||ME.role==="admin"||!ME.exp){if(b)b.remove();return}const r=ME.exp-Date.now();
  if(r<=0){ME=null;try{sessionStorage.removeItem("louis_ses")}catch(e){}if(typeof gStop==="function")gStop();if(b)b.remove();lg();const e=$("le");if(e)e.textContent="Ton accès temporaire a expiré.";return}
  if(!b){b=document.createElement("div");b.id="ab";b.className="ab";document.body.appendChild(b)}b.textContent="⏳ Accès : "+fmt(r);if(r<6e5&&!WARN){WARN=1;toast("⏳ Ton accès expire dans moins de 10 min")}}
@@ -705,11 +707,17 @@ function acc(){if(!ME||ME.role!=="admin")return;const a=$("ad");if(!a)return;con
 function pushAcc(u){if(!S.px||!AU.cfg.tok)return;fetch(S.px+"/access",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+AU.cfg.tok},body:JSON.stringify({id:u.id,exp:u.exp||0})}).catch(()=>{})}
 async function syncSrv(){AU.cfg.tok=(($("stk")||{}).value||"").trim();asv();if(!S.px)return toast("Serveur non configuré");
  try{const r=await fetch(S.px+"/suggestions",{headers:{Authorization:"Bearer "+AU.cfg.tok}});if(r.status===401)return toast("Jeton refusé");const l=await r.json();AU.sug=AU.sug||[];let n=0;l.forEach(x=>{if(!AU.sug.some(y=>y.id===x.id)){AU.sug.push(x);n++}});AU.sug.sort((a,b)=>b.t-a.t);AU.sug=AU.sug.slice(0,100);asv();await pushUsers();acc();toast(n+" nouvelle(s) suggestion(s) · accès synchronisés")}catch(e){toast("Serveur injoignable")}}
-async function pushUsers(){if(!S.px||!AU.cfg.tok)return false;const us=AU.users.filter(x=>x.role!=="admin"&&x.hash).map(x=>({id:x.id,name:x.name,salt:x.salt,hash:x.hash,exp:x.exp||0}));try{const r=await fetch(S.px+"/auth/sync",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+AU.cfg.tok},body:JSON.stringify({users:us,del:AU.del||[]})});if(r.ok){AU.del=[];AU.users.forEach(x=>{if(x.role!=="admin"&&x.hash)x.srv=1});asv()}return r.ok}catch(e){return false}}
+async function pushUsers(){if(!S.px||!AU.cfg.tok)return false;const us=AU.users.filter(x=>x.role!=="admin"&&x.hash).map(x=>({id:x.id,name:x.name,salt:x.salt,hash:x.hash,exp:x.exp||0,pwt:x.pwt||0}));try{const r=await fetch(S.px+"/auth/sync",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+AU.cfg.tok},body:JSON.stringify({users:us,del:AU.del||[]})});if(r.ok){AU.del=[];AU.users.forEach(x=>{if(x.role!=="admin"&&x.hash)x.srv=1});asv()}return r.ok}catch(e){return false}}
 window.autoPush=(()=>{let t;return()=>{clearTimeout(t);t=setTimeout(pushUsers,800)}})();
 window.vfy=async function(u,p){const h=await hsh(p,u.salt);if(!u.srv)return h===u.hash;const el=$("le");
  try{const r=await fetch(S.px+"/auth/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:u.id,hash:h}),signal:AbortSignal.timeout(6000)}),j=await r.json();if(j.expired){u.exp=j.exp;return true}if(!r.ok||!j.token){if(r.status===429&&el)el.textContent="Trop d’essais : réessaie dans 5 min";return false}u.exp=j.exp||0;window.TOK=j.token;try{sessionStorage.setItem("louis_tok",j.token)}catch(x){}return true}catch(e){if(el)el.textContent="Serveur injoignable : connexion impossible";return false}};
 window.pullUsers=async function(){if(!S.px||ME)return;try{const l=await(await fetch(S.px+"/auth/users",{signal:AbortSignal.timeout(5000)})).json();if(!Array.isArray(l))return;let ch=0;l.forEach(x=>{const u=AU.users.find(y=>y.id===x.id);if(!u){AU.users.push({id:x.id,name:x.name,role:"joueur",salt:x.salt,hash:"",srv:1,exp:x.exp||0});ch=1}else if(u.role!=="admin"){u.srv=1;u.name=x.name;u.salt=x.salt;u.exp=x.exp||0}});AU.users=AU.users.filter(u=>u.role==="admin"||!u.srv||l.some(x=>x.id===u.id));asv();if(ch&&$("lg")){$("lg").remove();lg()}}catch(e){}};
+window.fu=async function(n){n=(n||"").trim();const k=n.toLowerCase(),u=AU.users.find(x=>x.name.toLowerCase()===k),dm={id:"",name:n,role:"joueur",salt:"0000000000000000",hash:"x"};if(u)return u;if(!n)return dm;
+ try{const j=await(await fetch(S.px+"/auth/salt",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:n}),signal:AbortSignal.timeout(5000)})).json();return j.salt?{id:"",name:n,role:"joueur",salt:j.salt,srv:1,_new:1,hash:""}:dm}catch(e){return dm}};
+const reg=u=>{if(u._new){delete u._new;if(!AU.users.some(x=>x.id===u.id))AU.users.push(u);asv()}return true};
+window.vfy=async function(u,p){const h=await hsh(p,u.salt);if(!u.srv)return h===u.hash;const el=$("le");
+ try{const r=await fetch(S.px+"/auth/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:u.name,hash:h}),signal:AbortSignal.timeout(6000)}),j=await r.json();if(j.expired){u.exp=j.exp;return true}if(!r.ok||!j.token){if(r.status===429&&el)el.textContent="Trop d’essais : réessaie dans 5 min";return false}u.exp=j.exp||0;u.id=j.id;window.TOK=j.token;try{sessionStorage.setItem("louis_tok",j.token)}catch(x){}return reg(u)}catch(e){if(el)el.textContent="Serveur injoignable : connexion impossible";return false}};
+window.pullUsers=async function(){};
 const _adm=adm;adm=function(){_adm();acc();autoPush()};$("nadm").addEventListener("click",()=>setTimeout(acc,0));
 $("ad").addEventListener("change",e=>{const id=e.target.dataset.ac;if(!id||e.target.value==="")return;const u=AU.users.find(x=>x.id===id),dd=DUR[+e.target.value];if(!u)return;if(dd[0])u.exp=Date.now()+dd[0];else delete u.exp;alog("Accès "+u.name+" : "+dd[1]);asv();acc();pushAcc(u);snd("pop");toast("Accès de "+u.name+" : "+dd[1])});
 $("ad").addEventListener("click",e=>{const b=e.target.closest("[data-sx],[data-sc],[data-ob],[data-sv]");if(!b)return;if(b.dataset.sv)return syncSrv();
@@ -726,10 +734,37 @@ const hap=n=>{try{navigator.vibrate&&navigator.vibrate(n)}catch(e){}};
 document.addEventListener("pointerdown",e=>{if(e.target.closest("button"))hap(6)});
 ml.addEventListener("pointermove",()=>{if(!st||!st.lock)return;const a=Math.abs(st.dx),o=a>90;if(o!==st.o){st.o=o;if(o)hap(15)}const x=(a>90?90+(a-90)*.45:a)*Math.sign(st.dx);st.c.style.transform=`translateX(${x}px) rotate(${x/18}deg)`});
 /* v3.2 : icônes de type SF Symbols */
-const IC={0:'<path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/>',1:'<path d="M21 12a8 8 0 0 1-11.5 7.2L4 20l1-4.5A8 8 0 1 1 21 12z"/>',2:'<circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M16 5a3 3 0 0 1 0 6M18 14c2 .6 3 2.5 3 6"/>',3:'<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/>',4:'<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',5:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/>'};
+const IC={0:'<path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/>',1:'<path d="M21 12a8 8 0 0 1-11.5 7.2L4 20l1-4.5A8 8 0 1 1 21 12z"/>',2:'<circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M16 5a3 3 0 0 1 0 6M18 14c2 .6 3 2.5 3 6"/>',3:'<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/>',4:'<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',5:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/>',6:'<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>'};
 document.querySelectorAll("nav button").forEach(b=>{const l=b.innerHTML.split("<br>")[1]||"";b.innerHTML=`<svg viewBox="0 0 24 24">${IC[b.dataset.t]||""}</svg><span>${l}</span>`});
 const ov=$("ov");if(ov){const r=ov.remove.bind(ov);ov.remove=()=>{ov.classList.add("bye");setTimeout(r,450)}}
-pullUsers();applyDM();draw();if(ME&&ME.role!=="admin"){badge();if(!S.ob)onboard()}
+/* v4 : nom dynamique, Paramètres joueur, manuel */
+window.UN=()=>ME?ME.name:"Leonard";
+window.UT=()=>ME&&ME.role==="admin"?"Monsieur "+ME.name:UN();
+window.UG=()=>ME&&ME.role==="admin"?"Excel avancé, anglais niveau C1, data science":((S.dm||[]).map(x=>x[0]).join(", ")||"progresser chaque jour");
+const fn=s=>typeof s==="string"&&ME&&ME.role!=="admin"?s.replace(/Monsieur Leonard/g,ME.name).replace(/Leonard/g,ME.name):s;
+const _say=say;say=function(t,...a){return _say(fn(t),...a)};
+const _reply=reply;reply=function(t){return _reply(fn(t))};
+const _pro=pro;pro=function(t){return _pro(fn(t))};
+const fixT=n=>{if(n.nodeType===3){if(n.nodeValue.includes("Leonard"))n.nodeValue=fn(n.nodeValue)}else if(n.nodeType===1&&!/^(SCRIPT|STYLE|TEXTAREA|INPUT)$/.test(n.tagName))n.childNodes.forEach(fixT)};
+window.fixAll=()=>{if(ME&&ME.role!=="admin")fixT(document.body);const o=$("ovn");if(o&&ME)o.textContent="Bienvenue "+UN()+", le système est prêt !"};
+new MutationObserver(ms=>{if(!ME||ME.role==="admin")return;ms.forEach(m=>{if(m.type==="characterData")fixT(m.target);m.addedNodes.forEach(fixT)})}).observe(document.body,{childList:true,subtree:true,characterData:true});
+const MAN=[["🏠 Accueil","Ton niveau, ton XP et ton rang. Les missions du jour sont des cartes : glisse à droite pour valider, à gauche pour passer à la suivante. Si tu n’accomplis pas ta quête quotidienne, une pénalité de −50 XP s’applique."],["🤖 Louis","Ton assistant. Écris-lui (ou parle avec le micro) pour poser une question, demander un plan ou de l’aide sur une mission. Il a besoin du service IA de l’administrateur pour répondre."],["⚔️ Armée","Les agents et les ombres que tu débloques en progressant. Choisis un agent, puis parle-lui dans l’onglet Louis ; invoque de nouvelles ombres avec des fragments."],["📓 Journal","Note tes pensées chaque jour (+20 XP) et accomplis la quête spéciale. Les réglages de la voix de Louis et la sauvegarde (export / import) sont aussi ici."],["🏰 Donjon","Mode concentration : choisis un thème et une durée, puis reste dans l’app. Quitter plus de 20 s ou abandonner = échec (−20 XP). Tu y trouves aussi l’inventaire, la boutique et tes titres."],["⚙️ Paramètres","Change ton mot de passe, gère les autorisations (photo, rappels, notifications, caméra, micro), choisis tes couleurs et règle les effets sonores. Si ton accès est temporaire, le compteur s’affiche en bas de l’écran."]];
+window.manual=()=>{if($("man"))return;const d=document.createElement("div");d.id="man";d.className="ob";d.innerHTML=`<h2>MANUEL</h2>`+MAN.map(([t,x],i)=>`<details class="p"${i?"":" open"}><summary>${t}</summary><div class="q" style="text-align:left;margin-top:6px">${x}</div></details>`).join("")+`<button class="bt" id="mc">Fermer</button>`;document.body.appendChild(d);$("mc").onclick=()=>d.remove()};
+function mkSet(){const s=$("s6");if(!ME||ME.role==="admin"||!s||s.dataset.ok)return;s.dataset.ok=1;["nadm","s5"].forEach(i=>{const e=$(i);if(e)e.remove()});
+ const P=(t,h)=>`<div class="p"><h2>${t}</h2>${h}</div>`;
+ s.innerHTML=P("MOT DE PASSE",`<input id="op" type="password" placeholder="Mot de passe actuel" autocomplete="current-password"><input id="np" type="password" placeholder="Nouveau mot de passe (6 min.)" autocomplete="new-password" style="margin-top:6px"><button class="bt" id="pc">Changer le mot de passe</button><div class="q" id="pm" style="min-height:14px"></div>`)+P("AUTORISATIONS",`<div id="ps"></div><div class="row" style="margin-top:8px"><button id="pcam">📷 Caméra</button><button id="pmic">🎤 Micro</button></div>`)+P("COULEURS",`<div id="pth"></div>`)+P("EFFETS SONORES",`<div id="pfx"></div><button class="bt" id="ptx">🔊 Tester les effets</button>`)+P("MANUEL",`<button class="bt" id="pman">📖 Ouvrir le manuel</button>`)+`<div class="q">${esc(ME.name)} · compte joueur</div>`;
+ $("pth").appendChild($("th"));$("pfx").appendChild($("sfc").parentElement);[$("ns").previousElementSibling,$("ns"),$("ns2").previousElementSibling,$("ns2")].forEach(e=>$("pfx").appendChild(e));
+ [$("pwc").parentElement,$("rmc").parentElement,$("nt"),$("cs")].forEach(e=>$("ps").appendChild(e));
+ const h=[...document.querySelectorAll("#s3 h2")].find(x=>x.textContent==="RÉGLAGES IA");if(h)h.textContent="VOIX DE LOUIS";
+ const perm=async(c,n)=>{try{const m=await navigator.mediaDevices.getUserMedia(c);m.getTracks().forEach(t=>t.stop());toast(n+" autorisée ✓")}catch(e){toast(n+" refusée : active-la dans les réglages du navigateur")}};
+ $("pcam").onclick=()=>perm({video:true},"Caméra");$("pmic").onclick=()=>perm({audio:true},"Micro");$("ptx").onclick=()=>snd("quest");$("pman").onclick=manual;
+ $("pc").onclick=async()=>{const o=$("op").value,n=$("np").value,m=$("pm");if(n.length<6)return m.textContent="6 caractères minimum.";
+  if(!(await vfy(Object.assign({},ME),o)))return m.textContent="Mot de passe actuel incorrect.";
+  const salt=rid(),hash=await hsh(n,salt),pwt=Date.now();
+  if(ME.srv&&S.px){try{const r=await fetch(S.px+"/auth/passwd",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:ME.name,oldHash:await hsh(o,ME.salt),salt,hash})});if(!r.ok)return m.textContent="Serveur : changement refusé."}catch(e){return m.textContent="Serveur injoignable."}}
+  const u=AU.users.find(x=>x.id===ME.id);Object.assign(ME,{salt,hash,pwt});if(u)Object.assign(u,{salt,hash,pwt});asv();$("op").value=$("np").value="";m.textContent="";toast("🔐 Mot de passe modifié");snd("send")}}
+
+pullUsers();applyDM();draw();if(ME){fixAll();if(ME.role!=="admin"){mkSet();badge();if(!S.ob)onboard()}}
 })();
 </script>
 </body></html>
