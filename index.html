@@ -415,7 +415,7 @@ $("th").value=S.th||"auto";$("th").onchange=()=>{S.th=$("th").value;sv();theme()
 let AC=null;const au=()=>AC||(AC=new(window.AudioContext||window.webkitAudioContext)());
 let SM={t:null,m:1,v:1};
 function tone(f,t0,d,ty,v,f2){if(S.sf===false)return;try{const a=au(),n=a.currentTime+t0,o=a.createOscillator(),g=a.createGain();o.type=SM.t&&(!ty||ty==="sine"||ty==="triangle")?SM.t:(ty||"sine");o.frequency.setValueAtTime(f*SM.m,n);if(f2)o.frequency.exponentialRampToValueAtTime(f2*SM.m,n+d);g.gain.setValueAtTime(0,n);g.gain.linearRampToValueAtTime((v||.15)*SM.v,n+.02);g.gain.exponentialRampToValueAtTime(.001,n+d);o.connect(g);g.connect(mas());o.start(n);o.stop(n+d+.05)}catch(e){}}
-const SFX={sys:()=>{tone(1568,0,1.3,"sine",.13);tone(3136,0,.8,"sine",.05);tone(2093,.17,1.7,"sine",.13);tone(4186,.17,1,"sine",.05);tone(1047,.17,1.9,"sine",.05);noise(.5,.05,2500,9000)},open:()=>{noise(.35,.22,600,7000);tone(2600,.05,.05,"square",.035);tone(3400,.11,.05,"square",.035)},gate:()=>{noise(2,.5,80,900);tone(55,0,2.2,"sawtooth",.2,110);tone(110,.3,1.8,"sine",.1,220)},tick:()=>tone(1000,0,.06,"square",.07),go:()=>tone(220,0,.6,"sawtooth",.15,880),quest:()=>{tone(660,0,.15,"triangle",.14);tone(990,.1,.3,"triangle",.12)},lv:()=>{[523,659,784,1047].forEach((f,i)=>tone(f,i*.12,.5,"triangle",.16));tone(130,0,1.2,"sawtooth",.08)},arise:()=>{noise(1.8,.4,60,220);tone(60,0,1.6,"sawtooth",.2,30);tone(90,.2,1.2,"square",.06,40)},wake:()=>{tone(440,0,.1,"sine",.12);tone(880,.08,.2,"sine",.12)}};
+const SFX={sys:()=>{tone(2093,0,.35,"sine",.12);tone(3136,.11,2,"sine",.14);tone(4186,.11,1.3,"sine",.06);tone(6272,.11,.8,"sine",.025);tone(1568,.11,2.1,"sine",.05);[4699,5588,6272,7459].forEach((f,i)=>tone(f,.38+i*.07,.35,"sine",.022))},open:()=>{tone(90,0,.55,"sine",.14,45);noise(.4,.2,500,8000);tone(3000,.06,.04,"square",.03);tone(4000,.12,.04,"square",.03)},gate:()=>{noise(2,.5,80,900);tone(55,0,2.2,"sawtooth",.2,110);tone(110,.3,1.8,"sine",.1,220)},tick:()=>tone(1000,0,.06,"square",.07),go:()=>tone(220,0,.6,"sawtooth",.15,880),quest:()=>{tone(660,0,.15,"triangle",.14);tone(990,.1,.3,"triangle",.12)},lv:()=>{[1568,2093,2637,3136].forEach((f,i)=>tone(f,i*.1,1.6-i*.2,"sine",.12));tone(4186,.45,1.8,"sine",.07);tone(80,0,.9,"sine",.12,40)},arise:()=>{noise(1.8,.4,60,220);tone(60,0,1.6,"sawtooth",.2,30);tone(90,.2,1.2,"square",.06,40)},wake:()=>{tone(440,0,.1,"sine",.12);tone(880,.08,.2,"sine",.12)}};
 const snd=k=>{SFX[k]&&SFX[k]()};
 /* réverbération : rend les sons plus réalistes */
 let MS=null;function mas(){if(MS)return MS;const a=au(),m=a.createGain(),dry=a.createGain(),wet=a.createGain(),cv=a.createConvolver(),n=Math.floor(a.sampleRate*1.4),b=a.createBuffer(2,n,a.sampleRate);for(let c=0;c<2;c++){const d=b.getChannelData(c);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,2.6)}cv.buffer=b;dry.gain.value=.85;wet.gain.value=.28;m.connect(dry);m.connect(cv);cv.connect(wet);dry.connect(a.destination);wet.connect(a.destination);return MS=m}
@@ -1812,6 +1812,21 @@ html:not([data-fa="0"]) #z9tl button:nth-child(2n){animation-duration:7.2s;anima
 .sw.red .swh h3,.sw.red .swi,.sw.red button{border-color:#ff6b6b!important}
 .sw.red .swh h3,.sw.red .swi span{text-shadow:0 0 6px #fff,0 0 16px #ff4040,0 0 28px #ff2020!important}
 .sw.red .swi span{box-shadow:0 0 10px #ff4040,0 0 10px #ff4040 inset}
+
+/* ===== Fenêtre Système v2 : fidèle à la série ===== */
+body:has(.sw)::before{content:"";position:fixed;inset:0;z-index:59;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(60,170,255,.9),transparent) 0 14%/100% 2px no-repeat,linear-gradient(90deg,transparent,rgba(60,170,255,.9),transparent) 0 86%/100% 2px no-repeat,rgba(0,4,16,.72);border-left:7px solid #5cbaff;border-right:7px solid #5cbaff;box-shadow:inset 22px 0 38px -10px rgba(40,140,255,.85),inset -22px 0 38px -10px rgba(40,140,255,.85),inset 0 60px 60px -50px rgba(40,140,255,.55),inset 0 -60px 60px -50px rgba(40,140,255,.55);animation:swb .5s both}
+@keyframes swb{from{opacity:0}}
+.sw{border:1px solid rgba(205,225,240,.6)!important;outline:1px solid rgba(120,190,255,.12)!important;outline-offset:6px!important;background:repeating-linear-gradient(115deg,rgba(90,160,255,.06) 0 1px,transparent 1px 13px),radial-gradient(ellipse at 20% 0,rgba(30,90,200,.18),transparent 65%),rgba(2,8,20,.9)!important;box-shadow:0 0 18px rgba(40,120,255,.35),inset 0 0 36px rgba(30,100,255,.12)!important;padding:20px 18px 16px!important;font-family:"Avenir Next","Century Gothic",system-ui,sans-serif}
+.sw::before,.sw::after{border-color:rgba(230,242,255,.9)!important}
+.sw .swh{justify-content:flex-start;gap:6px;margin-bottom:6px}
+.sw .swi{width:38px;border-color:rgba(205,225,240,.7);box-shadow:none}
+.sw .swi span{width:22px;height:22px;font-size:13px;border-width:1.5px}
+.sw .swh h3{flex:0 1 auto!important;min-width:0;border-color:rgba(205,225,240,.7)!important;box-shadow:none;padding:9px 14px!important;font-size:14px!important;font-weight:600!important;letter-spacing:3.5px!important}
+.sw p{display:grid;place-items:center;min-height:110px;font-size:19px;font-weight:700;letter-spacing:.3px;text-shadow:0 0 6px #fff,0 0 14px rgba(90,180,255,.9),0 0 26px rgba(40,130,255,.7);padding:10px 4px}
+.sw .row{margin-top:2px}
+.sw button{border-color:rgba(205,225,240,.7)!important;box-shadow:none!important;min-width:110px;padding:8px 16px;font-size:13px}
+.sw.red{border-color:rgba(255,120,120,.7)!important;box-shadow:0 0 18px rgba(255,40,40,.4),inset 0 0 36px rgba(200,0,0,.14)!important}
+body:has(.sw.red)::before{border-color:#ff5a5a;box-shadow:inset 22px 0 38px -10px rgba(255,50,50,.8),inset -22px 0 38px -10px rgba(255,50,50,.8);background:rgba(18,0,2,.75)}
 #toast{border-radius:0!important;background:rgba(3,10,26,.93)!important;border:1px solid rgba(214,236,255,.9)!important;color:#fff;letter-spacing:.5px;text-shadow:0 0 8px rgba(120,190,255,.8);box-shadow:0 0 18px rgba(40,120,255,.65),inset 0 0 18px rgba(30,100,255,.2)!important;padding:11px 20px!important}
 </style>
 <script>
