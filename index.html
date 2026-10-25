@@ -1725,6 +1725,22 @@ body.z9in nav{opacity:0;pointer-events:none}
 .z9k{display:grid;grid-template-columns:1fr 1fr;gap:8px}.z9k>div{padding:10px;border-radius:14px;border:1px solid color-mix(in srgb,var(--ln) 50%,transparent);text-align:center}
 .z9k b{display:block;font-size:18px;color:var(--gl);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.z9k small{color:var(--mu);font-size:10px}
 #z9t .row button{white-space:nowrap;letter-spacing:1px;padding:10px 12px}
+
+/* — Accueil en options — */
+.z9hid{display:none!important}
+#z9hb{position:sticky;top:var(--z9h,64px);z-index:5;display:flex;gap:8px;overflow-x:auto;padding:8px 12px;margin:0 -12px 6px;scroll-snap-type:x proximity;scrollbar-width:none;background:linear-gradient(color-mix(in srgb,var(--bg) 90%,transparent),color-mix(in srgb,var(--bg) 55%,transparent));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+#z9hb::-webkit-scrollbar{display:none}
+#z9hb button{flex:none;white-space:nowrap;border-radius:999px;padding:8px 14px;min-height:40px;scroll-snap-align:center;color:var(--mu)}
+#z9hb button.on{border-color:var(--gl);color:var(--gl);box-shadow:0 0 14px var(--ac);background:color-mix(in srgb,var(--ac) 25%,var(--bg))}
+#z9tl{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+#z9tl button{position:relative;display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:5px;padding:14px;border-radius:20px;min-height:104px;box-shadow:0 14px 24px -16px #000e,0 3px 8px -2px #0006,inset 0 1px 0 hsla(0,0%,100%,.1)}
+#z9tl button::after{content:"›";position:absolute;right:13px;top:8px;font-size:22px;color:var(--gl);opacity:.7}
+#z9tl .ic{font-size:24px}#z9tl b{font:700 12px ui-monospace,Menlo,monospace;letter-spacing:1.5px;color:var(--gl)}
+#z9tl small{color:var(--mu);font-size:12px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+html:not([data-fa="0"]) #z9tl button{animation:z9fl 6.4s ease-in-out infinite}
+html:not([data-fa="0"]) #z9tl button:nth-child(2n){animation-duration:7.2s;animation-delay:-2.2s}
+#s0.z9det .clh{pointer-events:none}#s0.z9det .clh::after{display:none}
+#mini{top:calc(var(--z9h,64px) + var(--z9c,56px) + 2px)!important}
 </style>
 <script>
 (()=>{
@@ -1895,8 +1911,36 @@ function tickD(){const rm=$("z9d"),pl=$("z9m"),tot=window._tot||0,m=window._tm||
  [...$("z9fs").children].forEach((x,i)=>x.className=i+1<cu?"dn":i+1===cu?"cu":"");
  $("z9fl").textContent="Étage "+cu+" / "+n+" · concentration : "+Math.floor(el)+" min"}
 setInterval(tickD,500);
+/* ============ 6. Accueil réorganisé en options (aperçu + vues détaillées) ============ */
+const VW=[["apercu","🏠","Aperçu"],["statut","⚔️","Statut"],["missions","📜","Missions"],["attributs","💪","Attributs"],["objectifs","🎯","Objectifs"],["progression","📈","Progression"],["gestes","🖐","Gestes"],["plan","🗺","Plan d’action"],["journal","📓","Journal système"],["suggestions","💡","Suggestions"]];
+const keyOf=p=>{const h=((p.querySelector("h2")||{}).textContent||"").toUpperCase();return /PLAYER|STATUT/.test(h)?"statut":/ATTRIBUT/.test(h)?"attributs":/MISSIONS/.test(h)?"missions":/OBJECTIF/.test(h)?"objectifs":/PROGRESSION/.test(h)?"progression":/GESTE/.test(h)?"gestes":/PLAN/.test(h)?"plan":/JOURNAL DU SYST/.test(h)?"journal":/SUGGEST/.test(h)?"suggestions":""};
+const s0=$("s0"),hbar=document.createElement("div"),tl=document.createElement("div");let cur="apercu",tsig="",mo=0;
+hbar.id="z9hb";hbar.setAttribute("role","tablist");hbar.innerHTML=VW.map(v=>`<button data-v="${v[0]}" role="tab">${v[1]} ${v[2]}</button>`).join("");tl.id="z9tl";
+s0.insertBefore(hbar,s0.firstChild);{const q=$("qt");q?s0.insertBefore(tl,q):s0.appendChild(tl)}
+const has=k=>[...s0.children].some(e=>e.classList.contains("p")&&keyOf(e)===k);
+function sm(k){try{switch(k){
+ case"attributs":{const m=AT.map(([n,c])=>[n,S.at[c]]).sort((a,b)=>b[1]-a[1])[0];return m[0]+" "+m[1]+(S.fp>0?" · "+S.fp+" pts libres":"")}
+ case"objectifs":{const r=[...$("go3").children];return r.length?r.length+" objectifs · "+r[0].textContent.replace(/\s+/g," ").trim():"Aucun objectif"}
+ case"progression":{const q=$("pg").lastElementChild;return q?q.textContent.trim():""}
+ case"gestes":return CAM?"● Actifs · caméra allumée":"○ Désactivés";
+ case"plan":{const a=[...$("pl").querySelectorAll("input")];return a.filter(x=>x.checked).length+" / "+a.length+" étapes cochées"}
+ case"journal":{const f=$("slg").firstElementChild;return f?f.textContent.trim():"Aucune activité"}
+ case"suggestions":return"Idées pour améliorer l’app"}}catch(e){}return""}
+function tiles(){hbar.querySelectorAll("button").forEach(b=>{const k=b.dataset.v;b.hidden=!(k==="apercu"||has(k))});if(cur!=="apercu")return;
+ const h=VW.filter(v=>!["apercu","statut","missions"].includes(v[0])&&has(v[0])).map(v=>`<button data-v="${v[0]}"><span class="ic">${v[1]}</span><b>${v[2].toUpperCase()}</b><small>${esc(sm(v[0]))}</small></button>`).join("");if(h!==tsig){tsig=h;tl.innerHTML=h}}
+function show(v,quiet){cur=v;s0.classList.toggle("z9det",v!=="apercu");
+ [...s0.children].forEach(e=>{if(e===hbar)return;let vis;
+  if(e.classList.contains("p")){const k=keyOf(e);vis=v==="apercu"?(k==="statut"||k==="missions"||!k):k===v;if(vis&&v!=="apercu")e.classList.remove("col")}else vis=v==="apercu";
+  e.classList.toggle("z9hid",!vis)});
+ tiles();hbar.querySelectorAll("button").forEach(b=>{const on=b.dataset.v===v;b.classList.toggle("on",on);b.setAttribute("aria-selected",on);if(on&&!quiet)b.scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"})});
+ if(!quiet){scrollTo({top:0,behavior:"smooth"});vb(8)}}
+hbar.onclick=tl.onclick=e=>{const b=e.target.closest("[data-v]");if(b){show(b.dataset.v);snd("tick")}};
+new MutationObserver(()=>{clearTimeout(mo);mo=setTimeout(()=>show(cur,1),60)}).observe(s0,{childList:true});
+document.querySelector('nav [data-t="0"]').addEventListener("click",function(){if(this.classList.contains("a")&&cur!=="apercu")show("apercu")},true);
+function hvh(){const t=document.querySelector("body>.top");if(t)R.style.setProperty("--z9h",t.offsetHeight+"px");R.style.setProperty("--z9c",hbar.offsetHeight+"px")}
+addEventListener("resize",hvh);setInterval(hvh,2000);hvh();show("apercu",1);
 /* ============ Initialisation ============ */
-const _dr9=draw;draw=function(){_dr9.apply(this,arguments);try{ap();fr()}catch(e){}};
+const _dr9=draw;draw=function(){_dr9.apply(this,arguments);try{ap();fr();tiles()}catch(e){}};
 ap();fr();tickD();setInterval(()=>{try{ensure();cls()}catch(e){}},2000);
 })();
 </script>
