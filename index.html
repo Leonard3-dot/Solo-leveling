@@ -1827,6 +1827,17 @@ body:has(.sw)::before{content:"";position:fixed;inset:0;z-index:59;pointer-event
 .sw button{border-color:rgba(205,225,240,.7)!important;box-shadow:none!important;min-width:110px;padding:8px 16px;font-size:13px}
 .sw.red{border-color:rgba(255,120,120,.7)!important;box-shadow:0 0 18px rgba(255,40,40,.4),inset 0 0 36px rgba(200,0,0,.14)!important}
 body:has(.sw.red)::before{border-color:#ff5a5a;box-shadow:inset 22px 0 38px -10px rgba(255,50,50,.8),inset -22px 0 38px -10px rgba(255,50,50,.8);background:rgba(18,0,2,.75)}
+
+/* ===== Bords v3 : cadre ouvert + néon latéral comme la série ===== */
+.sw{--swl:rgba(205,220,235,.72);--swl2:rgba(205,220,235,.3);border:0!important;outline:0!important;background:linear-gradient(var(--swl),var(--swl)) 8px 0/calc(100% - 26px) 1px no-repeat,linear-gradient(var(--swl),var(--swl)) 100% 16px/1px calc(100% - 22px) no-repeat,linear-gradient(var(--swl),var(--swl)) 0 100%/calc(100% - 6px) 1px no-repeat,linear-gradient(var(--swl),var(--swl)) 0 6px/1px calc(100% - 34px) no-repeat,linear-gradient(var(--swl2),var(--swl2)) 0 4px/54px 1px no-repeat,linear-gradient(var(--swl2),var(--swl2)) calc(100% - 4px) 0/1px 46px no-repeat,linear-gradient(var(--swl2),var(--swl2)) 100% calc(100% - 4px)/70px 1px no-repeat,linear-gradient(var(--swl2),var(--swl2)) 3px 100%/1px 40px no-repeat,repeating-linear-gradient(115deg,rgba(90,160,255,.06) 0 1px,transparent 1px 13px),radial-gradient(ellipse at 20% 0,rgba(30,90,200,.18),transparent 65%),rgba(2,8,20,.9)!important;box-shadow:0 0 22px rgba(30,110,255,.3)!important}
+.sw::before,.sw::after{display:none!important}
+.sw .swi,.sw .swh h3{border:1px solid rgba(205,220,235,.55)!important;background:rgba(110,140,180,.09)}
+.sw .swi{width:40px;height:40px;align-self:flex-start}
+.sw .swh h3{border-radius:0}
+.sw.red{--swl:rgba(255,140,140,.75);--swl2:rgba(255,140,140,.3)}
+body:has(.sw)::before{border:0!important;background:linear-gradient(#d6f6ff,#d6f6ff) 12px 0/7px 100% no-repeat,linear-gradient(#4ab4ff,#4ab4ff) 26px 0/3px 100% no-repeat,linear-gradient(#d6f6ff,#d6f6ff) calc(100% - 12px) 0/7px 100% no-repeat,linear-gradient(#4ab4ff,#4ab4ff) calc(100% - 26px) 0/3px 100% no-repeat,linear-gradient(#6cc6ff,#6cc6ff) 19px 30%/34px 3px no-repeat,linear-gradient(#6cc6ff,#6cc6ff) 19px 31.5%/22px 3px no-repeat,linear-gradient(#6cc6ff,#6cc6ff) calc(100% - 19px) 68%/34px 3px no-repeat,linear-gradient(#6cc6ff,#6cc6ff) calc(100% - 19px) 69.5%/22px 3px no-repeat,linear-gradient(90deg,transparent,rgba(80,180,255,.85),transparent) 0 14%/100% 2px no-repeat,linear-gradient(90deg,transparent,rgba(80,180,255,.85),transparent) 0 86%/100% 2px no-repeat,linear-gradient(90deg,rgba(40,140,255,.6),transparent 70px,transparent calc(100% - 70px),rgba(40,140,255,.6)),rgba(0,4,16,.74)!important;box-shadow:inset 0 0 0 0 #0000;filter:drop-shadow(0 0 6px #3aa0ff);animation:swb .5s both,swp 3.2s ease-in-out infinite .6s}
+@keyframes swp{50%{filter:drop-shadow(0 0 12px #5cc0ff) brightness(1.15)}}
+body:has(.sw.red)::before{filter:drop-shadow(0 0 8px #ff3030) hue-rotate(150deg)}
 #toast{border-radius:0!important;background:rgba(3,10,26,.93)!important;border:1px solid rgba(214,236,255,.9)!important;color:#fff;letter-spacing:.5px;text-shadow:0 0 8px rgba(120,190,255,.8);box-shadow:0 0 18px rgba(40,120,255,.65),inset 0 0 18px rgba(30,100,255,.2)!important;padding:11px 20px!important}
 </style>
 <script>
