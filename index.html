@@ -2196,7 +2196,7 @@ html.noan .z10e{display:none}
 (()=>{
 /* Filtres « éclairs » (déplacement par bruit animé) */
 document.body.insertAdjacentHTML("beforeend",'<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="z10f" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency=".03 .04" numOctaves="3" seed="2" result="n"><animate attributeName="seed" values="2;7;4;9;3;6;1;8" dur="1.6s" calcMode="discrete" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="11" xChannelSelector="R" yChannelSelector="G"/></filter><filter id="z10g" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency=".05 .06" numOctaves="2" seed="5" result="n"><animate attributeName="seed" values="5;1;8;3;9;2;6;4" dur="1.2s" calcMode="discrete" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="6" xChannelSelector="G" yChannelSelector="R"/></filter></svg>');
-const HT='<i class="z10e a"></i><i class="z10e b"></i><i class="z10or"></i><i class="z10sp l"></i><i class="z10sp r"></i><i class="z10in"></i><button class="z10rd" aria-label="Lire la quête à voix haute">🔊</button>';
+const HT='<button class="z10rd" aria-label="Lire la quête à voix haute">🔊</button>';
 let raf=0;const deco=()=>{raf=0;document.querySelectorAll(".qbf").forEach(p=>{if(!p.querySelector(":scope>.z10e"))p.insertAdjacentHTML("afterbegin",HT)})};
 new MutationObserver(()=>{if(!raf)raf=requestAnimationFrame(deco)}).observe(document.body,{childList:true,subtree:true});deco();
 /* Lecture à voix haute de la quête (noms prononcés grâce au lexique) */
@@ -2231,5 +2231,16 @@ names();setInterval(names,6000);
 #qb2 .qba #bn{flex:1;min-width:0}#qb2 .qba #bh{width:96px!important;flex:none}
 #qb2 .qba #ba{flex:none;width:44px;min-height:40px!important;margin:0!important;padding:0!important;border-radius:0!important;border:1px solid rgba(205,225,240,.6)!important;background:transparent!important;color:#fff!important;box-shadow:none!important;text-align:center}
 #qb2 .z9qb{margin-top:8px}
+</style>
+<style id="v13css">
+/* ===== v13 : tableau de quête sans effets lumineux, ni clignotement, ni flottement ===== */
+#qb2,#qb2 *{text-shadow:none!important}
+#qb2.sw,#qb2.holo{animation:sw .45s both!important}
+#qb2 .z9fr{filter:none!important;animation:none!important}
+#qb2 .z9fr::before{background:rgba(205,225,240,.75)!important}
+#qb2 .z9fr::after{background:repeating-linear-gradient(115deg,rgba(90,160,255,.05) 0 1px,transparent 1px 13px),#040a16!important}
+#qb2 .z9qic::before,#qb2 .z9qr .bx,#qb2 .bar i,#qb2 .z10rd{box-shadow:none!important}
+#qb2 .z9qr.c .bx,#qb2 .z9qr.c b{animation:none!important}
+#qb2 .z10rd{filter:none!important}
 </style>
 </body></html>
