@@ -520,10 +520,16 @@ document.addEventListener("visibilitychange",()=>{if(document.hidden)gStop();els
 /* ===== tableau de quête ===== */
 function board(){if($("qb2"))return;snd("open");snd("sys");say("quête quotidienne");try{navigator.vibrate&&navigator.vibrate([60,40,60])}catch(e){}
  const d=document.createElement("div");d.id="qb2";d.className="sw holo";const acc=S.qa===T(),
- st=m=>m.d?"✅":S.ig[tkey(m)]?"🚫":S.qa===T()?"⬜":"🔒",
- rows=()=>"<tr><th>#</th><th>OBJECTIF</th><th>HEURE</th><th></th></tr>"+S.ms.map((m,i)=>`<tr><td>${i+1}</td><td>${esc(m.t)}<small class="q" style="display:block;text-align:left">+${m.x} XP</small></td><td><input type="time" data-i="${i}" value="${m.h||""}" style="width:98px;padding:4px"></td><td>${st(m)}${S.ext.includes(m.t)?` <button data-x="${i}" style="padding:2px 7px">✕</button>`:""}</td></tr>`).join("");
- d.innerHTML=`<i class="sc"></i><h3>[ QUÊTE QUOTIDIENNE ]</h3><div class="q" style="margin-bottom:8px">Préparation pour devenir plus fort</div><table class="bd">${rows()}</table><div class="row" style="margin-top:10px"><input id="bn" placeholder="Nouvelle tâche…"><input id="bh" type="time" style="width:98px"><button id="ba">+</button></div><div class="q" style="margin-top:10px;color:#ff9a9a">AVERTISSEMENT : en cas d’échec, une pénalité sera appliquée (−50 XP).</div><div class="row" style="justify-content:center"><button id="bo" style="margin-top:12px;letter-spacing:2px;color:var(--gl)">${acc?"[ FERMER ]":"[ ACCEPTER ]"}</button></div>`;
- document.body.appendChild(d);const tb=d.querySelector(".bd"),rf=()=>{tb.innerHTML=rows()};
+ rows=()=>S.ms.map((m,i)=>`<div class="z9qr qbr${m.d?" d":""}${S.ig[tkey(m)]?" ig":""}${acc?"":" lk"}"><span><b>${esc(m.t)}</b><small>+${m.x} XP · <input type="time" data-i="${i}" value="${m.h||""}"></small></span><em>[${m.d?1:0}/1]</em><i class="bx"></i>${S.ext.includes(m.t)?`<button class="qx" data-x="${i}" aria-label="Supprimer">✕</button>`:""}</div>`).join("");
+ d.innerHTML=`<div class="z9fr qbf"><div class="z9qi qbs"><div class="z9qh"><span class="z9qic">!</span><h3>INFO DE QUÊTE</h3></div>
+ <p class="z9q1">[Quête quotidienne : « Préparation pour devenir plus fort » ${acc?"en cours":"est arrivée"}.]</p>
+ <h4 class="z9gl">OBJECTIF</h4><div class="z9ql bd">${rows()}</div>
+ <div class="z9qs"><span>PROGRESSION</span><b id="qbp"></b></div><div class="bar"><i id="qbi"></i></div>
+ <div class="row qba"><input id="bn" placeholder="Nouvelle tâche…"><input id="bh" type="time"><button id="ba">+</button></div>
+ <p class="z9wr"><u>AVERTISSEMENT</u> : ne pas accomplir la quête quotidienne entraînera une pénalité appropriée (−50 XP).</p>
+ <div class="z9qb"><button id="bo">${acc?"[ FERMER ]":"[ ACCEPTER ]"}</button></div></div></div>`;
+ const pg=()=>{const n=S.ms.length,k=S.ms.filter(m=>m.d).length;d.querySelector("#qbp").textContent=k+"/"+n;d.querySelector("#qbi").style.width=(n?100*k/n:0)+"%"};
+ document.body.appendChild(d);const tb=d.querySelector(".bd"),rf=()=>{tb.innerHTML=rows();pg()};pg();
  tb.onchange=e=>{const i=e.target.dataset.i;if(i===undefined)return;const m=S.ms[i];m.h=e.target.value;S.tm[m.t]=m.h;sv();draw()};
  tb.onclick=e=>{const x=e.target.closest("[data-x]");if(!x)return;const m=S.ms[x.dataset.x];S.ms.splice(x.dataset.x,1);S.ext=S.ext.filter(t=>t!==m.t);delete S.tm[m.t];sv();draw();rf()};
  d.querySelector("#ba").onclick=()=>{const v=d.querySelector("#bn").value.trim(),h=d.querySelector("#bh").value;if(!v)return;const p=ptime(v);addTask(p.t,h||p.h);d.querySelector("#bn").value="";d.querySelector("#bh").value="";rf()};
@@ -2055,7 +2061,7 @@ function home(){if(cur!=="apercu")return;
  <svg class="z9rg" viewBox="0 0 80 80" role="img" aria-label="Niveau ${lv}"><defs><linearGradient id="z9gr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--ac)"/><stop offset="1" style="stop-color:var(--gl)"/></linearGradient></defs><circle cx="40" cy="40" r="34" class="b"/><circle cx="40" cy="40" r="34" class="f" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${(C*(1-pc/100)).toFixed(1)}" transform="rotate(-90 40 40)"/><text x="40" y="43" class="n">${lv}</text><text x="40" y="57" class="r">RANG ${rank(lv)}</text></svg>
  <div class="z9xp"><span>${S.xp} / ${nd} XP</span><span>encore ${nd-S.xp} XP → niveau ${lv+1}</span></div><div class="bar"><i style="width:${pc.toFixed(1)}%"></i></div>
  <div class="z9cp"><span>⚡ ${pw}</span><span>🔥 ${S.st||0} j</span><span>💰 ${S.g} Or</span><span>👥 ${S.sh||0}</span><span>😮‍💨 ${S.fa|0} %</span>${cq?`<span>🎖 ${esc(cq[1].trim())}</span>`:""}<button data-a="guide" aria-label="Guide">📖 Guide</button></div></div>
- <div class="z9qi z9fr"><div class="z9qh"><span class="z9qic">!</span><h3>INFO DE QUÊTE</h3></div>
+ <div class="z9qi z9nq"><div class="z9qh"><span class="z9qic">!</span><h3>INFO DE QUÊTE</h3></div>
   <p class="z9q1">[${esc(!tot?"Aucune quête pour l’instant.":!pend?"Quête quotidienne accomplie.":acc?"Quête quotidienne : "+pend+" tâche"+(pend>1?"s":"")+" restante"+(pend>1?"s":"")+".":"La quête quotidienne est arrivée.")}]</p>
   ${tot?`<h4 class="z9gl">OBJECTIF</h4><div class="z9ql">${ms.map((x,i)=>`<button class="z9qr${x.d?" d":""}${i===top&&!x.d?" c":""}" data-a="ok" data-i="${i}"${x.d?" disabled":""}><span><b>${esc(x.t)}</b><small>${x.h?"⏰ "+x.h+" · ":""}+${x.x} XP</small></span><em>[${x.d?1:0}/1]</em><i class="bx"></i></button>`).join("")}</div><div class="z9qs"><span>PROGRESSION</span><b>${dn}/${tot}</b></div><div class="bar"><i style="width:${(100*dn/tot).toFixed(0)}%"></i></div>`:""}
   <p class="z9wr"><u>AVERTISSEMENT</u> : ne pas accomplir la quête quotidienne entraînera une pénalité appropriée (−50 XP).</p>
@@ -2171,7 +2177,7 @@ $("z10p").onclick=()=>{try{const vs=ss.getVoices().filter(v=>/^fr/i.test(v.lang)
 /* ===== Panneau « Missions du jour » au style Quest Info ===== */
 function mark(){const s=$("s0");if(!s)return;[...s.children].forEach(p=>{if(!p.classList||!p.classList.contains("p"))return;const h=((p.querySelector("h2")||{}).textContent||"").toUpperCase();
  if(/MISSIONS DU JOUR/.test(h)&&!p.classList.contains("z9qp")){p.classList.add("z9fr","z9qp");const w=document.createElement("p");w.className="z9wr";w.innerHTML="<u>AVERTISSEMENT</u> : ne pas accomplir la quête quotidienne entraînera une pénalité appropriée (−50 XP).";p.appendChild(w)}})}
-mark();setInterval(mark,1500);
+
 })();
 </script>
 <style id="v11css">
@@ -2191,7 +2197,7 @@ html.noan .z10e{display:none}
 /* Filtres « éclairs » (déplacement par bruit animé) */
 document.body.insertAdjacentHTML("beforeend",'<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="z10f" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency=".03 .04" numOctaves="3" seed="2" result="n"><animate attributeName="seed" values="2;7;4;9;3;6;1;8" dur="1.6s" calcMode="discrete" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="11" xChannelSelector="R" yChannelSelector="G"/></filter><filter id="z10g" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency=".05 .06" numOctaves="2" seed="5" result="n"><animate attributeName="seed" values="5;1;8;3;9;2;6;4" dur="1.2s" calcMode="discrete" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="6" xChannelSelector="G" yChannelSelector="R"/></filter></svg>');
 const HT='<i class="z10e a"></i><i class="z10e b"></i><i class="z10or"></i><i class="z10sp l"></i><i class="z10sp r"></i><i class="z10in"></i><button class="z10rd" aria-label="Lire la quête à voix haute">🔊</button>';
-let raf=0;const deco=()=>{raf=0;document.querySelectorAll(".z9fr").forEach(p=>{if(!p.querySelector(":scope>.z10e"))p.insertAdjacentHTML("afterbegin",HT)})};
+let raf=0;const deco=()=>{raf=0;document.querySelectorAll(".qbf").forEach(p=>{if(!p.querySelector(":scope>.z10e"))p.insertAdjacentHTML("afterbegin",HT)})};
 new MutationObserver(()=>{if(!raf)raf=requestAnimationFrame(deco)}).observe(document.body,{childList:true,subtree:true});deco();
 /* Lecture à voix haute de la quête (noms prononcés grâce au lexique) */
 document.addEventListener("click",e=>{const b=e.target.closest(".z10rd");if(!b)return;e.stopPropagation();e.preventDefault();
@@ -2207,4 +2213,23 @@ const names=()=>{try{const us=(AU.users||[]).map(u=>u.name).filter(Boolean);let 
 names();setInterval(names,6000);
 })();
 </script>
+<style id="v12css">
+/* ===== v12 : style « Quest Info » réservé au tableau de quête ===== */
+.z9nq{background:linear-gradient(160deg,color-mix(in srgb,var(--pn,#0b1730) 88%,transparent),color-mix(in srgb,var(--in,#0a1224) 92%,transparent));border:.5px solid hsla(0,0%,100%,.16);border-radius:20px;box-shadow:inset 0 1px 0 hsla(0,0%,100%,.14),0 12px 28px -10px #000a;padding:16px;margin:0}
+#qb2.sw{background:none!important;border:0!important;outline:0!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;padding:0!important;overflow:visible!important;width:min(92vw,420px)!important;max-height:none!important;border-radius:0!important}
+#qb2 .qbs{max-height:min(78dvh,calc(100dvh - 100px));overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+#qb2 .qbs::-webkit-scrollbar{display:none}
+#qb2 .z9q1{font-size:13px;margin:14px 4px 12px;padding:0;min-height:0;white-space:normal;text-align:center;letter-spacing:0;line-height:1.5}
+#qb2 .z9wr{font-size:12px;line-height:1.75;margin:14px 8px 10px;padding:0;min-height:0;white-space:normal;letter-spacing:0;text-align:center}
+#qb2 .qbr{grid-template-columns:1fr auto 22px auto!important;cursor:default}
+#qb2 .qbr.lk{opacity:.72}
+#qb2 .qbr.ig .bx::after{content:"✕";font-size:12px;font-weight:800;color:#ff9a9a}
+#qb2 .qbr input[type=time]{width:92px!important;min-height:0!important;padding:2px 6px!important;font-size:11px;border-radius:6px!important;background:rgba(110,140,180,.12)!important;border:1px solid rgba(205,225,240,.4)!important;color:#fff!important;box-shadow:none!important}
+#qb2 .qx{width:auto!important;margin:0!important;background:none!important;border:0!important;box-shadow:none!important;color:#ff9aa8!important;padding:2px 4px!important;min-height:0!important;font-size:13px;letter-spacing:0}
+#qb2 .qba{margin:12px 6px 0;gap:8px;flex-wrap:nowrap}
+#qb2 .qba input{min-height:40px!important;border-radius:0!important;background:rgba(110,140,180,.1)!important;border:1px solid rgba(205,225,240,.5)!important;color:#fff!important;padding:0 10px!important}
+#qb2 .qba #bn{flex:1;min-width:0}#qb2 .qba #bh{width:96px!important;flex:none}
+#qb2 .qba #ba{flex:none;width:44px;min-height:40px!important;margin:0!important;padding:0!important;border-radius:0!important;border:1px solid rgba(205,225,240,.6)!important;background:transparent!important;color:#fff!important;box-shadow:none!important;text-align:center}
+#qb2 .z9qb{margin-top:8px}
+</style>
 </body></html>
