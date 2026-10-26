@@ -1552,16 +1552,16 @@ const k=$("anc");if(k)k.addEventListener("change",sync);
 <script>
 (()=>{
 /* Voix « Jin-Woo » : voix grave et posée + phrase après chaque tâche. Clips perso facultatifs : dossier voix/ + voix/liste.json */
-const PH=n=>["Une mission de plus. Le Système en prend acte.","Bien. Tu deviens plus fort à chaque tâche.","Continue ainsi. Le sommet n’est plus très loin.","Accompli. Ne t’arrête pas maintenant.","Chaque mission te rapproche du rang suivant.","Voilà comment on monte en niveau, "+n+".","Les ombres reconnaissent ta discipline."],
+const PH=(n,t)=>[...(t?["Mission « "+t+" » accomplie. Bien joué, "+n+".","« "+t+" » : terminé. Le Système en prend acte.","« "+t+" », c’est fait. Continue ainsi."]:[]),"Une mission de plus. Le Système en prend acte.","Bien. Tu deviens plus fort à chaque tâche.","Continue ainsi. Le sommet n’est plus très loin.","Accompli. Ne t’arrête pas maintenant.","Chaque mission te rapproche du rang suivant.","Voilà comment on monte en niveau, "+n+".","Les ombres reconnaissent ta discipline."],
  ALL=n=>"Toutes les missions sont accomplies. Repose-toi, "+n+". Demain, tu seras plus fort.";
 let CL=[],li=-1,lt=0;
 fetch("voix/liste.json",{cache:"no-cache"}).then(r=>r.ok?r.json():[]).then(l=>{if(Array.isArray(l))CL=l.filter(x=>typeof x==="string"&&/^[\w\-. ]+\.(mp3|ogg|wav|m4a)$/i.test(x))}).catch(()=>{});
 function tts(t){if(!window.speechSynthesis)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t),vs=speechSynthesis.getVoices().filter(v=>/^fr/i.test(v.lang));u.lang="fr-FR";const v=vs.find(x=>x.name===S.vn)||vs.find(x=>/thomas|paul|henri|nicolas|mathieu|antoine|claude|male|homme/i.test(x.name))||vs[0];if(v)u.voice=v;u.pitch=.6;u.rate=.86;u.volume=1;speechSynthesis.speak(u)}catch(e){}}
-function jw(all,force){if(!force&&(S.jw===false||document.hidden||($("vo")&&!$("vo").checked)))return;const n=Date.now();if(n-lt<1200)return;lt=n;const nm=typeof UN==="function"?UN():"Chasseur";
- let t;if(all)t=ALL(nm);else{const l=PH(nm);let i;do{i=Math.random()*l.length|0}while(i===li&&l.length>1);li=i;t=l[i]}
+function jw(all,force,title){if(!force&&(S.jw===false||document.hidden||($("vo")&&!$("vo").checked)))return;const n=Date.now();if(n-lt<1200)return;lt=n;const nm=typeof UN==="function"?UN():"Chasseur";
+ let t;if(all)t=ALL(nm);else{const l=PH(nm,title);let i;do{i=Math.random()*l.length|0}while(i===li&&l.length>1);li=i;t=l[i]}
  if(CL.length&&!all){try{const a=new Audio("voix/"+encodeURIComponent(CL[Math.random()*CL.length|0]));a.onerror=()=>tts(t);const p=a.play();if(p&&p.catch)p.catch(()=>tts(t));return}catch(e){}}
  tts(t)}
-const _ok3=ok;ok=function(m){_ok3(m);setTimeout(()=>jw(S.ms.every(x=>x.d)),700)};
+const _ok3=ok;ok=function(m){_ok3(m);setTimeout(()=>jw(S.ms.every(x=>x.d),false,m&&m.t),700)};
 $("vt").closest(".row").insertAdjacentHTML("afterend",'<div class="row" style="margin-top:6px"><label style="display:flex;gap:6px;align-items:center;flex:1"><input type="checkbox" id="jwc" style="width:auto"> 🗡 Voix de Jin-Woo : une phrase après chaque tâche</label><button class="bt" id="jwt" style="margin:0">▶ Tester</button></div>');
 $("jwc").checked=S.jw!==false;$("jwc").onchange=()=>{S.jw=$("jwc").checked;sv()};$("jwt").onclick=()=>{lt=0;jw(false,true)};
 })();
@@ -2172,6 +2172,39 @@ $("z10p").onclick=()=>{try{const vs=ss.getVoices().filter(v=>/^fr/i.test(v.lang)
 function mark(){const s=$("s0");if(!s)return;[...s.children].forEach(p=>{if(!p.classList||!p.classList.contains("p"))return;const h=((p.querySelector("h2")||{}).textContent||"").toUpperCase();
  if(/MISSIONS DU JOUR/.test(h)&&!p.classList.contains("z9qp")){p.classList.add("z9fr","z9qp");const w=document.createElement("p");w.className="z9wr";w.innerHTML="<u>AVERTISSEMENT</u> : ne pas accomplir la quête quotidienne entraînera une pénalité appropriée (−50 XP).";p.appendChild(w)}})}
 mark();setInterval(mark,1500);
+})();
+</script>
+<style id="v11css">
+/* ===== v11 : fenêtre « Quest Info » fidèle à l'image (éclairs, cristal, plaques) ===== */
+.z9fr{margin:16px 8px!important;font-family:"Gill Sans","Gill Sans MT","Trebuchet MS","Segoe UI",system-ui,sans-serif}
+.z10e{position:absolute!important;inset:-7px!important;z-index:-3;pointer-events:none;border:2px solid var(--gl);border-radius:6px;box-shadow:0 0 10px var(--ac),inset 0 0 14px var(--ac);filter:url(#z10f);opacity:.95}
+.z10e.b{inset:-3px!important;border-width:1px;border-color:#dff6ff;filter:url(#z10g);opacity:.8}
+.z10or{position:absolute!important;top:-13px!important;left:50%;width:48px;height:17px;margin-left:-24px;z-index:2;pointer-events:none;background:linear-gradient(180deg,#fff,var(--gl) 55%,var(--ac));clip-path:polygon(0 100%,18% 30%,36% 55%,50% 0,64% 55%,82% 30%,100% 100%);filter:drop-shadow(0 0 6px var(--gl))}
+.z10sp{position:absolute!important;top:30%;height:28%;width:6px;z-index:2;pointer-events:none;background:linear-gradient(180deg,transparent,#eaffff 18%,var(--gl) 82%,transparent);box-shadow:0 0 10px var(--gl);clip-path:polygon(0 8%,100% 0,100% 100%,0 92%)}
+.z10sp.l{left:-4px}.z10sp.r{right:-4px}
+.z10in{position:absolute!important;inset:11px!important;border:1px solid rgba(160,205,255,.26);pointer-events:none;z-index:0}
+.z10rd{position:absolute!important;top:22px;right:24px;z-index:3;width:32px;height:32px;padding:0!important;display:grid;place-items:center;font-size:15px;border-radius:0!important;border:1px solid rgba(205,225,240,.6)!important;background:rgba(110,140,180,.14)!important;box-shadow:none!important;text-shadow:0 0 8px var(--gl);min-height:0!important}
+html.noan .z10e{display:none}
+</style>
+<script>
+(()=>{
+/* Filtres « éclairs » (déplacement par bruit animé) */
+document.body.insertAdjacentHTML("beforeend",'<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="z10f" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency=".03 .04" numOctaves="3" seed="2" result="n"><animate attributeName="seed" values="2;7;4;9;3;6;1;8" dur="1.6s" calcMode="discrete" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="11" xChannelSelector="R" yChannelSelector="G"/></filter><filter id="z10g" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency=".05 .06" numOctaves="2" seed="5" result="n"><animate attributeName="seed" values="5;1;8;3;9;2;6;4" dur="1.2s" calcMode="discrete" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="6" xChannelSelector="G" yChannelSelector="R"/></filter></svg>');
+const HT='<i class="z10e a"></i><i class="z10e b"></i><i class="z10or"></i><i class="z10sp l"></i><i class="z10sp r"></i><i class="z10in"></i><button class="z10rd" aria-label="Lire la quête à voix haute">🔊</button>';
+let raf=0;const deco=()=>{raf=0;document.querySelectorAll(".z9fr").forEach(p=>{if(!p.querySelector(":scope>.z10e"))p.insertAdjacentHTML("afterbegin",HT)})};
+new MutationObserver(()=>{if(!raf)raf=requestAnimationFrame(deco)}).observe(document.body,{childList:true,subtree:true});deco();
+/* Lecture à voix haute de la quête (noms prononcés grâce au lexique) */
+document.addEventListener("click",e=>{const b=e.target.closest(".z10rd");if(!b)return;e.stopPropagation();e.preventDefault();
+ const L=(S.ms||[]).filter(m=>!m.d),nm=typeof UN==="function"?UN():"Chasseur",
+ t="Quête quotidienne pour "+nm+". "+(L.length?L.length+" tâche"+(L.length>1?"s":"")+" restante"+(L.length>1?"s":"")+" : "+L.map(m=>m.t).join(", ")+".":"Toutes les tâches sont accomplies.")+" Avertissement : ne pas accomplir la quête quotidienne entraînera une pénalité appropriée.";
+ try{const ss=speechSynthesis;ss.cancel();const u=new SpeechSynthesisUtterance(t),vs=ss.getVoices().filter(v=>/^fr/i.test(v.lang));u.lang="fr-FR";const v=vs.find(x=>x.name===S.vn)||vs.find(x=>/thomas|paul|henri|nicolas|mathieu|antoine|claude|male|homme/i.test(x.name))||vs[0];if(v)u.voice=v;u.pitch=.6;u.rate=.88;ss.speak(u)}catch(x){}
+ try{snd("sys")}catch(x){}},true);
+/* Noms des joueurs : prononciations ajoutées au lexique (modifiables dans « Prononciation des noms ») */
+const U=()=>S.ui||(S.ui={}),NMS={ibrahim:"Ibraïme",mouctar:"Mouktar"};
+const names=()=>{try{const us=(AU.users||[]).map(u=>u.name).filter(Boolean);let lx=U().lex||"",ch=0;const have=new Set(lx.split(/\n/).map(l=>l.split(/\s*(?:=|→|->|:)\s*/)[0].trim().toLowerCase()));
+ us.forEach(n=>{const k=n.toLowerCase(),tc=n[0].toUpperCase()+n.slice(1).toLowerCase(),v=NMS[k]||(n!==tc?tc:null);if(v&&!have.has(k)){lx+=(lx&&!lx.endsWith("\n")?"\n":"")+n+" = "+v;have.add(k);ch=1}});
+ if(ch){U().lex=lx;sv();const t=$("z10t");if(t)t.value=lx}}catch(e){}};
+names();setInterval(names,6000);
 })();
 </script>
 </body></html>
