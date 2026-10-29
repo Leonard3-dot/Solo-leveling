@@ -1,0 +1,25 @@
+{
+  "name": "LOUIS // CORE",
+  "short_name": "Louis",
+  "description": "Ton assistant, ton système, ton avenir.",
+  "lang": "fr",
+  "start_url": "./index.html?source=pwa",
+  "scope": "./",
+  "id": "./index.html",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#050b1f",
+  "theme_color": "#050b1f",
+  "categories": ["productivity", "education"],
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"},
+    {"src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}
+  ],
+  "shortcuts": [
+    {"name": "Missions du jour", "short_name": "Missions", "url": "./index.html?go=0", "icons": [{"src": "icon-192.png", "sizes": "192x192"}]},
+    {"name": "Entrer dans le donjon", "short_name": "Donjon", "url": "./index.html?go=4", "icons": [{"src": "icon-192.png", "sizes": "192x192"}]}
+  ]
+}
